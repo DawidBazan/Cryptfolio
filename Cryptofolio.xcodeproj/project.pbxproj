@@ -1,0 +1,842 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5A3F087DEDB87F7F8DB2F556 /* Pods_Cryptofolio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E4D9E0632EA270A2A253DD2 /* Pods_Cryptofolio.framework */; };
+		5C545B919D2A3A1540B8D683 /* Pods_CryptofolioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D98E4D3C1C503B648F87BE1A /* Pods_CryptofolioTests.framework */; };
+		6FB192A65886BCBAA6EAFF1E /* Pods_CryptofolioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAB7B0E651F47E288AC2C92E /* Pods_CryptofolioUITests.framework */; };
+		9848801723871820007B694E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848801623871820007B694E /* AppDelegate.swift */; };
+		9848801923871820007B694E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848801823871820007B694E /* SceneDelegate.swift */; };
+		9848801C23871820007B694E /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848801B23871820007B694E /* Service.swift */; };
+		9848801F23871820007B694E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848801E23871820007B694E /* Model.swift */; };
+		9848802223871820007B694E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848802123871820007B694E /* View.swift */; };
+		9848802523871820007B694E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848802423871820007B694E /* ViewModel.swift */; };
+		9848802823871820007B694E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848802723871820007B694E /* ViewController.swift */; };
+		9848802D23871820007B694E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9848802B23871820007B694E /* Main.storyboard */; };
+		9848803023871820007B694E /* Cryptofolio.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9848802E23871820007B694E /* Cryptofolio.xcdatamodeld */; };
+		9848803223871822007B694E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9848803123871822007B694E /* Assets.xcassets */; };
+		9848803523871822007B694E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9848803323871822007B694E /* LaunchScreen.storyboard */; };
+		9848804023871822007B694E /* CryptofolioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848803F23871822007B694E /* CryptofolioTests.swift */; };
+		9848804B23871822007B694E /* CryptofolioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848804A23871822007B694E /* CryptofolioUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9848803C23871822007B694E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9848800B23871820007B694E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9848801223871820007B694E;
+			remoteInfo = Cryptofolio;
+		};
+		9848804723871822007B694E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9848800B23871820007B694E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9848801223871820007B694E;
+			remoteInfo = Cryptofolio;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0E4D9E0632EA270A2A253DD2 /* Pods_Cryptofolio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cryptofolio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BA9068DAA489850E1ECFFF2 /* Pods-CryptofolioUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptofolioUITests.release.xcconfig"; path = "Target Support Files/Pods-CryptofolioUITests/Pods-CryptofolioUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3397BD58195DECE8F21B2B63 /* Pods-CryptofolioUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptofolioUITests.debug.xcconfig"; path = "Target Support Files/Pods-CryptofolioUITests/Pods-CryptofolioUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		39C52FC4B28B0D1929CEB45A /* Pods-Cryptofolio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cryptofolio.debug.xcconfig"; path = "Target Support Files/Pods-Cryptofolio/Pods-Cryptofolio.debug.xcconfig"; sourceTree = "<group>"; };
+		8834DDCDDFEDCD21AEAADAD2 /* Pods-CryptofolioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptofolioTests.release.xcconfig"; path = "Target Support Files/Pods-CryptofolioTests/Pods-CryptofolioTests.release.xcconfig"; sourceTree = "<group>"; };
+		9848801323871820007B694E /* Cryptofolio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cryptofolio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9848801623871820007B694E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9848801823871820007B694E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		9848801B23871820007B694E /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		9848801E23871820007B694E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		9848802123871820007B694E /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		9848802423871820007B694E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		9848802723871820007B694E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9848802C23871820007B694E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9848802F23871820007B694E /* Cryptofolio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cryptofolio.xcdatamodel; sourceTree = "<group>"; };
+		9848803123871822007B694E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9848803423871822007B694E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9848803623871822007B694E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Cryptofolio/Info.plist; sourceTree = "<group>"; };
+		9848803B23871822007B694E /* CryptofolioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptofolioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9848803F23871822007B694E /* CryptofolioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptofolioTests.swift; sourceTree = "<group>"; };
+		9848804123871822007B694E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9848804623871822007B694E /* CryptofolioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptofolioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9848804A23871822007B694E /* CryptofolioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptofolioUITests.swift; sourceTree = "<group>"; };
+		9848804C23871822007B694E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D25DF672ABA0CF03E9AB28B7 /* Pods-CryptofolioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptofolioTests.debug.xcconfig"; path = "Target Support Files/Pods-CryptofolioTests/Pods-CryptofolioTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D98E4D3C1C503B648F87BE1A /* Pods_CryptofolioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptofolioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAB7B0E651F47E288AC2C92E /* Pods_CryptofolioUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptofolioUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA8378A5C6652AC538316E2E /* Pods-Cryptofolio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cryptofolio.release.xcconfig"; path = "Target Support Files/Pods-Cryptofolio/Pods-Cryptofolio.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9848801023871820007B694E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A3F087DEDB87F7F8DB2F556 /* Pods_Cryptofolio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9848803823871822007B694E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C545B919D2A3A1540B8D683 /* Pods_CryptofolioTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9848804323871822007B694E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FB192A65886BCBAA6EAFF1E /* Pods_CryptofolioUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		35975CBFF9365CCB463A0DCA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				39C52FC4B28B0D1929CEB45A /* Pods-Cryptofolio.debug.xcconfig */,
+				EA8378A5C6652AC538316E2E /* Pods-Cryptofolio.release.xcconfig */,
+				D25DF672ABA0CF03E9AB28B7 /* Pods-CryptofolioTests.debug.xcconfig */,
+				8834DDCDDFEDCD21AEAADAD2 /* Pods-CryptofolioTests.release.xcconfig */,
+				3397BD58195DECE8F21B2B63 /* Pods-CryptofolioUITests.debug.xcconfig */,
+				1BA9068DAA489850E1ECFFF2 /* Pods-CryptofolioUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9848800A23871820007B694E = {
+			isa = PBXGroup;
+			children = (
+				9848801523871820007B694E /* Cryptofolio */,
+				9848803623871822007B694E /* Info.plist */,
+				9848802E23871820007B694E /* Cryptofolio.xcdatamodeld */,
+				9848803E23871822007B694E /* CryptofolioTests */,
+				9848804923871822007B694E /* CryptofolioUITests */,
+				9848801423871820007B694E /* Products */,
+				35975CBFF9365CCB463A0DCA /* Pods */,
+				E9FEAAEAD8CEBE64A21EAD49 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9848801423871820007B694E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9848801323871820007B694E /* Cryptofolio.app */,
+				9848803B23871822007B694E /* CryptofolioTests.xctest */,
+				9848804623871822007B694E /* CryptofolioUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9848801523871820007B694E /* Cryptofolio */ = {
+			isa = PBXGroup;
+			children = (
+				9848801623871820007B694E /* AppDelegate.swift */,
+				9848801823871820007B694E /* SceneDelegate.swift */,
+				9848801A23871820007B694E /* Services */,
+				9848801D23871820007B694E /* Models */,
+				9848802023871820007B694E /* Views */,
+				9848802323871820007B694E /* ViewModels */,
+				9848802623871820007B694E /* Controllers */,
+				9848802923871820007B694E /* Resources */,
+			);
+			path = Cryptofolio;
+			sourceTree = "<group>";
+		};
+		9848801A23871820007B694E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9848801B23871820007B694E /* Service.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9848801D23871820007B694E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9848801E23871820007B694E /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9848802023871820007B694E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9848802123871820007B694E /* View.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9848802323871820007B694E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9848802423871820007B694E /* ViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9848802623871820007B694E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9848802723871820007B694E /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9848802923871820007B694E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9848803123871822007B694E /* Assets.xcassets */,
+				9848802A23871820007B694E /* Storyboards */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9848802A23871820007B694E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				9848802B23871820007B694E /* Main.storyboard */,
+				9848803323871822007B694E /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		9848803E23871822007B694E /* CryptofolioTests */ = {
+			isa = PBXGroup;
+			children = (
+				9848803F23871822007B694E /* CryptofolioTests.swift */,
+				9848804123871822007B694E /* Info.plist */,
+			);
+			path = CryptofolioTests;
+			sourceTree = "<group>";
+		};
+		9848804923871822007B694E /* CryptofolioUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9848804A23871822007B694E /* CryptofolioUITests.swift */,
+				9848804C23871822007B694E /* Info.plist */,
+			);
+			path = CryptofolioUITests;
+			sourceTree = "<group>";
+		};
+		E9FEAAEAD8CEBE64A21EAD49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E4D9E0632EA270A2A253DD2 /* Pods_Cryptofolio.framework */,
+				D98E4D3C1C503B648F87BE1A /* Pods_CryptofolioTests.framework */,
+				DAB7B0E651F47E288AC2C92E /* Pods_CryptofolioUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9848801223871820007B694E /* Cryptofolio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9848804F23871822007B694E /* Build configuration list for PBXNativeTarget "Cryptofolio" */;
+			buildPhases = (
+				5438BB50FA302668B9AB2B23 /* [CP] Check Pods Manifest.lock */,
+				9848800F23871820007B694E /* Sources */,
+				9848801023871820007B694E /* Frameworks */,
+				9848801123871820007B694E /* Resources */,
+				252B96B1A2308B7698700288 /* [CP] Embed Pods Frameworks */,
+				9848805823871F29007B694E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cryptofolio;
+			productName = Cryptofolio;
+			productReference = 9848801323871820007B694E /* Cryptofolio.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9848803A23871822007B694E /* CryptofolioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9848805223871822007B694E /* Build configuration list for PBXNativeTarget "CryptofolioTests" */;
+			buildPhases = (
+				E084CD25F7ED04C5CB3FAB05 /* [CP] Check Pods Manifest.lock */,
+				9848803723871822007B694E /* Sources */,
+				9848803823871822007B694E /* Frameworks */,
+				9848803923871822007B694E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9848803D23871822007B694E /* PBXTargetDependency */,
+			);
+			name = CryptofolioTests;
+			productName = CryptofolioTests;
+			productReference = 9848803B23871822007B694E /* CryptofolioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9848804523871822007B694E /* CryptofolioUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9848805523871822007B694E /* Build configuration list for PBXNativeTarget "CryptofolioUITests" */;
+			buildPhases = (
+				AE5C4BF8FE809B864E69422C /* [CP] Check Pods Manifest.lock */,
+				9848804223871822007B694E /* Sources */,
+				9848804323871822007B694E /* Frameworks */,
+				9848804423871822007B694E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9848804823871822007B694E /* PBXTargetDependency */,
+			);
+			name = CryptofolioUITests;
+			productName = CryptofolioUITests;
+			productReference = 9848804623871822007B694E /* CryptofolioUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9848800B23871820007B694E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Dawid Bazan";
+				TargetAttributes = {
+					9848801223871820007B694E = {
+						CreatedOnToolsVersion = 11.2;
+					};
+					9848803A23871822007B694E = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = 9848801223871820007B694E;
+					};
+					9848804523871822007B694E = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = 9848801223871820007B694E;
+					};
+				};
+			};
+			buildConfigurationList = 9848800E23871820007B694E /* Build configuration list for PBXProject "Cryptofolio" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9848800A23871820007B694E;
+			productRefGroup = 9848801423871820007B694E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9848801223871820007B694E /* Cryptofolio */,
+				9848803A23871822007B694E /* CryptofolioTests */,
+				9848804523871822007B694E /* CryptofolioUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9848801123871820007B694E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9848803523871822007B694E /* LaunchScreen.storyboard in Resources */,
+				9848803223871822007B694E /* Assets.xcassets in Resources */,
+				9848802D23871820007B694E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9848803923871822007B694E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9848804423871822007B694E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		252B96B1A2308B7698700288 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cryptofolio/Pods-Cryptofolio-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cryptofolio/Pods-Cryptofolio-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cryptofolio/Pods-Cryptofolio-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5438BB50FA302668B9AB2B23 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cryptofolio-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9848805823871F29007B694E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${INFOPLIST_FILE}\"\n";
+		};
+		AE5C4BF8FE809B864E69422C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CryptofolioUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E084CD25F7ED04C5CB3FAB05 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CryptofolioTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9848800F23871820007B694E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9848801723871820007B694E /* AppDelegate.swift in Sources */,
+				9848801923871820007B694E /* SceneDelegate.swift in Sources */,
+				9848803023871820007B694E /* Cryptofolio.xcdatamodeld in Sources */,
+				9848802223871820007B694E /* View.swift in Sources */,
+				9848801C23871820007B694E /* Service.swift in Sources */,
+				9848802823871820007B694E /* ViewController.swift in Sources */,
+				9848802523871820007B694E /* ViewModel.swift in Sources */,
+				9848801F23871820007B694E /* Model.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9848803723871822007B694E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9848804023871822007B694E /* CryptofolioTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9848804223871822007B694E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9848804B23871822007B694E /* CryptofolioUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9848803D23871822007B694E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9848801223871820007B694E /* Cryptofolio */;
+			targetProxy = 9848803C23871822007B694E /* PBXContainerItemProxy */;
+		};
+		9848804823871822007B694E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9848801223871820007B694E /* Cryptofolio */;
+			targetProxy = 9848804723871822007B694E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9848802B23871820007B694E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9848802C23871820007B694E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9848803323871822007B694E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9848803423871822007B694E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9848804D23871822007B694E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9848804E23871822007B694E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9848805023871822007B694E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39C52FC4B28B0D1929CEB45A /* Pods-Cryptofolio.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M9655785CU;
+				INFOPLIST_FILE = Cryptofolio/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bazan.Cryptofolio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9848805123871822007B694E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA8378A5C6652AC538316E2E /* Pods-Cryptofolio.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M9655785CU;
+				INFOPLIST_FILE = Cryptofolio/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bazan.Cryptofolio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9848805323871822007B694E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D25DF672ABA0CF03E9AB28B7 /* Pods-CryptofolioTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M9655785CU;
+				INFOPLIST_FILE = CryptofolioTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bazan.CryptofolioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cryptofolio.app/Cryptofolio";
+			};
+			name = Debug;
+		};
+		9848805423871822007B694E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8834DDCDDFEDCD21AEAADAD2 /* Pods-CryptofolioTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M9655785CU;
+				INFOPLIST_FILE = CryptofolioTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bazan.CryptofolioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cryptofolio.app/Cryptofolio";
+			};
+			name = Release;
+		};
+		9848805623871822007B694E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3397BD58195DECE8F21B2B63 /* Pods-CryptofolioUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M9655785CU;
+				INFOPLIST_FILE = CryptofolioUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bazan.CryptofolioUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Cryptofolio;
+			};
+			name = Debug;
+		};
+		9848805723871822007B694E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BA9068DAA489850E1ECFFF2 /* Pods-CryptofolioUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M9655785CU;
+				INFOPLIST_FILE = CryptofolioUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bazan.CryptofolioUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Cryptofolio;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9848800E23871820007B694E /* Build configuration list for PBXProject "Cryptofolio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9848804D23871822007B694E /* Debug */,
+				9848804E23871822007B694E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9848804F23871822007B694E /* Build configuration list for PBXNativeTarget "Cryptofolio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9848805023871822007B694E /* Debug */,
+				9848805123871822007B694E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9848805223871822007B694E /* Build configuration list for PBXNativeTarget "CryptofolioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9848805323871822007B694E /* Debug */,
+				9848805423871822007B694E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9848805523871822007B694E /* Build configuration list for PBXNativeTarget "CryptofolioUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9848805623871822007B694E /* Debug */,
+				9848805723871822007B694E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9848802E23871820007B694E /* Cryptofolio.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9848802F23871820007B694E /* Cryptofolio.xcdatamodel */,
+			);
+			currentVersion = 9848802F23871820007B694E /* Cryptofolio.xcdatamodel */;
+			path = Cryptofolio.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 9848800B23871820007B694E /* Project object */;
+}
