@@ -8,13 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CryptoVC: UIViewController {
+    
+    var viewModel: CryptoViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
 }
-
