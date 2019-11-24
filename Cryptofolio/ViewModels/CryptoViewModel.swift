@@ -12,6 +12,7 @@ import PromiseKit
 class CryptoViewModel {
     private let reachability: ReachabilityChecker
     private let cryptoFetcher: CryptoFetcher
+    var updatedCrypto: ((Crypto) -> Void)?
     
     init(reachability: ReachabilityChecker, cryptoFetcher: CryptoFetcher) {
         self.reachability = reachability
@@ -25,7 +26,7 @@ class CryptoViewModel {
         }.then { _ in
             self.cryptoFetcher.fetchCrypto()
         }.done { crypto in
-            print(crypto)
+            self.updatedCrypto?(crypto)
         }.catch { error in
             print("\(error)")
         }

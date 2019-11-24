@@ -10,47 +10,27 @@ import Foundation
 
 // MARK: - Crypto
 struct Crypto: Codable {
-    let status: Status
     let data: [Datum]
 }
 
 // MARK: - Datum
 struct Datum: Codable {
     let id: Int
-    let name, symbol, slug: String
-    let numMarketPairs: Int
-    let dateAdded: String
-    let tags: [String]
+    let name, symbol: String
     let maxSupply: Int?
     let circulatingSupply, totalSupply: Double
-    let platform: Platform?
     let cmcRank: Int
     let lastUpdated: String
     let quote: Quote
 
     enum CodingKeys: String, CodingKey {
-        case id, name, symbol, slug
-        case numMarketPairs = "num_market_pairs"
-        case dateAdded = "date_added"
-        case tags
+        case id, name, symbol
         case maxSupply = "max_supply"
         case circulatingSupply = "circulating_supply"
         case totalSupply = "total_supply"
-        case platform
         case cmcRank = "cmc_rank"
         case lastUpdated = "last_updated"
         case quote
-    }
-}
-
-// MARK: - Platform
-struct Platform: Codable {
-    let id: Int
-    let name, symbol, slug, tokenAddress: String
-
-    enum CodingKeys: String, CodingKey {
-        case id, name, symbol, slug
-        case tokenAddress = "token_address"
     }
 }
 
@@ -80,24 +60,6 @@ struct Usd: Codable {
     }
 }
 
-// MARK: - Status
-struct Status: Codable {
-    let timestamp: String
-    let errorCode: Int
-    let errorMessage: JSONNull?
-    let elapsed, creditCount: Int
-    let notice: JSONNull?
-
-    enum CodingKeys: String, CodingKey {
-        case timestamp
-        case errorCode = "error_code"
-        case errorMessage = "error_message"
-        case elapsed
-        case creditCount = "credit_count"
-        case notice
-    }
-}
-
 // MARK: - Encode/decode helpers
 
 class JSONNull: Codable, Hashable {
@@ -106,8 +68,8 @@ class JSONNull: Codable, Hashable {
         return true
     }
 
-    public var hashValue: Int {
-        return 0
+    public func hash(into hasher: inout Hasher) {
+        // No-op
     }
 
     public init() {}
@@ -124,4 +86,3 @@ class JSONNull: Codable, Hashable {
         try container.encodeNil()
     }
 }
-

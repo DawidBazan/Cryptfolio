@@ -31,8 +31,6 @@ struct CryptoFetcher {
     
     private func decodeData(_ data: Data) -> Crypto? {
         guard let decodedCrypto = try? JSONDecoder().decode(Crypto.self, from: data) else {
-            let json = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
-            print(json!)
             return nil
         }
         return decodedCrypto
