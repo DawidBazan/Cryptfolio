@@ -24,20 +24,27 @@ class CryptoVC: UIViewController {
     func setupView() {
         viewModel.updatedCrypto = { [weak self] crypto in
             self?.cryptoInfo = crypto.info
-            self?.cryptoInfo.forEach({ info in
-                self?.viewModel.fetchImage(for: info.id)
-            })
             self?.totalLbl.text = self?.viewModel.getTotalValue(for: crypto)
-        }
-        viewModel.updatedImage = { [weak self] imageData in
-            guard let index = self?.cryptoInfo.firstIndex(where: {$0.id == imageData.id}) else { return }
-            self?.cryptoInfo[index].image = imageData.data
             self?.tableView.reloadData()
         }
     }
 }
 
 extension CryptoVC: UITableViewDelegate, UITableViewDataSource {
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let frame = tableView.frame
+//        let button = UIButton(frame: CGRectMake(5, 10, 15, 15))  // create button
+//        button.tag = section
+//        // the button is image - set image
+//        button.setImage(UIImage(named: "remove_button"), forState: UIControlState.Normal)  // assumes there is an image named "remove_button"
+//        button.addTarget(self, action: #selector(TestController.remove(_:)), forControlEvents: .TouchUpInside)  // add selector called by clicking on the button
+//
+//        let headerView = UIView(frame: CGRectMake(0, 0, frame.size.width, frame.size.height))  // create custom view
+//        headerView.addSubview(button)   // add the button to the view
+//
+//        return headerView
+//    }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {

@@ -29,19 +29,6 @@ struct CryptoFetcher {
         }
     }
     
-    func fetchCryptoImage(for id: Int) -> Promise<ImageResult> {
-        return Promise { seal in
-            network.requestCryptoImage(for: id) { result in
-                switch result {
-                case let .success(data):
-                    seal.fulfill(data)
-                case let .failure(error):
-                    seal.reject(error)
-                }
-            }
-        }
-    }
-    
     private func decodeData(_ data: Data) -> Crypto? {
         guard let decodedCrypto = try? JSONDecoder().decode(Crypto.self, from: data) else {
             return nil

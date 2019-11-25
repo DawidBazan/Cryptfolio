@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Ik-wb-R7y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t25-zN-43o">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S9r-CF-co5">
-                                <rect key="frame" x="0.0" y="262" width="375" height="516"/>
+                                <rect key="frame" x="0.0" y="262" width="375" height="467"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Cg9-lj-thQ" customClass="CryptoCell" customModule="Cryptofolio" customModuleProvider="target">
@@ -135,12 +135,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042.0289855072465" y="91.741071428571431"/>
+            <point key="canvasLocation" x="1983.2" y="91.625615763546804"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--View Controller-->
+        <scene sceneID="pEc-qG-KoX">
+            <objects>
+                <viewController id="e7o-OH-6YS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rru-2K-hpC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="UwL-SF-8io"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Etx-uT-nIN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Kb-R4-U28" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1983" y="836"/>
+        </scene>
+        <!--Portfolio-->
         <scene sceneID="NX9-H0-lCi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Ik-wb-R7y" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Portfolio" image="person.circle" catalog="system" selectedImage="person.circle.fill" id="wxj-Kc-3kN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="e3N-Q8-QAa">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
@@ -154,7 +171,50 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7oL-dt-hva" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="91.741071428571431"/>
+            <point key="canvasLocation" x="1072.8" y="91.625615763546804"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="kcP-Vv-X42">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="t25-zN-43o" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RUx-rI-9yZ">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9Ik-wb-R7y" kind="relationship" relationship="viewControllers" id="LEP-GU-I3c"/>
+                        <segue destination="zrw-8e-utn" kind="relationship" relationship="viewControllers" id="fXt-wD-p7H"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="79m-XF-dgC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="130.40000000000001" y="91.625615763546804"/>
+        </scene>
+        <!--Crypto-->
+        <scene sceneID="5Vj-2L-rXD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zrw-8e-utn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Crypto" image="coloncurrencysign.circle" catalog="system" selectedImage="coloncurrencysign.circle.fill" id="4WH-g7-QXr"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vNY-XM-Btm">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="e7o-OH-6YS" kind="relationship" relationship="rootViewController" id="Roo-UC-5Is"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gVl-IL-LV2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1073" y="836"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="coloncurrencysign.circle" catalog="system" width="64" height="60"/>
+        <image name="coloncurrencysign.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="person.circle" catalog="system" width="64" height="60"/>
+        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
+    </resources>
 </document>

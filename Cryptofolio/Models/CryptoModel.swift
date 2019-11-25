@@ -106,14 +106,18 @@ struct CryptoInfo: Codable {
     let id: Int
     let name, symbol: String
     let price: Double
-    var image: Data?
+    var imageData: Data?
 }
 
 private func sortCryptoData(_ cryptoData: [Datum]) -> [CryptoInfo] {
     var cryptoInfo: [CryptoInfo] = []
     
     cryptoData.forEach { data in
-        let info = CryptoInfo(id: data.id, name: data.name, symbol: data.symbol, price: data.quote.usd.price, image: nil)
+        let info = CryptoInfo(id: data.id,
+                              name: data.name,
+                              symbol: data.symbol,
+                              price: data.quote.usd.price,
+                              imageData: CryptoImage.getData(for: data.id))
         cryptoInfo.append(info)
     }
     return cryptoInfo
