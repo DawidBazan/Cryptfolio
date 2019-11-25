@@ -13,7 +13,6 @@ class CryptoViewModel {
     private let reachability: ReachabilityChecker
     private let cryptoFetcher: CryptoFetcher
     var updatedCrypto: ((Crypto) -> Void)?
-    var updatedImage: ((ImageResult) -> Void)?
     
     init(reachability: ReachabilityChecker, cryptoFetcher: CryptoFetcher) {
         self.reachability = reachability
@@ -28,18 +27,6 @@ class CryptoViewModel {
             self.cryptoFetcher.fetchCrypto()
         }.done { crypto in
             self.updatedCrypto?(crypto)
-        }.catch { error in
-            print("\(error)")
-        }
-    }
-    
-    func fetchImage(for id: Int) {
-        firstly {
-            self.reachability.checkReachability()
-        }.then { _ in
-            self.cryptoFetcher.fetchCryptoImage(for: id)
-        }.done { imageData in
-            self.updatedImage?(imageData)
         }.catch { error in
             print("\(error)")
         }
