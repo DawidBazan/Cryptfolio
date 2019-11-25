@@ -10,15 +10,19 @@ import UIKit
 
 class CryptoCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet var cryptoImage: UIImageView!
+    @IBOutlet var nameLbl: UILabel!
+    @IBOutlet var fullPriceLbl: UILabel!
+    @IBOutlet var coinAmountLbl: UILabel!
+    @IBOutlet var coinValueLbl: UILabel!
+    
+    func setupCell(with cryptoInfo: CryptoInfo) {
+        if let imageData = cryptoInfo.image {
+            cryptoImage.image = UIImage(data: imageData)
+        }
+        nameLbl.text = cryptoInfo.name
+        fullPriceLbl.text = String(cryptoInfo.price)
+        coinValueLbl.text = "£1104.34"
+        coinAmountLbl.text = "0.235\(cryptoInfo.symbol)"
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
