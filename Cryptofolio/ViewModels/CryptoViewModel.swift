@@ -31,4 +31,8 @@ class CryptoViewModel {
             print("\(error)")
         }
     }
+    
+    func getTotalValue() -> String {
+        return ""
+    }
 }

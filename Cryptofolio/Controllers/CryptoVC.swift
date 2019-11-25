@@ -11,12 +11,19 @@ import UIKit
 class CryptoVC: UIViewController {
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var totalLbl: UILabel!
     
     var viewModel: CryptoViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    func setupView() {
+        viewModel.updatedCrypto = { [weak self] crypto in
+            self?.tableView.reloadData()
+        }
     }
 }
 

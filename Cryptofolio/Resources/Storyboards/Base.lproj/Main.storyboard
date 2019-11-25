@@ -123,6 +123,7 @@
                     <navigationItem key="navigationItem" title="Portfolio" id="Zob-IZ-mbA"/>
                     <connections>
                         <outlet property="tableView" destination="S9r-CF-co5" id="vF0-gZ-i0h"/>
+                        <outlet property="totalLbl" destination="366-C7-LNa" id="tTN-0V-bWc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
