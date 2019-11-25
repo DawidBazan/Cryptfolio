@@ -10,11 +10,24 @@ import Foundation
 
 // MARK: - Crypto
 struct Crypto: Codable {
-    let data: [Datum]
+    private let data: [Datum]
+    let info: [CryptoInfo]
+    
+    enum CodingKeys: String, CodingKey {
+        case data, info
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        data = try container.decode([Datum].self, forKey: .data)
+        info = sortCryptoData(data)
+    }
+
 }
 
 // MARK: - Datum
-struct Datum: Codable {
+private struct Datum: Codable {
     let id: Int
     let name, symbol: String
     let maxSupply: Int?
@@ -35,7 +48,7 @@ struct Datum: Codable {
 }
 
 // MARK: - Quote
-struct Quote: Codable {
+private struct Quote: Codable {
     let usd: Usd
 
     enum CodingKeys: String, CodingKey {
@@ -44,7 +57,7 @@ struct Quote: Codable {
 }
 
 // MARK: - Usd
-struct Usd: Codable {
+private struct Usd: Codable {
     let price, volume24H, percentChange1H, percentChange24H: Double
     let percentChange7D, marketCap: Double
     let lastUpdated: String
@@ -62,7 +75,7 @@ struct Usd: Codable {
 
 // MARK: - Encode/decode helpers
 
-class JSONNull: Codable, Hashable {
+private class JSONNull: Codable, Hashable {
 
     public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
         return true
@@ -85,4 +98,23 @@ class JSONNull: Codable, Hashable {
         var container = encoder.singleValueContainer()
         try container.encodeNil()
     }
+}
+
+// MARK: - Custom Codable
+
+struct CryptoInfo: Codable {
+    let id: Int
+    let name, symbol: String
+    let price: Double
+    var image: Data?
+}
+
+private func sortCryptoData(_ cryptoData: [Datum]) -> [CryptoInfo] {
+    var cryptoInfo: [CryptoInfo] = []
+    
+    cryptoData.forEach { data in
+        let info = CryptoInfo(id: data.id, name: data.name, symbol: data.symbol, price: data.quote.usd.price, image: nil)
+        cryptoInfo.append(info)
+    }
+    return cryptoInfo
 }
