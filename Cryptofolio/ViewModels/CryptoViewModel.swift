@@ -32,10 +32,10 @@ class CryptoViewModel {
         }
     }
     
-    func getTotalValue(for crypto: Crypto) -> String {
+    func getTotalValue(for myCoins: [Double]) -> String {
         var total = 0.0
-        crypto.info.forEach { info in
-            total += info.price
+        myCoins.forEach { value in
+            total += value
         }
         let stringTotal = "$\(total.rounded())"
         return stringTotal

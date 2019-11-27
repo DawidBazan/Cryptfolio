@@ -14,7 +14,6 @@ class CryptoVC: UIViewController {
     
     var viewModel: CryptoViewModel!
     var cryptoInfo: [CryptoInfo] = []
-    var totalValueString = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +23,21 @@ class CryptoVC: UIViewController {
     func setupView() {
         viewModel.updatedCrypto = { [weak self] crypto in
             self?.cryptoInfo = crypto.info
-            self?.totalValueString = self?.viewModel.getTotalValue(for: crypto) ?? ""
             self?.tableView.reloadData()
         }
+    }
+    
+    func addButtonToHeader(_ header: UITableViewHeaderFooterView) {
+        let headerWidth = header.frame.width
+        let button = UIButton(frame: CGRect(x: headerWidth - 35, y: 0, width: 20, height: 20))
+        button.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
+        let image = UIImage(named: "add")
+        button.setImage(image, for: .normal)
+        header.addSubview(button)
+    }
+    
+    @objc func addPressed() {
+        print("add")
     }
 }
 
@@ -34,14 +45,6 @@ extension CryptoVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
-    }
-    
-    func addButtonToHeader(_ header: UITableViewHeaderFooterView) {
-        let headerWidth = header.frame.width
-        let button = UIButton(frame: CGRect(x: headerWidth - 35, y: 5, width: 20, height: 20))
-        let image = UIImage(named: "add")
-        button.setImage(image, for: .normal)
-        header.addSubview(button)
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -96,10 +99,10 @@ extension CryptoVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "totalCell") as! TotalValueCell
-            cell.setupCell(with: totalValueString)
+            let totalString = self.viewModel.getTotalValue(for: [1002, 1002])
+            cell.setupCell(with: totalString)
             return cell
         }
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
