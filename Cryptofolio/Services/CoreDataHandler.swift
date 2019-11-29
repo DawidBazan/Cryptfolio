@@ -11,15 +11,15 @@ import Foundation
 import CoreData
 
 enum CoreDataHandler {
-    static func saveCrypto(_ crypto: CryptoInfo, amount: String) {
+    static func addCoin(_ coin: CoinInfo, amount: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         let context = appDelegate.persistentContainer.viewContext
         if let myCrypto = fetchMyCrypto(in: context) {
             let myCoin = MyCoin(context: context)
-            myCoin.name = crypto.name
-            myCoin.symbol = crypto.symbol
+            myCoin.name = coin.name
+            myCoin.symbol = coin.symbol
             myCoin.amount = amount
             myCrypto.addToMyCoins(myCoin)
             appDelegate.saveContext()
@@ -39,17 +39,31 @@ enum CoreDataHandler {
                 let myCrypto = MyCrypto(context: context)
                 return myCrypto
             }
-        }catch {
+        } catch {
             print("Fetch failed")
             return nil
         }
     }
     
-    static func removeCrypto() {
+    static func removeCoin(_ coin: CoinInfo) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<MyCrypto>(entityName: "MyCrypto")
+        do {
+            let counter = try context.count(for: request)
+            if counter == 1 {
+                let myCrypto = try context.fetch(request)
+                let myCoins = myCrypto[0].myCoins?.allObjects as! [MyCoin]
+                if let selectedCoin = myCoins.first(where: {$0.symbol == coin.symbol}) {
+                    myCrypto[0].removeFromMyCoins(selectedCoin)
+                    appDelegate.saveContext()
+                }
+            }
+        } catch {
+            print("Fetch failed")
+        }
 
     }
 }

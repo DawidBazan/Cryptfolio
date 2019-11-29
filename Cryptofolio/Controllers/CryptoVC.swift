@@ -13,7 +13,7 @@ class CryptoVC: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var viewModel: CryptoViewModel!
-    var cryptoInfo: [CryptoInfo] = []
+    var cryptoInfo: [CoinInfo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,15 @@ class CryptoVC: UIViewController {
     }
     
     @objc func addPressed() {
-        print("add")
+        performSegue(withIdentifier: "addCoin", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addCoin" {
+            if let viewController = segue.destination as? AddCoinVC {
+                viewController.cryptoInfo = cryptoInfo
+            }
+        }
     }
 }
 

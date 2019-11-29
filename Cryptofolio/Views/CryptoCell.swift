@@ -16,7 +16,7 @@ class CryptoCell: UITableViewCell {
     @IBOutlet var coinAmountLbl: UILabel!
     @IBOutlet var coinValueLbl: UILabel!
     
-    func setupCell(with cryptoInfo: CryptoInfo) {
+    func setupCell(with cryptoInfo: CoinInfo) {
         if let imageData = cryptoInfo.imageData {
             cryptoImage.image = UIImage(data: imageData)
         }
