@@ -10,7 +10,7 @@
 		5A3F087DEDB87F7F8DB2F556 /* Pods_Cryptofolio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E4D9E0632EA270A2A253DD2 /* Pods_Cryptofolio.framework */; };
 		5C545B919D2A3A1540B8D683 /* Pods_CryptofolioTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D98E4D3C1C503B648F87BE1A /* Pods_CryptofolioTests.framework */; };
 		6FB192A65886BCBAA6EAFF1E /* Pods_CryptofolioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAB7B0E651F47E288AC2C92E /* Pods_CryptofolioUITests.framework */; };
-		98073818238F013400C54B3F /* AddCoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98073817238F013400C54B3F /* AddCoinVC.swift */; };
+		98073818238F013400C54B3F /* CoinSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98073817238F013400C54B3F /* CoinSelectionVC.swift */; };
 		9807381A238F024A00C54B3F /* CoinSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98073819238F024A00C54B3F /* CoinSelectionCell.swift */; };
 		982C5F79238C3BF600D6BE37 /* CryptoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982C5F78238C3BF600D6BE37 /* CryptoImage.swift */; };
 		9848801723871820007B694E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848801623871820007B694E /* AppDelegate.swift */; };
@@ -35,6 +35,8 @@
 		98963238238D7CBB00985BEB /* TotalValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98963237238D7CBB00985BEB /* TotalValueCell.swift */; };
 		98B740E52387D8E1006C7331 /* CryptoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B740E42387D8E1006C7331 /* CryptoRouter.swift */; };
 		98B740E72387DAB3006C7331 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B740E62387DAB3006C7331 /* Constants.swift */; };
+		98BE917C2397D882004EB22C /* CryptoListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BE917B2397D882004EB22C /* CryptoListVC.swift */; };
+		98BE917E2397DE31004EB22C /* AddCoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BE917D2397DE31004EB22C /* AddCoinVC.swift */; };
 		98C7062A238E6FBF005521CA /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C70629238E6FBF005521CA /* CoreDataHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +63,7 @@
 		3397BD58195DECE8F21B2B63 /* Pods-CryptofolioUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptofolioUITests.debug.xcconfig"; path = "Target Support Files/Pods-CryptofolioUITests/Pods-CryptofolioUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		39C52FC4B28B0D1929CEB45A /* Pods-Cryptofolio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cryptofolio.debug.xcconfig"; path = "Target Support Files/Pods-Cryptofolio/Pods-Cryptofolio.debug.xcconfig"; sourceTree = "<group>"; };
 		8834DDCDDFEDCD21AEAADAD2 /* Pods-CryptofolioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptofolioTests.release.xcconfig"; path = "Target Support Files/Pods-CryptofolioTests/Pods-CryptofolioTests.release.xcconfig"; sourceTree = "<group>"; };
-		98073817238F013400C54B3F /* AddCoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinVC.swift; sourceTree = "<group>"; };
+		98073817238F013400C54B3F /* CoinSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSelectionVC.swift; sourceTree = "<group>"; };
 		98073819238F024A00C54B3F /* CoinSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSelectionCell.swift; sourceTree = "<group>"; };
 		982C5F78238C3BF600D6BE37 /* CryptoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoImage.swift; sourceTree = "<group>"; };
 		9848801323871820007B694E /* Cryptofolio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cryptofolio.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +94,8 @@
 		98963237238D7CBB00985BEB /* TotalValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalValueCell.swift; sourceTree = "<group>"; };
 		98B740E42387D8E1006C7331 /* CryptoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoRouter.swift; sourceTree = "<group>"; };
 		98B740E62387DAB3006C7331 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		98BE917B2397D882004EB22C /* CryptoListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListVC.swift; sourceTree = "<group>"; };
+		98BE917D2397DE31004EB22C /* AddCoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinVC.swift; sourceTree = "<group>"; };
 		98C70629238E6FBF005521CA /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		D25DF672ABA0CF03E9AB28B7 /* Pods-CryptofolioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptofolioTests.debug.xcconfig"; path = "Target Support Files/Pods-CryptofolioTests/Pods-CryptofolioTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D98E4D3C1C503B648F87BE1A /* Pods_CryptofolioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptofolioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,7 +231,9 @@
 			isa = PBXGroup;
 			children = (
 				9848802723871820007B694E /* CryptoVC.swift */,
-				98073817238F013400C54B3F /* AddCoinVC.swift */,
+				98BE917D2397DE31004EB22C /* AddCoinVC.swift */,
+				98073817238F013400C54B3F /* CoinSelectionVC.swift */,
+				98BE917B2397D882004EB22C /* CryptoListVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -528,9 +534,11 @@
 				98B740E72387DAB3006C7331 /* Constants.swift in Sources */,
 				9848802823871820007B694E /* CryptoVC.swift in Sources */,
 				98882CCA2388618700033BEE /* ReachabilityChecker.swift in Sources */,
+				98BE917E2397DE31004EB22C /* AddCoinVC.swift in Sources */,
 				98882CC62388611100033BEE /* SwinjectStoryboard.swift in Sources */,
 				98963238238D7CBB00985BEB /* TotalValueCell.swift in Sources */,
-				98073818238F013400C54B3F /* AddCoinVC.swift in Sources */,
+				98BE917C2397D882004EB22C /* CryptoListVC.swift in Sources */,
+				98073818238F013400C54B3F /* CoinSelectionVC.swift in Sources */,
 				984880602387D6E0007B694E /* CurrencyModel.swift in Sources */,
 				98C7062A238E6FBF005521CA /* CoreDataHandler.swift in Sources */,
 				9807381A238F024A00C54B3F /* CoinSelectionCell.swift in Sources */,

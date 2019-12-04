@@ -22,9 +22,21 @@ class CryptoVC: UIViewController {
     
     func setupView() {
         viewModel.updatedCrypto = { [weak self] crypto in
-            self?.cryptoInfo = crypto.info
+            self?.getMyCryptoInfo(from: crypto)
             self?.tableView.reloadData()
         }
+    }
+    
+    func getMyCryptoInfo(from crypto: Crypto) {
+        let myCrypto = CoreDataHandler.fetchCrypto()
+        crypto.info.forEach { coin in
+            if myCrypto.contains(where: {$0.symbol == coin.symbol}) {
+                if !cryptoInfo.contains(where: {$0.id == coin.id}) {
+                    cryptoInfo.append(coin)
+                }
+            }
+        }
+        
     }
     
     func addButtonToHeader(_ header: UITableViewHeaderFooterView) {
@@ -43,7 +55,7 @@ class CryptoVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addCoin" {
             if let viewController = segue.destination as? AddCoinVC {
-                viewController.cryptoInfo = cryptoInfo
+//                viewController. = cryptoInfo
             }
         }
     }

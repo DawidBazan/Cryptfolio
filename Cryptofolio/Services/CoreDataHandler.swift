@@ -45,6 +45,25 @@ enum CoreDataHandler {
         }
     }
     
+    static func fetchCrypto() -> [MyCoin] {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<MyCrypto>(entityName: "MyCrypto")
+        do {
+            let counter = try context.count(for: request)
+            if counter == 1 {
+                let myCrypto = try context.fetch(request).first
+                let allCrypto = myCrypto?.myCoins?.allObjects as! [MyCoin]
+                return allCrypto
+            } else {
+                return []
+            }
+        } catch {
+            print("Fetch failed")
+            return []
+        }
+    }
+    
     static func removeCoin(_ coin: CoinInfo) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
