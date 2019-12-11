@@ -12,8 +12,7 @@ class PortfolioVC: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    var viewModel: CryptoViewModel!
-    var cryptoInfo: [CoinInfo] = []
+    var viewModel: PortfolioViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,22 +20,9 @@ class PortfolioVC: UIViewController {
     }
     
     func setupView() {
-//        viewModel.updatedCrypto = { [weak self] crypto in
-//            self?.getMyCryptoInfo(from: crypto)
-//            self?.tableView.reloadData()
-//        }
-    }
-    
-    func getMyCryptoInfo(from crypto: Crypto) {
-        let myCrypto = CoreDataHandler.fetchCrypto()
-        crypto.info.forEach { coin in
-            if myCrypto.contains(where: {$0.symbol == coin.symbol}) {
-                if !cryptoInfo.contains(where: {$0.id == coin.id}) {
-                    cryptoInfo.append(coin)
-                }
-            }
+        viewModel.updatedCrypto = {
+            self.tableView.reloadData()
         }
-        
     }
     
     func addButtonToHeader(_ header: UITableViewHeaderFooterView) {
@@ -55,7 +41,7 @@ class PortfolioVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addCoin" {
             if let viewController = segue.destination as? AddCoinVC {
-                viewController.crypto = cryptoInfo
+                viewController.crypto = viewModel.getAllCrypto()
             }
         }
     }
@@ -70,17 +56,21 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
             addButtonToHeader(headerView)
-            if #available(iOS 13.0, *) {
-                headerView.contentView.backgroundColor = .systemBackground
-                headerView.backgroundView?.backgroundColor = .systemBackground
-                headerView.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-                headerView.textLabel?.textColor = .label
-            } else {
-                headerView.contentView.backgroundColor = .white
-                headerView.backgroundView?.backgroundColor = .white
-                headerView.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-                headerView.textLabel?.textColor = .black
-            }
+            customHeaderView(for: headerView)
+        }
+    }
+    
+    func customHeaderView(for headerView: UITableViewHeaderFooterView) {
+        if #available(iOS 13.0, *) {
+            headerView.contentView.backgroundColor = .systemBackground
+            headerView.backgroundView?.backgroundColor = .systemBackground
+            headerView.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+            headerView.textLabel?.textColor = .label
+        } else {
+            headerView.contentView.backgroundColor = .white
+            headerView.backgroundView?.backgroundColor = .white
+            headerView.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+            headerView.textLabel?.textColor = .black
         }
     }
     
@@ -105,7 +95,7 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 1:
-            return cryptoInfo.count
+            return viewModel.getRowCount()
         default:
             return 1
         }
@@ -115,7 +105,8 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PortfolioCell
-            cell.setupCell(with: cryptoInfo[indexPath.row])
+            let coin = viewModel.getCoin(at: indexPath.row)
+            cell.setupCell(with: coin)
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "totalCell") as! TotalValueCell

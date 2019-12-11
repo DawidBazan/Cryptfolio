@@ -30,6 +30,7 @@
 		9848805E2387D545007B694E /* CryptoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848805D2387D545007B694E /* CryptoError.swift */; };
 		984880602387D6E0007B694E /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9848805F2387D6E0007B694E /* CurrencyModel.swift */; };
 		985A3BBF239FF6C3007D0E64 /* CryptoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985A3BBE239FF6C3007D0E64 /* CryptoCell.swift */; };
+		9886E6D323A14E8E005722E0 /* PortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9886E6D223A14E8E005722E0 /* PortfolioViewModel.swift */; };
 		98882CC62388611100033BEE /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98882CC52388611100033BEE /* SwinjectStoryboard.swift */; };
 		98882CC82388615C00033BEE /* CryptoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98882CC72388615C00033BEE /* CryptoFetcher.swift */; };
 		98882CCA2388618700033BEE /* ReachabilityChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98882CC92388618700033BEE /* ReachabilityChecker.swift */; };
@@ -90,6 +91,7 @@
 		9848805D2387D545007B694E /* CryptoError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoError.swift; sourceTree = "<group>"; };
 		9848805F2387D6E0007B694E /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		985A3BBE239FF6C3007D0E64 /* CryptoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCell.swift; sourceTree = "<group>"; };
+		9886E6D223A14E8E005722E0 /* PortfolioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewModel.swift; sourceTree = "<group>"; };
 		98882CC52388611100033BEE /* SwinjectStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboard.swift; sourceTree = "<group>"; };
 		98882CC72388615C00033BEE /* CryptoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoFetcher.swift; sourceTree = "<group>"; };
 		98882CC92388618700033BEE /* ReachabilityChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityChecker.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 		9848802323871820007B694E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				9886E6D223A14E8E005722E0 /* PortfolioViewModel.swift */,
 				9848802423871820007B694E /* CryptoViewModel.swift */,
 			);
 			path = ViewModels;
@@ -530,6 +533,7 @@
 				9848801923871820007B694E /* SceneDelegate.swift in Sources */,
 				9848805A2387D2C8007B694E /* PortfolioCell.swift in Sources */,
 				9848803023871820007B694E /* Cryptofolio.xcdatamodeld in Sources */,
+				9886E6D323A14E8E005722E0 /* PortfolioViewModel.swift in Sources */,
 				98882CC82388615C00033BEE /* CryptoFetcher.swift in Sources */,
 				98B740E52387D8E1006C7331 /* CryptoRouter.swift in Sources */,
 				9848801C23871820007B694E /* NetworkService.swift in Sources */,

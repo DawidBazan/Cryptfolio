@@ -31,6 +31,12 @@ extension SwinjectStoryboard {
 
     // MARK: ViewModels
     class func registerViewModels() {
+        defaultContainer.register(PortfolioViewModel.self) { r in
+            let viewModel = PortfolioViewModel(reachability: r.resolve(ReachabilityChecker.self)!,
+                                               cryptoFetcher: r.resolve(CryptoFetcher.self)!)
+            return viewModel
+        }
+        
         defaultContainer.register(CryptoViewModel.self) { r in
             let viewModel = CryptoViewModel(reachability: r.resolve(ReachabilityChecker.self)!,
                                                     cryptoFetcher: r.resolve(CryptoFetcher.self)!)
@@ -42,6 +48,10 @@ extension SwinjectStoryboard {
     class func registerStoryboards() {
         Container.loggingFunction = nil
 
+        defaultContainer.storyboardInitCompleted(PortfolioVC.self) { resolver, controller in
+            controller.viewModel = resolver.resolve(PortfolioViewModel.self)
+        }
+        
         defaultContainer.storyboardInitCompleted(CryptoListVC.self) { resolver, controller in
             controller.viewModel = resolver.resolve(CryptoViewModel.self)
         }

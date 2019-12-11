@@ -13,32 +13,27 @@ class CryptoListVC: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var viewModel: CryptoViewModel!
-    var crypto: [CoinInfo] = []
-    var filteredCrypto: [CoinInfo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewSetup()
-        viewModel.fetchCrypto()
     }
     
     func viewSetup() {
-        makeSearchBar()
-        viewModel.updatedCrypto = { [weak self] crypto in
-            self?.crypto = crypto.info
-            self?.tableView.reloadData()
+        createSearchBar()
+        viewModel.updatedCrypto = {
+            self.tableView.reloadData()
         }
+        viewModel.fetchCrypto()
     }
     
-    func makeSearchBar() {
+    func createSearchBar() {
         let search = UISearchController(searchResultsController: nil)
         search.searchBar.showsCancelButton = false
         search.searchResultsUpdater = self
         search.searchBar.delegate = self
         search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.keyboardAppearance = .dark
         search.searchBar.tintColor = .black
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.searchController = search
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
@@ -47,19 +42,21 @@ class CryptoListVC: UIViewController {
 
 extension CryptoListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if filteredCrypto.isEmpty {
-            return crypto.count
+        if viewModel.isCryptoFiltered() {
+            return viewModel.getFilteredRowCount()
         } else {
-            return filteredCrypto.count
+            return viewModel.getRowCount()
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CryptoCell
-        if filteredCrypto.isEmpty {
-            cell.setupCell(with: crypto[indexPath.row])
+        if viewModel.isCryptoFiltered() {
+            let filteredCoin = viewModel.getFilteredCoin(at: indexPath.row)
+            cell.setupCell(with: filteredCoin)
         } else {
-            cell.setupCell(with: filteredCrypto[indexPath.row])
+            let coin = viewModel.getCoin(at: indexPath.row)
+            cell.setupCell(with: coin)
         }
         return cell
     }
@@ -69,8 +66,7 @@ extension CryptoListVC: UISearchBarDelegate, UISearchResultsUpdating {
     
     func filterContentForSearchText(_ searchText: String) {
         if searchText.count != 0 {
-            let filtered = crypto.filter({ $0.name.lowercased().contains(searchText.lowercased())})
-            self.filteredCrypto = filtered
+            viewModel.filterCrypto(with: searchText)
             tableView.reloadData()
         }
     }
@@ -89,7 +85,7 @@ extension CryptoListVC: UISearchBarDelegate, UISearchResultsUpdating {
         searchBar.showsCancelButton = false
         searchBar.endEditing(true)
         
-        filteredCrypto.removeAll()
+        viewModel.clearFilteredCrypto()
         tableView.reloadData()
     }
 }
