@@ -17,7 +17,6 @@ class CryptoViewModel {
     init(reachability: ReachabilityChecker, cryptoFetcher: CryptoFetcher) {
         self.reachability = reachability
         self.cryptoFetcher = cryptoFetcher
-        fetchCrypto()
     }
     
     func fetchCrypto() {

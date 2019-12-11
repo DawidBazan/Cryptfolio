@@ -23,9 +23,8 @@ class AddCoinVC: UIViewController {
     }
     
     func viewSetup() {
-        if let btc = crypto?.filter({$0.symbol == "BTC"}).first {
-            coinSymbolLbl.text = btc.symbol
-        }
+        guard let crypto = crypto else { return }
+        coinSymbolLbl.text = crypto.first?.symbol
         amountField.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
         amountField.becomeFirstResponder()
     }
@@ -40,7 +39,7 @@ class AddCoinVC: UIViewController {
     }
     
     @IBAction func coinSelectionPressed(_ sender: Any) {
-        print("Select coin")
+        showActionSheet()
     }
     
     @IBAction func addPressed(_ sender: Any) {
@@ -51,5 +50,39 @@ class AddCoinVC: UIViewController {
     
     @IBAction func closePressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func selectCrypto(coin: CoinInfo) {
+        selectedCoin = coin
+        coinSymbolLbl.text = coin.symbol
+    }
+    
+    func showActionSheet() {
+        guard let crypto = crypto, crypto.count > 3 else { return } // will be 0 until viewModel setup
+        let alert = UIAlertController(title: "", message: "Choose cryptocurrency:", preferredStyle: .actionSheet)
+
+        alert.addAction(UIAlertAction(title: crypto[0].symbol, style: .default, handler: { _ in
+            self.selectCrypto(coin: crypto[0])
+        }))
+
+        alert.addAction(UIAlertAction(title: crypto[1].symbol, style: .default, handler: { _ in
+            self.selectCrypto(coin: crypto[1])
+        }))
+
+        alert.addAction(UIAlertAction(title: crypto[2].symbol, style: .default, handler: { _ in
+            self.selectCrypto(coin: crypto[2])
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Other", style: .default, handler: { _ in
+            print("User click Delete button")
+        }))
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            print("User click Dismiss button")
+        }))
+
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
     }
 }

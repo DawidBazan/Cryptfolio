@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CryptoVC: UIViewController {
+class PortfolioVC: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
@@ -21,10 +21,10 @@ class CryptoVC: UIViewController {
     }
     
     func setupView() {
-        viewModel.updatedCrypto = { [weak self] crypto in
-            self?.getMyCryptoInfo(from: crypto)
-            self?.tableView.reloadData()
-        }
+//        viewModel.updatedCrypto = { [weak self] crypto in
+//            self?.getMyCryptoInfo(from: crypto)
+//            self?.tableView.reloadData()
+//        }
     }
     
     func getMyCryptoInfo(from crypto: Crypto) {
@@ -55,13 +55,13 @@ class CryptoVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addCoin" {
             if let viewController = segue.destination as? AddCoinVC {
-//                viewController. = cryptoInfo
+                viewController.crypto = cryptoInfo
             }
         }
     }
 }
 
-extension CryptoVC: UITableViewDelegate, UITableViewDataSource {
+extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -114,13 +114,13 @@ extension CryptoVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CryptoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PortfolioCell
             cell.setupCell(with: cryptoInfo[indexPath.row])
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "totalCell") as! TotalValueCell
-            let totalString = self.viewModel.getTotalValue(for: [1002, 1002])
-            cell.setupCell(with: totalString)
+//            let totalString = self.viewModel.getTotalValue(for: [1002, 1002])
+//            cell.setupCell(with: totalString)
             return cell
         }
     }

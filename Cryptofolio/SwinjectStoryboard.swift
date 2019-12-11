@@ -42,7 +42,7 @@ extension SwinjectStoryboard {
     class func registerStoryboards() {
         Container.loggingFunction = nil
 
-        defaultContainer.storyboardInitCompleted(CryptoVC.self) { resolver, controller in
+        defaultContainer.storyboardInitCompleted(CryptoListVC.self) { resolver, controller in
             controller.viewModel = resolver.resolve(CryptoViewModel.self)
         }
     }
