@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t25-zN-43o">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t25-zN-43o">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -342,6 +342,7 @@
                     <connections>
                         <outlet property="addBtn" destination="szC-yB-w7a" id="7Dl-9i-5ok"/>
                         <outlet property="amountField" destination="0fN-ht-wGj" id="VXP-Ys-CZi"/>
+                        <outlet property="coinImageView" destination="mYx-ZF-mLY" id="GER-ut-Gzm"/>
                         <outlet property="coinSymbolLbl" destination="3rO-6K-vzx" id="xqR-dP-avG"/>
                         <segue destination="Gde-T4-I8j" kind="show" identifier="coinSelection" id="LjS-zu-yuo"/>
                     </connections>

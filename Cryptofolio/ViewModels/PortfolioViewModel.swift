@@ -38,9 +38,11 @@ class PortfolioViewModel {
     private func getMyCryptoInfo(from crypto: Crypto) {
         let cryptoData = CoreDataHandler.fetchCrypto()
         crypto.info.forEach { coin in
-            guard cryptoData.contains(where: {$0.symbol == coin.symbol}) else { return }
+            guard let index = cryptoData.firstIndex(where: {$0.symbol == coin.symbol}) else { return }
             if !myCrypto.contains(where: {$0.id == coin.id}) {
-                myCrypto.append(coin)
+                var myCoin = coin
+                myCoin.holding = cryptoData[index].amount ?? ""
+                myCrypto.append(myCoin)
             }
             updatedCrypto?()
         }
@@ -54,10 +56,6 @@ class PortfolioViewModel {
         return myCrypto[index]
     }
     
-    func getAllCrypto() -> [CoinInfo] {
-        return crypto
-    }
-    
     func removeCoin(at index: Int) {
         
     }
@@ -65,9 +63,27 @@ class PortfolioViewModel {
     func getTotalValue() -> String {
         var total = 0.0
         myCrypto.forEach { coin in
-            total += coin.price
+            total += getCoinValue(coin)
         }
-        let stringTotal = "$\(total.rounded())"
+        let stringTotal = "£\(total.rounded())"
         return stringTotal
+    }
+    
+    func getCoinValue(_ coin: CoinInfo) -> Double {
+        guard let amount = Double(coin.holding) else { return 0 }
+        let price = coin.price
+        let value = amount * price
+        return value.rounded()
+    }
+    
+    func createAddCoinVM() -> AddCoinViewModel {
+        var availableCrypto: [CoinInfo] = [] //only coins that are not in myCrypto
+        crypto.forEach { (coin) in
+            if !myCrypto.contains(where: {$0.id == coin.id}) {
+                availableCrypto.append(coin)
+            }
+        }
+        let viewModel = AddCoinViewModel(crypto: availableCrypto)
+        return viewModel
     }
 }

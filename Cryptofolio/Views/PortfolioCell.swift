@@ -21,8 +21,15 @@ class PortfolioCell: UITableViewCell {
             cryptoImage.image = UIImage(data: imageData)
         }
         nameLbl.text = info.name
-        fullPriceLbl.text = String(info.price)
-        coinValueLbl.text = "£1104.34"
-        coinAmountLbl.text = "0.235\(info.symbol)"
+        fullPriceLbl.text = String(info.price.rounded())
+        coinValueLbl.text = getCoinValue(info)
+        coinAmountLbl.text = "\(info.holding)\(info.symbol)"
+    }
+    
+    func getCoinValue(_ coin: CoinInfo) -> String {
+        guard let amount = Double(coin.holding) else { return "" }
+        let price = coin.price
+        let value = amount * price
+        return String(value.rounded())
     }
 }

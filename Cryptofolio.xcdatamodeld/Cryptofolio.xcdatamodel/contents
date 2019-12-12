@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="MyCoin" representedClassName="MyCoin" syncable="YES" codeGenerationType="class">
         <attribute name="amount" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
@@ -7,7 +7,7 @@
         <relationship name="myCrypto" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MyCrypto" inverseName="myCoins" inverseEntity="MyCrypto"/>
     </entity>
     <entity name="MyCrypto" representedClassName="MyCrypto" syncable="YES" codeGenerationType="class">
-        <relationship name="myCoins" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MyCoin" inverseName="myCrypto" inverseEntity="MyCoin"/>
+        <relationship name="myCoins" toMany="YES" deletionRule="Nullify" destinationEntity="MyCoin" inverseName="myCrypto" inverseEntity="MyCoin"/>
     </entity>
     <elements>
         <element name="MyCoin" positionX="190.2578125" positionY="-62.48046875" width="128" height="103"/>

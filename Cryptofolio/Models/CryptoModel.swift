@@ -106,6 +106,7 @@ struct CoinInfo: Codable {
     let id: Int
     let name, symbol: String
     let price: Double
+    var holding: String
     var imageData: Data?
 }
 
@@ -117,6 +118,7 @@ private func sortCryptoData(_ cryptoData: [Datum]) -> [CoinInfo] {
                               name: data.name,
                               symbol: data.symbol,
                               price: data.quote.usd.price,
+                              holding: "",
                               imageData: CryptoImage.getData(for: data.id))
         cryptoInfo.append(info)
     }

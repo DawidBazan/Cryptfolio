@@ -11,11 +11,11 @@ import UIKit
 class AddCoinVC: UIViewController {
     
     @IBOutlet var amountField: UITextField!
+    @IBOutlet var coinImageView: UIImageView!
     @IBOutlet var coinSymbolLbl: UILabel!
     @IBOutlet var addBtn: UIButton!
-    
-    var crypto: [CoinInfo]?
-    var selectedCoin: CoinInfo?
+
+    var viewModel: AddCoinViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,8 @@ class AddCoinVC: UIViewController {
     }
     
     func viewSetup() {
-        guard let crypto = crypto else { return }
-        coinSymbolLbl.text = crypto.first?.symbol
+        guard let firstCoin = viewModel.getFirstCoin() else { return }
+        updateCoin(to: firstCoin)
         amountField.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
         amountField.becomeFirstResponder()
     }
@@ -43,7 +43,7 @@ class AddCoinVC: UIViewController {
     }
     
     @IBAction func addPressed(_ sender: Any) {
-        guard let coin = selectedCoin, let amount = amountField.text else { return }
+        guard let coin = viewModel.getSelectedCoin(), let amount = amountField.text else { return }
         CoreDataHandler.addCoin(coin, amount: amount)
         self.dismiss(animated: true, completion: nil)
     }
@@ -52,29 +52,26 @@ class AddCoinVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func selectCrypto(coin: CoinInfo) {
-        selectedCoin = coin
+    func updateCoin(to coin: CoinInfo) {
+        self.viewModel.setSelectedCoin(to: coin)
+        coinImageView.image = UIImage(named: "\(coin.id)")
         coinSymbolLbl.text = coin.symbol
     }
     
     func showActionSheet() {
-        guard let crypto = crypto, crypto.count > 3 else { return } // will be 0 until viewModel setup
+        guard viewModel.getCountForActionSheet() > 0 else { return }
         let alert = UIAlertController(title: "", message: "Choose cryptocurrency:", preferredStyle: .actionSheet)
 
-        alert.addAction(UIAlertAction(title: crypto[0].symbol, style: .default, handler: { _ in
-            self.selectCrypto(coin: crypto[0])
-        }))
-
-        alert.addAction(UIAlertAction(title: crypto[1].symbol, style: .default, handler: { _ in
-            self.selectCrypto(coin: crypto[1])
-        }))
-
-        alert.addAction(UIAlertAction(title: crypto[2].symbol, style: .default, handler: { _ in
-            self.selectCrypto(coin: crypto[2])
-        }))
+        let indexCount = viewModel.getCountForActionSheet() - 1
+        for index in 0...indexCount {
+            let coin = viewModel.getCoin(at: index)
+            alert.addAction(UIAlertAction(title: coin.symbol, style: .default, handler: { _ in
+                self.updateCoin(to: coin)
+            }))
+        }
         
         alert.addAction(UIAlertAction(title: "Other", style: .default, handler: { _ in
-            print("User click Delete button")
+            print("User click Other button")
         }))
 
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in

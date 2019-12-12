@@ -41,7 +41,7 @@ class PortfolioVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addCoin" {
             if let viewController = segue.destination as? AddCoinVC {
-                viewController.crypto = viewModel.getAllCrypto()
+                viewController.viewModel = viewModel.createAddCoinVM()
             }
         }
     }
@@ -110,8 +110,7 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "totalCell") as! TotalValueCell
-//            let totalString = self.viewModel.getTotalValue(for: [1002, 1002])
-//            cell.setupCell(with: totalString)
+            cell.setupCell(with: viewModel.getTotalValue())
             return cell
         }
     }
