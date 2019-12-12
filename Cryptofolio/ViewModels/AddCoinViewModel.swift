@@ -12,6 +12,7 @@ class AddCoinViewModel {
     
     private let crypto: [CoinInfo]
     private var selectedCoin: CoinInfo?
+    var updatedSelection: (() -> Void)?
     
     init(crypto: [CoinInfo]) {
         self.crypto = crypto
@@ -33,15 +34,25 @@ class AddCoinViewModel {
         return crypto[index]
     }
     
-    func getFirstCoin() -> CoinInfo? {
-        return crypto.first
-    }
-    
     func getSelectedCoin() -> CoinInfo? {
+        if selectedCoin == nil {
+            if let firstCoin = crypto.first {
+                selectedCoin = firstCoin
+            }
+        }
         return selectedCoin
     }
     
-    func setSelectedCoin(to coin: CoinInfo) {
+    func setSelectedCoin(to coin: CoinInfo?) {
         selectedCoin = coin
+    }
+    
+    func createCoinSelectionVM() -> CoinSelectionViewModel {
+        let viewModel = CoinSelectionViewModel(crypto: crypto)
+        viewModel.updateSelection = { coin in
+            self.selectedCoin = coin
+            self.updatedSelection?()
+        }
+        return viewModel
     }
 }

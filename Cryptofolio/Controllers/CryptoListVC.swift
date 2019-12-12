@@ -33,7 +33,6 @@ class CryptoListVC: UIViewController {
         search.searchResultsUpdater = self
         search.searchBar.delegate = self
         search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.tintColor = .black
         navigationItem.searchController = search
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true

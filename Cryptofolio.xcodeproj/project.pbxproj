@@ -232,9 +232,9 @@
 			isa = PBXGroup;
 			children = (
 				9886E6D223A14E8E005722E0 /* PortfolioViewModel.swift */,
-				9848802423871820007B694E /* CryptoViewModel.swift */,
 				9837994A23A2514000D41F98 /* AddCoinViewModel.swift */,
 				9837994C23A258E900D41F98 /* CoinSelectionViewModel.swift */,
+				9848802423871820007B694E /* CryptoViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

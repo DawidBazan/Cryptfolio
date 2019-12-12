@@ -10,5 +10,22 @@ import Foundation
 
 class CoinSelectionViewModel {
     
+    private let crypto: [CoinInfo]
+    var updateSelection: ((CoinInfo) -> Void)?
     
+    init(crypto: [CoinInfo]) {
+        self.crypto = crypto
+    }
+    
+    func getRowCount() -> Int {
+         return crypto.count
+     }
+     
+     func getCoin(at index: Int) -> CoinInfo {
+         return crypto[index]
+     }
+    
+    func updateSelectedCoin(_ coin: CoinInfo) {
+        updateSelection?(coin)
+    }
 }
