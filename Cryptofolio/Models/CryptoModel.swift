@@ -11,7 +11,7 @@ import Foundation
 // MARK: - Crypto
 struct Crypto: Codable {
     private let data: [Datum]
-    let info: [CryptoInfo]
+    let info: [CoinInfo]
     
     enum CodingKeys: String, CodingKey {
         case data, info
@@ -102,21 +102,23 @@ private class JSONNull: Codable, Hashable {
 
 // MARK: - Custom Codable
 
-struct CryptoInfo: Codable {
+struct CoinInfo: Codable {
     let id: Int
     let name, symbol: String
     let price: Double
+    var holding: String
     var imageData: Data?
 }
 
-private func sortCryptoData(_ cryptoData: [Datum]) -> [CryptoInfo] {
-    var cryptoInfo: [CryptoInfo] = []
+private func sortCryptoData(_ cryptoData: [Datum]) -> [CoinInfo] {
+    var cryptoInfo: [CoinInfo] = []
     
     cryptoData.forEach { data in
-        let info = CryptoInfo(id: data.id,
+        let info = CoinInfo(id: data.id,
                               name: data.name,
                               symbol: data.symbol,
                               price: data.quote.usd.price,
+                              holding: "",
                               imageData: CryptoImage.getData(for: data.id))
         cryptoInfo.append(info)
     }

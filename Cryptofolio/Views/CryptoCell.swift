@@ -2,7 +2,7 @@
 //  CryptoCell.swift
 //  Cryptofolio
 //
-//  Created by BZN8 on 22/11/2019.
+//  Created by BZN8 on 10/12/2019.
 //  Copyright © 2019 Dawid Bazan. All rights reserved.
 //
 
@@ -13,16 +13,25 @@ class CryptoCell: UITableViewCell {
     @IBOutlet var cryptoImage: UIImageView!
     @IBOutlet var nameLbl: UILabel!
     @IBOutlet var fullPriceLbl: UILabel!
-    @IBOutlet var coinAmountLbl: UILabel!
-    @IBOutlet var coinValueLbl: UILabel!
+    @IBOutlet var valueChangeLbl: UILabel!
     
-    func setupCell(with cryptoInfo: CryptoInfo) {
-        if let imageData = cryptoInfo.imageData {
+    
+    func setupCell(with info: CoinInfo) {
+        if let imageData = info.imageData {
             cryptoImage.image = UIImage(data: imageData)
         }
-        nameLbl.text = cryptoInfo.name
-        fullPriceLbl.text = String(cryptoInfo.price)
-        coinValueLbl.text = "£1104.34"
-        coinAmountLbl.text = "0.235\(cryptoInfo.symbol)"
+        nameLbl.text = info.name
+        fullPriceLbl.text = String(info.price)
+        setValueLbl(with: 2.0)
+    }
+    
+    private func setValueLbl(with value: Double) {
+        if value > 0 {
+            valueChangeLbl.textColor = #colorLiteral(red: 0, green: 0.6196078431, blue: 0.4509803922, alpha: 1)
+            valueChangeLbl.text = String("+\(value)%")
+        } else {
+            valueChangeLbl.textColor = #colorLiteral(red: 0, green: 0.6196078431, blue: 0.4509803922, alpha: 1)
+            valueChangeLbl.text = String("-\(value)%")
+        }
     }
 }
