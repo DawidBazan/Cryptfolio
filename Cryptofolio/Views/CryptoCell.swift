@@ -13,24 +13,27 @@ class CryptoCell: UITableViewCell {
     @IBOutlet var cryptoImage: UIImageView!
     @IBOutlet var nameLbl: UILabel!
     @IBOutlet var fullPriceLbl: UILabel!
+    @IBOutlet var valueChangeView: UIView!
     @IBOutlet var valueChangeLbl: UILabel!
-    
     
     func setupCell(with info: CoinInfo) {
         if let imageData = info.imageData {
             cryptoImage.image = UIImage(data: imageData)
         }
-        nameLbl.text = info.name
-        fullPriceLbl.text = String(info.price)
-        setValueLbl(with: 2.0)
+        nameLbl.text = info.symbol
+        fullPriceLbl.text = "£\(info.price)" //change to 2 decimal places
+        setValueLbl(with: 2.73)
     }
     
     private func setValueLbl(with value: Double) {
+        valueChangeView.layer.cornerRadius = valueChangeView.frame.height / 2
         if value > 0 {
-            valueChangeLbl.textColor = #colorLiteral(red: 0, green: 0.6196078431, blue: 0.4509803922, alpha: 1)
+            valueChangeLbl.textColor = #colorLiteral(red: 0.2078431373, green: 0.8745098039, blue: 0.4352941176, alpha: 1)
+            valueChangeView.backgroundColor = #colorLiteral(red: 0.92146945, green: 0.988289535, blue: 0.9449847937, alpha: 1)
             valueChangeLbl.text = String("+\(value)%")
         } else {
-            valueChangeLbl.textColor = #colorLiteral(red: 0, green: 0.6196078431, blue: 0.4509803922, alpha: 1)
+            valueChangeLbl.textColor = #colorLiteral(red: 0.9019744992, green: 0.3294329345, blue: 0.368601799, alpha: 1)
+            valueChangeView.backgroundColor = #colorLiteral(red: 0.9920850396, green: 0.933385551, blue: 0.9293023944, alpha: 1)
             valueChangeLbl.text = String("-\(value)%")
         }
     }

@@ -53,8 +53,8 @@ class AddCoinVC: UIViewController {
     
     func setSelectedCoin() {
         updateCoin()
-        viewModel.updatedSelection = {
-            self.updateCoin()
+        viewModel.updatedSelection = { [weak self] in
+            self?.updateCoin()
         }
     }
     
@@ -71,17 +71,17 @@ class AddCoinVC: UIViewController {
         let indexCount = viewModel.getCountForActionSheet() - 1
         for index in 0...indexCount {
             let coin = viewModel.getCoin(at: index)
-            alert.addAction(UIAlertAction(title: coin.symbol, style: .default, handler: { _ in
-                self.viewModel.setSelectedCoin(to: coin)
-                self.updateCoin()
+            alert.addAction(UIAlertAction(title: coin.symbol, style: .default, handler: { [weak self] _ in
+                self?.viewModel.setSelectedCoin(to: coin)
+                self?.updateCoin()
             }))
         }
         
-        alert.addAction(UIAlertAction(title: "Other", style: .default, handler: { _ in
-            self.performSegue(withIdentifier: "coinSelection", sender: self)
+        alert.addAction(UIAlertAction(title: "Other", style: .default, handler: { [weak self] _ in
+            self?.performSegue(withIdentifier: "coinSelection", sender: self)
         }))
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak self] _ in
             print("User click Dismiss button")
         }))
 

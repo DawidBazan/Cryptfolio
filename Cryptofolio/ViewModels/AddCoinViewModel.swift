@@ -49,9 +49,9 @@ class AddCoinViewModel {
     
     func createCoinSelectionVM() -> CoinSelectionViewModel {
         let viewModel = CoinSelectionViewModel(crypto: crypto)
-        viewModel.updateSelection = { coin in
-            self.selectedCoin = coin
-            self.updatedSelection?()
+        viewModel.updateSelection = { [weak self] coin in
+            self?.selectedCoin = coin
+            self?.updatedSelection?()
         }
         return viewModel
     }
