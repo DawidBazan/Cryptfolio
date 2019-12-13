@@ -23,8 +23,7 @@ class AddCoinVC: UIViewController {
     }
     
     func viewSetup() {
-        guard let firstCoin = viewModel.getFirstCoin() else { return }
-        updateCoin(to: firstCoin)
+        setSelectedCoin()
         amountField.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
         amountField.becomeFirstResponder()
     }
@@ -52,10 +51,17 @@ class AddCoinVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func updateCoin(to coin: CoinInfo) {
-        self.viewModel.setSelectedCoin(to: coin)
-        coinImageView.image = UIImage(named: "\(coin.id)")
-        coinSymbolLbl.text = coin.symbol
+    func setSelectedCoin() {
+        updateCoin()
+        viewModel.updatedSelection = { [weak self] in
+            self?.updateCoin()
+        }
+    }
+    
+    func updateCoin() {
+        guard let selectedCoin = viewModel.getSelectedCoin() else { return }
+        coinImageView.image = UIImage(named: "\(selectedCoin.id)")
+        coinSymbolLbl.text = selectedCoin.symbol
     }
     
     func showActionSheet() {
@@ -65,21 +71,30 @@ class AddCoinVC: UIViewController {
         let indexCount = viewModel.getCountForActionSheet() - 1
         for index in 0...indexCount {
             let coin = viewModel.getCoin(at: index)
-            alert.addAction(UIAlertAction(title: coin.symbol, style: .default, handler: { _ in
-                self.updateCoin(to: coin)
+            alert.addAction(UIAlertAction(title: coin.symbol, style: .default, handler: { [weak self] _ in
+                self?.viewModel.setSelectedCoin(to: coin)
+                self?.updateCoin()
             }))
         }
         
-        alert.addAction(UIAlertAction(title: "Other", style: .default, handler: { _ in
-            print("User click Other button")
+        alert.addAction(UIAlertAction(title: "Other", style: .default, handler: { [weak self] _ in
+            self?.performSegue(withIdentifier: "coinSelection", sender: self)
         }))
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak self] _ in
             print("User click Dismiss button")
         }))
 
         self.present(alert, animated: true, completion: {
             print("completion block")
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "coinSelection" {
+            if let viewController = segue.destination as? CoinSelectionVC {
+                viewController.viewModel = viewModel.createCoinSelectionVM()
+            }
+        }
     }
 }

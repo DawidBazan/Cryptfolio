@@ -25,15 +25,19 @@ class CoinSelectionVC: UIViewController {
 
 extension CoinSelectionVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return viewModel.getRowCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CoinSelectionCell
+        let coin = viewModel.getCoin(at: indexPath.row)
+        cell.setupCell(with: coin)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        let coin = viewModel.getCoin(at: indexPath.row)
+        viewModel.updateSelectedCoin(coin)
+        self.dismiss(animated: true, completion: nil)
     }
 }
