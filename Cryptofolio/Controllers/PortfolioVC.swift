@@ -11,6 +11,7 @@ import UIKit
 class PortfolioVC: UIViewController {
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var totalValueLbl: UILabel!
     @IBOutlet var cardView: CardView!
     
     var viewModel: PortfolioViewModel!
@@ -22,8 +23,9 @@ class PortfolioVC: UIViewController {
     
     func setupView() {
         cardView.setupCard(in: self)
-        viewModel.updatedCrypto = {
-            self.tableView.reloadData()
+        viewModel.updatedCrypto = { [weak self] in
+            self?.totalValueLbl.text = self?.viewModel.getTotalValue()
+            self?.tableView.reloadData()
         }
     }
     
@@ -32,6 +34,7 @@ class PortfolioVC: UIViewController {
     }
     
     @IBAction func historyPressed(_ sender: Any) {
+        performSegue(withIdentifier: "history", sender: self)
     }
     
     @IBAction func detailsPressed(_ sender: Any) {
@@ -41,6 +44,14 @@ class PortfolioVC: UIViewController {
         if segue.identifier == "addCoin" {
             if let viewController = segue.destination as? AddCoinVC {
                 viewController.viewModel = viewModel.createAddCoinVM()
+                viewController.coinAdded = { [weak self] in
+                    self?.viewModel.getMyCrypto()
+                }
+            }
+        }
+        if segue.identifier == "history" {
+            if let viewController = segue.destination as? HistoryVC {
+                viewController.viewModel = viewModel.createHistoryVM()
             }
         }
     }

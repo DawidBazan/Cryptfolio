@@ -29,19 +29,22 @@ class PortfolioViewModel {
             self.cryptoFetcher.fetchCrypto()
         }.done { crypto in
             self.crypto = crypto.info
-            self.getMyCryptoInfo(from: crypto)
+            self.getMyCrypto()
         }.catch { error in
             print("\(error)")
         }
     }
     
-    private func getMyCryptoInfo(from crypto: Crypto) {
+    func getMyCrypto() {
         let cryptoData = CoreDataHandler.fetchCrypto()
-        crypto.info.forEach { coin in
+        crypto.forEach { coin in
             guard let index = cryptoData.firstIndex(where: {$0.symbol == coin.symbol}) else { return }
             if !myCrypto.contains(where: {$0.id == coin.id}) {
                 var myCoin = coin
-                myCoin.holding = cryptoData[index].amount ?? ""
+                let amount = cryptoData[index].amount
+                let buyPrice = cryptoData[index].buyPrice
+                myCoin.amount = amount
+                myCoin.buyPrice = buyPrice
                 myCrypto.append(myCoin)
             }
             updatedCrypto?()
@@ -65,15 +68,14 @@ class PortfolioViewModel {
         myCrypto.forEach { coin in
             total += getCoinValue(coin)
         }
-        let stringTotal = "£\(total.rounded())"
-        return stringTotal
+        return UnitFormatter.currency(from: total)
     }
     
     func getCoinValue(_ coin: CoinInfo) -> Double {
-        guard let amount = Double(coin.holding) else { return 0 }
+        let amount = coin.amount
         let price = coin.price
         let value = amount * price
-        return value.rounded()
+        return value
     }
     
     func createAddCoinVM() -> AddCoinViewModel {
@@ -84,6 +86,11 @@ class PortfolioViewModel {
             }
         }
         let viewModel = AddCoinViewModel(crypto: availableCrypto)
+        return viewModel
+    }
+    
+    func createHistoryVM() -> HistoryViewModel {
+        let viewModel = HistoryViewModel(crypto: myCrypto)
         return viewModel
     }
 }
