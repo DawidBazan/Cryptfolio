@@ -14,6 +14,7 @@ class PortfolioViewModel {
     private let cryptoFetcher: CryptoFetcher
     private var crypto: [CoinInfo] = []
     private var myCrypto: [CoinInfo] = []
+    private var myTotals: [Double] = []
     var updatedCrypto: (() -> Void)?
     
     init(reachability: ReachabilityChecker, cryptoFetcher: CryptoFetcher) {
@@ -36,6 +37,7 @@ class PortfolioViewModel {
     }
     
     func getMyCrypto() {
+        myTotals = CoreDataHandler.fetchTotals()
         let cryptoData = CoreDataHandler.fetchCrypto()
         crypto.forEach { coin in
             guard let index = cryptoData.firstIndex(where: {$0.symbol == coin.symbol}) else { return }
@@ -49,6 +51,14 @@ class PortfolioViewModel {
             }
             updatedCrypto?()
         }
+    }
+    
+    func getMyTotals() -> [Double] {
+        return myTotals
+    }
+    
+    func getTotalsCount() -> Int {
+        return myTotals.count
     }
     
     func getRowCount() -> Int {
@@ -68,6 +78,7 @@ class PortfolioViewModel {
         myCrypto.forEach { coin in
             total += getCoinValue(coin)
         }
+        CoreDataHandler.addTotal(total)
         return UnitFormatter.currency(from: total)
     }
     

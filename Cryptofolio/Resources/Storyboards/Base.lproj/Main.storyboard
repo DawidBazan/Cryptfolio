@@ -17,6 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="di2-is-Q1V" customClass="ChartView" customModule="Cryptofolio" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="216.66666666666663" width="375" height="157.33333333333337"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MDd-hq-JBI">
                                 <rect key="frame" x="122.33333333333333" y="138" width="130.66666666666669" height="98.666666666666686"/>
                                 <subviews>
@@ -240,9 +244,13 @@
                             <constraint firstItem="ziU-vC-yoa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Euu-Ra-Esg"/>
                             <constraint firstAttribute="bottom" secondItem="ziU-vC-yoa" secondAttribute="bottom" constant="-220" id="JYE-MZ-Vmy"/>
                             <constraint firstItem="T9I-Tj-GNW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="L4g-Lf-B9j"/>
+                            <constraint firstItem="di2-is-Q1V" firstAttribute="top" secondItem="MDd-hq-JBI" secondAttribute="bottom" constant="-20" id="LKp-eS-RvL"/>
+                            <constraint firstItem="di2-is-Q1V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TI4-8W-Ktj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ziU-vC-yoa" secondAttribute="trailing" id="cR7-Mv-EGr"/>
                             <constraint firstItem="MDd-hq-JBI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="fuj-9u-Q5E"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="T9I-Tj-GNW" secondAttribute="trailing" constant="30" id="gcz-Lg-Ck9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="di2-is-Q1V" secondAttribute="trailing" id="l2z-RH-KpC"/>
+                            <constraint firstItem="ziU-vC-yoa" firstAttribute="top" secondItem="di2-is-Q1V" secondAttribute="bottom" constant="8" symbolic="YES" id="qi4-7k-gZm"/>
                             <constraint firstItem="T9I-Tj-GNW" firstAttribute="top" secondItem="MDd-hq-JBI" secondAttribute="bottom" constant="70" id="saF-Gv-OcQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -250,13 +258,13 @@
                     <navigationItem key="navigationItem" title="Cryptofolio" id="Zob-IZ-mbA"/>
                     <connections>
                         <outlet property="cardView" destination="ziU-vC-yoa" id="ofi-Ua-PEu"/>
+                        <outlet property="chartView" destination="di2-is-Q1V" id="Ry5-Lp-ZBJ"/>
                         <outlet property="tableView" destination="S9r-CF-co5" id="vF0-gZ-i0h"/>
                         <outlet property="totalValueLbl" destination="TRE-zt-cCE" id="6rz-5k-Zul"/>
                         <segue destination="0C8-Cn-EuI" kind="popoverPresentation" identifier="addCoin" popoverAnchorView="8bC-Xf-vdC" id="p9b-7o-dNC">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES"/>
                         </segue>
                         <segue destination="6Bh-ZJ-0mB" kind="show" identifier="history" id="ug0-Gf-elk"/>
-                        <segue destination="RS3-O6-FB6" kind="show" identifier="details" id="Dln-eY-2Xo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -430,22 +438,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gVl-IL-LV2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1073" y="836"/>
-        </scene>
-        <!--Details-->
-        <scene sceneID="5lv-04-23Q">
-            <objects>
-                <viewController id="RS3-O6-FB6" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="S9Z-Dq-p2r">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="T44-l8-SRe"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Details" id="4zj-eD-xqi"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hbx-hL-d8L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3030" y="-560"/>
         </scene>
         <!--History-->
         <scene sceneID="23b-wY-Kap">

@@ -12,6 +12,7 @@ class PortfolioVC: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var totalValueLbl: UILabel!
+    @IBOutlet var chartView: ChartView!
     @IBOutlet var cardView: CardView!
     
     var viewModel: PortfolioViewModel!
@@ -25,6 +26,9 @@ class PortfolioVC: UIViewController {
         cardView.setupCard(in: self)
         viewModel.updatedCrypto = { [weak self] in
             self?.totalValueLbl.text = self?.viewModel.getTotalValue()
+            if self?.viewModel.getTotalsCount() ?? 0 > 10 {
+                self?.chartView.setupChart(with: (self?.viewModel.getMyTotals())!)
+            }
             self?.tableView.reloadData()
         }
     }
@@ -38,6 +42,7 @@ class PortfolioVC: UIViewController {
     }
     
     @IBAction func detailsPressed(_ sender: Any) {
+        performSegue(withIdentifier: "details", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
