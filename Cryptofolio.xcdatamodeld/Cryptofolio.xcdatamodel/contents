@@ -10,9 +10,15 @@
     </entity>
     <entity name="MyCrypto" representedClassName="MyCrypto" syncable="YES" codeGenerationType="class">
         <relationship name="myCoins" toMany="YES" deletionRule="Nullify" destinationEntity="MyCoin" inverseName="myCrypto" inverseEntity="MyCoin"/>
+        <relationship name="myTotals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MyTotal" inverseName="myCrypto" inverseEntity="MyTotal"/>
+    </entity>
+    <entity name="MyTotal" representedClassName="MyTotal" syncable="YES" codeGenerationType="class">
+        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="myCrypto" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MyCrypto" inverseName="myTotals" inverseEntity="MyCrypto"/>
     </entity>
     <elements>
         <element name="MyCoin" positionX="190.2578125" positionY="-62.48046875" width="128" height="133"/>
-        <element name="MyCrypto" positionX="-63" positionY="-18" width="128" height="58"/>
+        <element name="MyCrypto" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="MyTotal" positionX="63" positionY="-9" width="128" height="73"/>
     </elements>
 </model>

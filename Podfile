@@ -9,8 +9,9 @@ target 'Cryptofolio' do
 	pod 'Alamofire', '~> 4.8.2'
 	pod 'Swinject', '~> 2.6.2'
 	pod 'SwinjectStoryboard', '~> 2.2.0'
-	pod "PromiseKit", '~> 6.10.0'
+	pod 'PromiseKit', '~> 6.10.0'
 	pod 'SwiftLint', '~> 0.33.0'
+	pod 'Charts', '~> 3.3.0'
 
   target 'CryptofolioTests' do
     inherit! :search_paths

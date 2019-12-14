@@ -51,6 +51,15 @@ class PortfolioViewModel {
         }
     }
     
+    func setupChart(in view: ChartView) {
+        let myTotals = CoreDataHandler.fetchTotals()
+        if myTotals.count > 9 {
+            view.setupChart(with: myTotals)
+        } else {
+            view.setupChart(with: [])
+        }
+    }
+    
     func getRowCount() -> Int {
         return myCrypto.count
     }
@@ -68,6 +77,7 @@ class PortfolioViewModel {
         myCrypto.forEach { coin in
             total += getCoinValue(coin)
         }
+        CoreDataHandler.addTotal(total)
         return UnitFormatter.currency(from: total)
     }
     

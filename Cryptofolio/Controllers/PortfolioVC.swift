@@ -12,6 +12,7 @@ class PortfolioVC: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var totalValueLbl: UILabel!
+    @IBOutlet var chartView: ChartView!
     @IBOutlet var cardView: CardView!
     
     var viewModel: PortfolioViewModel!
@@ -22,6 +23,7 @@ class PortfolioVC: UIViewController {
     }
     
     func setupView() {
+        viewModel.setupChart(in: chartView)
         cardView.setupCard(in: self)
         viewModel.updatedCrypto = { [weak self] in
             self?.totalValueLbl.text = self?.viewModel.getTotalValue()
@@ -38,6 +40,7 @@ class PortfolioVC: UIViewController {
     }
     
     @IBAction func detailsPressed(_ sender: Any) {
+        performSegue(withIdentifier: "details", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

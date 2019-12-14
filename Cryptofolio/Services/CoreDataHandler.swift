@@ -66,6 +66,57 @@ enum CoreDataHandler {
         }
     }
     
+    static func addTotal(_ value: Double) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let context = appDelegate.persistentContainer.viewContext
+        if let myCrypto = fetchMyCrypto(in: context) {
+            if isTotalsChangeValid(value, in: myCrypto) {
+                let myTotal = MyTotal(context: context)
+                myTotal.value = value
+                myCrypto.addToMyTotals(myTotal)
+                appDelegate.saveContext()
+            }
+        } else {
+            print("Save failed")
+        }
+    }
+    
+    private static func isTotalsChangeValid(_ newValue: Double, in data: MyCrypto) -> Bool {
+        let allTotals = data.myTotals?.allObjects as! [MyTotal]
+        guard let lastTotal = allTotals.last else { return true }
+        let valueChange = lastTotal.value - newValue
+        if valueChange > 5 || valueChange < -5 {
+            if allTotals.count == 50 {
+                removeLastTotal()
+            }
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    static func fetchTotals() -> [Double] {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<MyCrypto>(entityName: "MyCrypto")
+        do {
+            let counter = try context.count(for: request)
+            if counter == 1 {
+                let myCrypto = try context.fetch(request).first
+                let allTotals = myCrypto?.myTotals?.allObjects as! [MyTotal]
+                let totalValues = allTotals.map({$0.value})
+                return totalValues
+            } else {
+                return []
+            }
+        } catch {
+            print("Fetch failed")
+            return []
+        }
+    }
+    
     static func removeCoin(_ coin: CoinInfo) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -85,6 +136,25 @@ enum CoreDataHandler {
         } catch {
             print("Fetch failed")
         }
-
+    }
+    
+    static func removeLastTotal() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<MyCrypto>(entityName: "MyCrypto")
+        do {
+            let counter = try context.count(for: request)
+            if counter == 1 {
+                let myCrypto = try context.fetch(request)
+                let myTotals = myCrypto[0].myTotals?.allObjects as! [MyTotal]
+                if let lastTotal = myTotals.first {
+                    myCrypto[0].removeFromMyTotals(lastTotal)
+                }
+            }
+        } catch {
+            print("Fetch failed")
+        }
     }
 }
