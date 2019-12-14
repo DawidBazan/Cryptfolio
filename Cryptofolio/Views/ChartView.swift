@@ -23,6 +23,7 @@ class ChartView: LineChartView {
                
         self.xAxis.enabled = false
         self.leftAxis.enabled = false
+        self.noDataText = ""
                
         let yAxis = self.leftAxis
         yAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 12)!
@@ -33,6 +34,8 @@ class ChartView: LineChartView {
         
         self.rightAxis.enabled = false
         self.legend.enabled = false
+        
+        if totals.isEmpty { return }
         self.setDataCount(with: totals)
     }
     

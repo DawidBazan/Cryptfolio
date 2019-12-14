@@ -23,12 +23,10 @@ class PortfolioVC: UIViewController {
     }
     
     func setupView() {
+        viewModel.setupChart(in: chartView)
         cardView.setupCard(in: self)
         viewModel.updatedCrypto = { [weak self] in
             self?.totalValueLbl.text = self?.viewModel.getTotalValue()
-            if self?.viewModel.getTotalsCount() ?? 0 > 10 {
-                self?.chartView.setupChart(with: (self?.viewModel.getMyTotals())!)
-            }
             self?.tableView.reloadData()
         }
     }
