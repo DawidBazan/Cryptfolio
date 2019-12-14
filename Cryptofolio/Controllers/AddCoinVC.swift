@@ -16,6 +16,7 @@ class AddCoinVC: UIViewController {
     @IBOutlet var addBtn: UIButton!
 
     var viewModel: AddCoinViewModel!
+    var coinAdded: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,7 @@ class AddCoinVC: UIViewController {
     @IBAction func addPressed(_ sender: Any) {
         guard let coin = viewModel.getSelectedCoin(), let amount = amountField.text else { return }
         CoreDataHandler.addCoin(coin, amount: amount)
+        coinAdded?()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -85,9 +87,7 @@ class AddCoinVC: UIViewController {
             print("User click Dismiss button")
         }))
 
-        self.present(alert, animated: true, completion: {
-            print("completion block")
-        })
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

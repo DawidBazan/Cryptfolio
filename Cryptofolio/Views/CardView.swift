@@ -102,7 +102,7 @@ class CardView: UIView {
                 case .expanded:
                     self.frame.origin.y = 75
                 case .collapsed:
-                    self.frame.origin.y = self.parentFrame.height - self.cardHeight / 2
+                    self.frame.origin.y = self.parentFrame.height - self.cardHeight / 1.5
                 }
             }
             frameAnimator.addCompletion { _ in

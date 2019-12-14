@@ -18,9 +18,11 @@ enum CoreDataHandler {
         let context = appDelegate.persistentContainer.viewContext
         if let myCrypto = fetchMyCrypto(in: context) {
             let myCoin = MyCoin(context: context)
+            myCoin.date = Date()
             myCoin.name = coin.name
             myCoin.symbol = coin.symbol
-            myCoin.amount = amount
+            myCoin.amount = Double(amount) ?? 0
+            myCoin.buyPrice = coin.price
             myCrypto.addToMyCoins(myCoin)
             appDelegate.saveContext()
         } else {

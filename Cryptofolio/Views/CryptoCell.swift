@@ -21,20 +21,21 @@ class CryptoCell: UITableViewCell {
             cryptoImage.image = UIImage(data: imageData)
         }
         nameLbl.text = info.symbol
-        fullPriceLbl.text = "£\(info.price)" //change to 2 decimal places
-        setValueLbl(with: 2.73)
+        fullPriceLbl.text = UnitFormatter.currency(from: info.price) //change to 2 decimal places
+        setValueLbl(with: info.percentChange24H)
     }
     
     private func setValueLbl(with value: Double) {
         valueChangeView.layer.cornerRadius = valueChangeView.frame.height / 2
+        let percentage = UnitFormatter.percentage(from: value)
         if value > 0 {
             valueChangeLbl.textColor = #colorLiteral(red: 0.2078431373, green: 0.8745098039, blue: 0.4352941176, alpha: 1)
             valueChangeView.backgroundColor = #colorLiteral(red: 0.92146945, green: 0.988289535, blue: 0.9449847937, alpha: 1)
-            valueChangeLbl.text = String("+\(value)%")
+            valueChangeLbl.text = String("+\(percentage)")
         } else {
             valueChangeLbl.textColor = #colorLiteral(red: 0.9019744992, green: 0.3294329345, blue: 0.368601799, alpha: 1)
             valueChangeView.backgroundColor = #colorLiteral(red: 0.9920850396, green: 0.933385551, blue: 0.9293023944, alpha: 1)
-            valueChangeLbl.text = String("-\(value)%")
+            valueChangeLbl.text = percentage
         }
     }
 }

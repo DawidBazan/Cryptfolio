@@ -10,6 +10,7 @@ import Foundation
 import PromiseKit
 
 class CryptoViewModel {
+    
     private let reachability: ReachabilityChecker
     private let cryptoFetcher: CryptoFetcher
     private var crypto: [CoinInfo] = []
