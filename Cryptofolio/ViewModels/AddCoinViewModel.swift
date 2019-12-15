@@ -16,6 +16,7 @@ class AddCoinViewModel {
     
     init(crypto: [CoinInfo]) {
         self.crypto = crypto
+        self.selectedCoin = crypto.first
     }
     
     func getRowCount() -> Int {
@@ -30,16 +31,16 @@ class AddCoinViewModel {
         }
     }
     
+    func addSelectedCoin(amount: Double) {
+        guard let selectedCoin = selectedCoin else { return }
+        CoreDataHandler.addCoin(selectedCoin, amount: amount)
+    }
+    
     func getCoin(at index: Int) -> CoinInfo {
         return crypto[index]
     }
     
     func getSelectedCoin() -> CoinInfo? {
-        if selectedCoin == nil {
-            if let firstCoin = crypto.first {
-                selectedCoin = firstCoin
-            }
-        }
         return selectedCoin
     }
     

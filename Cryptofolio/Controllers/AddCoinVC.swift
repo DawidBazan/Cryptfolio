@@ -43,8 +43,8 @@ class AddCoinVC: UIViewController {
     }
     
     @IBAction func addPressed(_ sender: Any) {
-        guard let coin = viewModel.getSelectedCoin(), let amount = amountField.text else { return }
-        CoreDataHandler.addCoin(coin, amount: amount)
+        guard let amount = amountField.text else { return }
+        viewModel.addSelectedCoin(amount: Double(amount)!)
         coinAdded?()
         self.dismiss(animated: true, completion: nil)
     }

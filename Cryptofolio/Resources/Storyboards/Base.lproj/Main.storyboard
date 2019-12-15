@@ -260,6 +260,7 @@
                         <outlet property="cardView" destination="ziU-vC-yoa" id="ofi-Ua-PEu"/>
                         <outlet property="chartView" destination="di2-is-Q1V" id="Ry5-Lp-ZBJ"/>
                         <outlet property="tableView" destination="S9r-CF-co5" id="vF0-gZ-i0h"/>
+                        <outlet property="totalChangeLbl" destination="Nne-Sf-Lhr" id="JyI-qL-qQK"/>
                         <outlet property="totalValueLbl" destination="TRE-zt-cCE" id="6rz-5k-Zul"/>
                         <segue destination="0C8-Cn-EuI" kind="popoverPresentation" identifier="addCoin" popoverAnchorView="8bC-Xf-vdC" id="p9b-7o-dNC">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES"/>

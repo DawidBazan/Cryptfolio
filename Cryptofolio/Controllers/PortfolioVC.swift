@@ -12,6 +12,7 @@ class PortfolioVC: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var totalValueLbl: UILabel!
+    @IBOutlet var totalChangeLbl: UILabel!
     @IBOutlet var chartView: ChartView!
     @IBOutlet var cardView: CardView!
     
@@ -27,6 +28,7 @@ class PortfolioVC: UIViewController {
         cardView.setupCard(in: self)
         viewModel.updatedCrypto = { [weak self] in
             self?.totalValueLbl.text = self?.viewModel.getTotalValue()
+            self?.totalChangeLbl.text = self?.viewModel.getTotalChange()
             self?.tableView.reloadData()
         }
     }

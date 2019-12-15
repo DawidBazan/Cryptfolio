@@ -38,13 +38,13 @@ enum CoreDataHandler {
         return myCoins
     }
     
-    static func addCoin(_ coin: CoinInfo, amount: String) {
+    static func addCoin(_ coin: CoinInfo, amount: Double) {
         if let myCrypto = fetchMyCryptoData() {
             let myCoin = MyCoin()
             myCoin.date = Date()
             myCoin.name = coin.name
             myCoin.symbol = coin.symbol
-            myCoin.amount = Double(amount) ?? 0
+            myCoin.amount = amount
             myCoin.buyPrice = coin.price
             myCrypto.addToMyCoins(myCoin)
             appDelegate.saveContext()
@@ -72,7 +72,7 @@ enum CoreDataHandler {
     static func fetchTotals() -> [Double] {
         guard let myCrypto = fetchMyCryptoData() else { return [] }
         let allTotals = myCrypto.myTotals?.allObjects as! [MyTotal]
-        let sortedTotals = allTotals.sorted(by: { $0.date! > $1.date! })
+        let sortedTotals = allTotals.sorted(by: { $0.date! < $1.date! })
         let totalValues = sortedTotals.map({$0.value})
         return totalValues
     }
@@ -97,7 +97,7 @@ enum CoreDataHandler {
     // checking if value has change by 2 or more
     private static func TotalValueIsValid(_ newValue: Double, in data: MyCrypto) -> Bool {
         let allTotals = data.myTotals?.allObjects as! [MyTotal]
-        let sortedTotals = allTotals.sorted(by: { $0.date! > $1.date! })
+        let sortedTotals = allTotals.sorted(by: { $0.date! < $1.date! })
         guard let previousTotal = sortedTotals.first else { return true }
         let valueChange = previousTotal.value - newValue
         if valueChange > 2 || valueChange < -2 {
