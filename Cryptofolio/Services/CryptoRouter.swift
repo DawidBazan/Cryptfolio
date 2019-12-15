@@ -27,8 +27,7 @@ enum CryptoRouter: URLRequestConvertible {
             }
         }()
         
-        let url = URL(string: "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest")!
-        
+        let url = Constants.url
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         urlRequest.addValue(Constants.apiKey, forHTTPHeaderField: "X-CMC_PRO_API_KEY")

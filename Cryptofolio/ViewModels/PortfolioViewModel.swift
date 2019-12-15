@@ -36,7 +36,7 @@ class PortfolioViewModel {
     }
     
     func getMyCrypto() {
-        let cryptoData = CoreDataHandler.fetchCrypto()
+        let cryptoData = CoreDataHandler.fetchMyCoins()
         crypto.forEach { coin in
             guard let index = cryptoData.firstIndex(where: {$0.symbol == coin.symbol}) else { return }
             if !myCrypto.contains(where: {$0.id == coin.id}) {
