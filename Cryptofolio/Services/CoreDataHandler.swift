@@ -67,13 +67,14 @@ enum CoreDataHandler {
     }
     
     static func addTotal(_ value: Double) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate, value > 0 else {
             return
         }
         let context = appDelegate.persistentContainer.viewContext
         if let myCrypto = fetchMyCrypto(in: context) {
             if isTotalsChangeValid(value, in: myCrypto) {
                 let myTotal = MyTotal(context: context)
+                myTotal.date = Date()
                 myTotal.value = value
                 myCrypto.addToMyTotals(myTotal)
                 appDelegate.saveContext()
@@ -83,12 +84,14 @@ enum CoreDataHandler {
         }
     }
     
+    // checking if value has change by 2 or more
     private static func isTotalsChangeValid(_ newValue: Double, in data: MyCrypto) -> Bool {
         let allTotals = data.myTotals?.allObjects as! [MyTotal]
-        guard let lastTotal = allTotals.last else { return true }
-        let valueChange = lastTotal.value - newValue
-        if valueChange > 5 || valueChange < -5 {
-            if allTotals.count == 50 {
+        let sortedTotals = allTotals.sorted(by: { $0.date! > $1.date! })
+        guard let previousTotal = sortedTotals.first else { return true }
+        let valueChange = previousTotal.value - newValue
+        if valueChange > 2 || valueChange < -2 {
+            if allTotals.count == 80 {
                 removeLastTotal()
             }
             return true
@@ -97,6 +100,7 @@ enum CoreDataHandler {
         }
     }
     
+    //fetching and sorting totals
     static func fetchTotals() -> [Double] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return [] }
         let context = appDelegate.persistentContainer.viewContext
@@ -106,7 +110,8 @@ enum CoreDataHandler {
             if counter == 1 {
                 let myCrypto = try context.fetch(request).first
                 let allTotals = myCrypto?.myTotals?.allObjects as! [MyTotal]
-                let totalValues = allTotals.map({$0.value})
+                let sortedTotals = allTotals.sorted(by: { $0.date! > $1.date! })
+                let totalValues = sortedTotals.map({$0.value})
                 return totalValues
             } else {
                 return []
