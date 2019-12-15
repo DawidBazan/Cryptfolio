@@ -51,7 +51,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="85" height="73"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibd-Ze-xKJ">
-                                                <rect key="frame" x="21.333333333333339" y="0.0" width="42.666666666666657" height="50"/>
+                                                <rect key="frame" x="26.666666666666664" y="0.0" width="32" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="XBA-oh-fLS"/>
                                                 </constraints>
@@ -74,7 +74,7 @@
                                         <rect key="frame" x="115" y="0.0" width="85" height="73"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDG-Xu-wkQ">
-                                                <rect key="frame" x="21.333333333333339" y="0.0" width="42.666666666666657" height="50"/>
+                                                <rect key="frame" x="26.666666666666657" y="0.0" width="32" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="EbP-SD-Xrd"/>
                                                 </constraints>
@@ -97,19 +97,19 @@
                                         <rect key="frame" x="230" y="0.0" width="85" height="73"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdP-RT-AMw">
-                                                <rect key="frame" x="21.333333333333311" y="0.0" width="42.666666666666657" height="50"/>
+                                                <rect key="frame" x="26.666666666666686" y="0.0" width="32" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="TUv-C9-7Uc"/>
                                                 </constraints>
-                                                <state key="normal" image="info">
+                                                <state key="normal" image="exchange">
                                                     <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="detailsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZCL-qp-mTY"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKf-hJ-2au">
-                                                <rect key="frame" x="19.666666666666686" y="55" width="46" height="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKf-hJ-2au">
+                                                <rect key="frame" x="11.333333333333318" y="55" width="62.333333333333343" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -594,7 +594,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwF-fa-dd2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3024.8000000000002" y="91.625615763546804"/>
+            <point key="canvasLocation" x="2775" y="-105"/>
         </scene>
         <!--AddCoin-->
         <scene sceneID="I7B-mG-qx9">
@@ -606,11 +606,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="add" width="32" height="32"/>
         <image name="coloncurrencysign.circle" catalog="system" width="64" height="60"/>
         <image name="coloncurrencysign.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="history" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="info" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="exchange" width="32" height="32"/>
+        <image name="history" width="32" height="32"/>
         <image name="person.circle" catalog="system" width="64" height="60"/>
         <image name="person.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
