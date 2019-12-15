@@ -52,7 +52,7 @@ class ChartView: LineChartView {
         set1.highlightEnabled = false
         set1.drawHorizontalHighlightIndicatorEnabled = false
         
-        let gray = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
+        let gray = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
         let gradientColors = [gray.cgColor, UIColor.white.cgColor] as CFArray // Colors of the gradient
         let colorLocations: [CGFloat] = [1.0, 0.0] // Positioning of the gradient
         let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations)

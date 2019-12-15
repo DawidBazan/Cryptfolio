@@ -69,7 +69,7 @@ class PortfolioViewModel {
     }
     
     func removeCoin(at index: Int) {
-        
+        CoreDataHandler.removeCoin(myCrypto[index])
     }
     
     func getTotalValue() -> String {
@@ -79,6 +79,17 @@ class PortfolioViewModel {
         }
         CoreDataHandler.addTotal(total)
         return UnitFormatter.currency(from: total)
+    }
+    
+    func getTotalChange() -> String {
+        let myTotals = CoreDataHandler.fetchTotals()
+        guard let lastTotal = myTotals.last, let newTotal = myTotals.first else { return "" }
+        let change = newTotal - lastTotal
+        let percentage = (change / lastTotal) * 100
+        let formattedChange = UnitFormatter.currency(from: change)
+        let formattedPrecentage = UnitFormatter.percentage(from: percentage)
+        return "\(formattedChange) (\(formattedPrecentage))"
+        
     }
     
     func getCoinValue(_ coin: CoinInfo) -> Double {
