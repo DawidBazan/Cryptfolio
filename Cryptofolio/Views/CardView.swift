@@ -41,15 +41,19 @@ class CardView: UIView {
         addGestures(to: handleArea)
     }
     
-    func addGestures(to view: UIView) {
+    private func addGestures(to view: UIView) {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleCardTap(recognzier:)))
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
         
         handleArea.addGestureRecognizer(tapGestureRecognizer)
         handleArea.addGestureRecognizer(panGestureRecognizer)
     }
+    
+    func expandCard() {
+        animateTransitionIfNeeded(state: nextState, duration: 0.9)
+    }
 
-    @objc func handleCardTap(recognzier: UITapGestureRecognizer) {
+    @objc private func handleCardTap(recognzier: UITapGestureRecognizer) {
         switch recognzier.state {
         case .ended:
             animateTransitionIfNeeded(state: nextState, duration: 0.9)
@@ -58,7 +62,7 @@ class CardView: UIView {
         }
     }
     
-    @objc func handleCardPan (recognizer: UIPanGestureRecognizer) {
+    @objc private func handleCardPan (recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .began:
             startInteractiveTransition(state: nextState, duration: 0.9)
@@ -74,7 +78,7 @@ class CardView: UIView {
         }
     }
     
-    func addShadow(to view: UIView) {
+    private func addShadow(to view: UIView) {
         let shadowLayer = CAShapeLayer()
         shadowLayer.path = UIBezierPath(roundedRect: view.frame, cornerRadius: 12).cgPath
         shadowLayer.fillColor = handleArea.backgroundColor?.cgColor
@@ -86,7 +90,7 @@ class CardView: UIView {
         view.layer.insertSublayer(shadowLayer, at: 0)
     }
     
-    func addTopCornerRadius(to view: UIView) {
+    private func addTopCornerRadius(to view: UIView) {
         let path = UIBezierPath(roundedRect: view.bounds,
                                 byRoundingCorners: [.topRight, .topLeft],
                                 cornerRadii: CGSize(width: 12, height: 12))
@@ -95,7 +99,7 @@ class CardView: UIView {
         view.layer.mask = maskLayer
     }
     
-    func animateTransitionIfNeeded (state: CardState, duration: TimeInterval) {
+    private func animateTransitionIfNeeded (state: CardState, duration: TimeInterval) {
         if runningAnimations.isEmpty {
             let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
                 switch state {
@@ -114,7 +118,7 @@ class CardView: UIView {
         }
     }
     
-    func startInteractiveTransition(state: CardState, duration: TimeInterval) {
+    private func startInteractiveTransition(state: CardState, duration: TimeInterval) {
         if runningAnimations.isEmpty {
             animateTransitionIfNeeded(state: state, duration: duration)
         }
@@ -124,7 +128,7 @@ class CardView: UIView {
         }
     }
     
-    func updateInteractiveTransition(fractionCompleted: CGFloat) {
+    private func updateInteractiveTransition(fractionCompleted: CGFloat) {
         for animator in runningAnimations {
             animator.fractionComplete = fractionCompleted + animationProgressWhenInterrupted
         }

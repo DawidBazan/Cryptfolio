@@ -27,4 +27,11 @@ enum UnitFormatter {
         let finalValue = formatter.string(from: value as NSNumber)!
         return finalValue
     }
+    
+    static func date(from date: Date?) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yy"
+        guard let date = date else { return "" }
+        return dateFormatter.string(from: date)
+    }
 }
