@@ -98,7 +98,7 @@ enum CoreDataHandler {
     private static func TotalValueIsValid(_ newValue: Double, in data: MyCrypto) -> Bool {
         let allTotals = data.myTotals?.allObjects as! [MyTotal]
         let sortedTotals = allTotals.sorted(by: { $0.date! < $1.date! })
-        guard let previousTotal = sortedTotals.first else { return true }
+        guard let previousTotal = sortedTotals.last else { return true }
         let valueChange = previousTotal.value - newValue
         if valueChange > 2 || valueChange < -2 {
             if allTotals.count == 80 {

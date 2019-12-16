@@ -23,7 +23,7 @@ class HistoryCell: UITableViewCell {
         nameLbl.text = coin.symbol
         fullNameLbl.text = coin.name
         amountLbl.text = "\(coin.amount)"
-        priceLbl.text = UnitFormatter.currency(from: coin.price)
+        priceLbl.text = UnitFormatter.currency(from: coin.buyPrice)
         setChangeLbl(with: change)
     }
     

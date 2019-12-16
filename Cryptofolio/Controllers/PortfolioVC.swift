@@ -27,9 +27,20 @@ class PortfolioVC: UIViewController {
         viewModel.setupChart(in: chartView)
         cardView.setupCard(in: self)
         viewModel.updatedCrypto = { [weak self] in
-            self?.totalValueLbl.text = self?.viewModel.getTotalValue()
-            self?.totalChangeLbl.text = self?.viewModel.getTotalChange()
+            self?.setupTotalLabels()
             self?.tableView.reloadData()
+        }
+    }
+    
+    func setupTotalLabels() {
+        totalValueLbl.text = viewModel.getTotalValue()
+        let totalChange = viewModel.getTotalChange()
+        if totalChange.first == "-" {
+            totalChangeLbl.textColor = #colorLiteral(red: 0.9019744992, green: 0.3294329345, blue: 0.368601799, alpha: 1)
+            totalChangeLbl.text = totalChange
+        } else {
+            totalChangeLbl.textColor = #colorLiteral(red: 0.2078431373, green: 0.8745098039, blue: 0.4352941176, alpha: 1)
+            totalChangeLbl.text = "+\(totalChange)"
         }
     }
     

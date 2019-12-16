@@ -9,6 +9,7 @@
 import Foundation
 
 enum UnitFormatter {
+    
     static func percentage(from value: Double) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .percent
@@ -21,8 +22,8 @@ enum UnitFormatter {
     static func currency(from value: Double) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
-        let uk = Locale(identifier: "en_UK")
-        formatter.locale = uk
+        let us = Locale(identifier: "en_US")
+        formatter.locale = us
         let finalValue = formatter.string(from: value as NSNumber)!
         return finalValue
     }
