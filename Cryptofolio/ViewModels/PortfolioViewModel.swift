@@ -51,21 +51,17 @@ class PortfolioViewModel {
         }
     }
     
-    func setupChart(in view: ChartView) {
-        let myTotals = CoreDataHandler.fetchTotals()
-        if myTotals.count > 9 {
-            view.setupChart(with: myTotals)
-        } else {
-            view.setupChart(with: [])
-        }
-    }
-    
     func getRowCount() -> Int {
         return myCrypto.count
     }
     
     func getCoin(at index: Int) -> CoinInfo {
         return myCrypto[index]
+    }
+    
+    func editCoin(amount: Double, at index: Int) {
+        CoreDataHandler.editCoin(amount: amount, myCrypto[index])
+        myCrypto[index].amount = amount
     }
     
     func removeCoin(at index: Int) {
@@ -107,6 +103,15 @@ class PortfolioViewModel {
         let price = coin.price
         let value = amount * price
         return value
+    }
+    
+    func setupChart(in view: ChartView) {
+        let myTotals = CoreDataHandler.fetchTotals()
+        if myTotals.count > 9 {
+            view.setupChart(with: myTotals)
+        } else {
+            view.setupChart(with: [])
+        }
     }
     
     func createAddCoinVM() -> AddCoinViewModel {

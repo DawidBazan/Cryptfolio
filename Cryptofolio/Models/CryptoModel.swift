@@ -12,7 +12,7 @@ import Foundation
 
 struct CoinInfo: Codable {
     let id, symbol, name: String
-    let imageURL: String
+//    let imageURL: String
     let price: Double
     let marketCap, marketCapRank, totalVolume: Int
     let high24H, low24H, priceChange24H, priceChangePercentage24H: Double
@@ -23,7 +23,7 @@ struct CoinInfo: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id, symbol, name
-        case imageURL = "image"
+//        case imageURL = "image"
         case price = "current_price"
         case marketCap = "market_cap"
         case marketCapRank = "market_cap_rank"

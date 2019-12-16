@@ -93,6 +93,15 @@ enum CoreDataHandler {
         return totalValues
     }
     
+    static func editCoin(amount: Double, _ coin: CoinInfo) {
+        guard let myCrypto = fetchMyCryptoData() else { return }
+        let myCoins = myCrypto.myCoins?.allObjects as! [MyCoin]
+        if let selectedCoin = myCoins.first(where: {$0.symbol == coin.symbol}) {
+            selectedCoin.amount = amount
+        }
+        appDelegate.saveContext()
+    }
+    
     static func removeCoin(_ coin: CoinInfo) {
         guard let myCrypto = fetchMyCryptoData() else { return }
         let myCoins = myCrypto.myCoins?.allObjects as! [MyCoin]

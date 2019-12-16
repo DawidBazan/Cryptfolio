@@ -62,8 +62,8 @@ class AddCoinVC: UIViewController {
     
     func updateCoin() {
         guard let selectedCoin = viewModel.getSelectedCoin() else { return }
-        coinImageView.image = UIImage(named: "\(selectedCoin.id)")
-        coinSymbolLbl.text = selectedCoin.symbol
+        coinImageView.imageFromCrypto(selectedCoin.name)
+        coinSymbolLbl.text = selectedCoin.symbol.uppercased()
     }
     
     func showActionSheet() {
@@ -73,7 +73,7 @@ class AddCoinVC: UIViewController {
         let indexCount = viewModel.getCountForActionSheet() - 1
         for index in 0...indexCount {
             let coin = viewModel.getCoin(at: index)
-            alert.addAction(UIAlertAction(title: coin.symbol, style: .default, handler: { [weak self] _ in
+            alert.addAction(UIAlertAction(title: coin.symbol.uppercased(), style: .default, handler: { [weak self] _ in
                 self?.viewModel.setSelectedCoin(to: coin)
                 self?.updateCoin()
             }))

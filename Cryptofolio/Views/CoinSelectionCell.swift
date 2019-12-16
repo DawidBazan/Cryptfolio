@@ -16,7 +16,7 @@ class CoinSelectionCell: UITableViewCell {
     
     func setupCell(with info: CoinInfo) {
         coinImage.imageFromCrypto(info.name)
-        coinSymbol.text = info.symbol
+        coinSymbol.text = info.symbol.uppercased()
         coinName.text = info.name
     }
 }
