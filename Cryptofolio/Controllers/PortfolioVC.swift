@@ -15,6 +15,8 @@ class PortfolioVC: UIViewController {
     @IBOutlet var totalChangeLbl: UILabel!
     @IBOutlet var chartView: ChartView!
     @IBOutlet var cardView: CardView!
+    @IBOutlet var historyBtn: UIButton!
+    @IBOutlet var historyLbl: UILabel!
     
     var viewModel: PortfolioViewModel!
 
@@ -27,12 +29,13 @@ class PortfolioVC: UIViewController {
         viewModel.setupChart(in: chartView)
         cardView.setupCard(in: self)
         viewModel.updatedCrypto = { [weak self] in
-            self?.setupTotalLabels()
+            self?.setupLabels()
             self?.tableView.reloadData()
         }
     }
     
-    func setupTotalLabels() {
+    func setupLabels() {
+        enableHistory()
         totalValueLbl.text = viewModel.getTotalValue()
         let totalChange = viewModel.getTotalChange()
         if totalChange.first == "-" {
@@ -41,6 +44,24 @@ class PortfolioVC: UIViewController {
         } else {
             totalChangeLbl.textColor = #colorLiteral(red: 0.2078431373, green: 0.8745098039, blue: 0.4352941176, alpha: 1)
             totalChangeLbl.text = "+\(totalChange)"
+        }
+    }
+    
+    func enableHistory() {
+        if viewModel.getRowCount() > 0 {
+            if #available(iOS 13.0, *) {
+                historyLbl.textColor = .label
+            } else {
+                historyLbl.textColor = .black
+            }
+            historyBtn.isEnabled = true
+        } else {
+            if #available(iOS 13.0, *) {
+                historyLbl.textColor = .secondaryLabel
+            } else {
+                historyLbl.textColor = .lightGray
+            }
+            historyBtn.isEnabled = false
         }
     }
     
@@ -115,7 +136,33 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: { (_, indexPath) in
+            let alert = UIAlertController(title: "", message: "Edit coin amount", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.placeholder = "New amount"
+                textField.keyboardType = .decimalPad
+            })
+            alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { _ in
+//                self.list[indexPath.row] = alert.textFields!.first!.text!
+                self.tableView.reloadRows(at: [indexPath], with: .fade)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        })
+
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: { (_, indexPath) in
+            self.tableView.beginUpdates()
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.viewModel.removeCoin(at: indexPath.row)
+            self.setupLabels()
+            self.tableView.endUpdates()
+        })
+
+        return [deleteAction, editAction]
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//    }
 }

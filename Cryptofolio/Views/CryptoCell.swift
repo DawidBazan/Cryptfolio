@@ -17,12 +17,10 @@ class CryptoCell: UITableViewCell {
     @IBOutlet var valueChangeLbl: UILabel!
     
     func setupCell(with info: CoinInfo) {
-        if let imageData = info.imageData {
-            cryptoImage.image = UIImage(data: imageData)
-        }
-        nameLbl.text = info.symbol
+        cryptoImage.imageFromCrypto(info.name)
+        nameLbl.text = info.symbol.uppercased()
         fullPriceLbl.text = UnitFormatter.currency(from: info.price) //change to 2 decimal places
-        setValueLbl(with: info.percentChange24H)
+        setValueLbl(with: info.priceChangePercentage24H)
     }
     
     private func setValueLbl(with value: Double) {

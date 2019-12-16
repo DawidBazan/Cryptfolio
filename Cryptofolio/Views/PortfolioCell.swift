@@ -17,9 +17,7 @@ class PortfolioCell: UITableViewCell {
     @IBOutlet var coinValueLbl: UILabel!
     
     func setupCell(with info: CoinInfo) {
-        if let imageData = info.imageData {
-            cryptoImage.image = UIImage(data: imageData)
-        }
+        cryptoImage.imageFromCrypto(info.name)
         nameLbl.text = info.name
         fullPriceLbl.text = UnitFormatter.currency(from: info.price)
         coinValueLbl.text = getCoinValue(info)

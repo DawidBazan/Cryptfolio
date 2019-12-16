@@ -28,7 +28,7 @@ class PortfolioViewModel {
         }.then { _ in
             self.cryptoFetcher.fetchCrypto()
         }.done { crypto in
-            self.crypto = crypto.info
+            self.crypto = crypto
             self.getMyCrypto()
         }.catch { error in
             print("\(error)")
@@ -70,6 +70,7 @@ class PortfolioViewModel {
     
     func removeCoin(at index: Int) {
         CoreDataHandler.removeCoin(myCrypto[index])
+        myCrypto.remove(at: index)
     }
     
     func getTotalValue() -> String {
@@ -88,14 +89,17 @@ class PortfolioViewModel {
     
     func getTotalChange() -> String {
         let myTotals = CoreDataHandler.fetchTotals()
-        guard let oldTotal = myTotals.first else { return "" }
+        guard let oldTotal = myTotals.first else {
+            let formattedChange = UnitFormatter.currency(from: 0)
+            let formattedPrecentage = UnitFormatter.percentage(from: 0)
+            return "\(formattedChange) (\(formattedPrecentage))"
+        }
         let newTotal = getCurrentTotal()
         let change = newTotal - oldTotal
         let percentage = (change / oldTotal) * 100
         let formattedChange = UnitFormatter.currency(from: change)
         let formattedPrecentage = UnitFormatter.percentage(from: percentage)
         return "\(formattedChange) (\(formattedPrecentage))"
-        
     }
     
     func getCoinValue(_ coin: CoinInfo) -> Double {

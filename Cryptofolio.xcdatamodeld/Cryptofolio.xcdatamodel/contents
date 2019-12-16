@@ -14,7 +14,7 @@
     </entity>
     <entity name="MyTotal" representedClassName="MyTotal" syncable="YES" codeGenerationType="class">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="value" attributeType="Double" usesScalarValueType="YES"/>
         <relationship name="myCrypto" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MyCrypto" inverseName="myTotals" inverseEntity="MyCrypto"/>
     </entity>
     <elements>
