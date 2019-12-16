@@ -24,6 +24,7 @@ enum CryptoRouter: URLRequestConvertible {
             switch self {
             case .get:
                 return ["limit": 5]
+//                        "convert": "EUR"]
             }
         }()
         

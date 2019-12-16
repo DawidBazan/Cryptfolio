@@ -73,19 +73,25 @@ class PortfolioViewModel {
     }
     
     func getTotalValue() -> String {
-        var total = 0.0
-        myCrypto.forEach { coin in
-            total += getCoinValue(coin)
-        }
+        let total = getCurrentTotal()
         CoreDataHandler.addTotal(total)
         return UnitFormatter.currency(from: total)
     }
     
+    private func getCurrentTotal() -> Double {
+        var total = 0.0
+        myCrypto.forEach { coin in
+            total += getCoinValue(coin)
+        }
+        return total
+    }
+    
     func getTotalChange() -> String {
         let myTotals = CoreDataHandler.fetchTotals()
-        guard let lastTotal = myTotals.last, let newTotal = myTotals.first else { return "" }
-        let change = newTotal - lastTotal
-        let percentage = (change / lastTotal) * 100
+        guard let oldTotal = myTotals.first else { return "" }
+        let newTotal = getCurrentTotal()
+        let change = newTotal - oldTotal
+        let percentage = (change / oldTotal) * 100
         let formattedChange = UnitFormatter.currency(from: change)
         let formattedPrecentage = UnitFormatter.percentage(from: percentage)
         return "\(formattedChange) (\(formattedPrecentage))"
