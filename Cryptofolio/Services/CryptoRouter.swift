@@ -23,15 +23,15 @@ enum CryptoRouter: URLRequestConvertible {
         let params: ([String: Any]?) = {
             switch self {
             case .get:
-                return ["limit": 5]
-//                        "convert": "EUR"]
+                return ["vs_currency": "usd",
+                        "order": "market_cap_desc",
+                        "ids": Constants.coinIds]
             }
         }()
         
         let url = Constants.url
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
-        urlRequest.addValue(Constants.apiKey, forHTTPHeaderField: "X-CMC_PRO_API_KEY")
 
         let encoding: ParameterEncoding = {
             switch method {

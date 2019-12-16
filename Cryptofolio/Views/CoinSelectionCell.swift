@@ -15,8 +15,7 @@ class CoinSelectionCell: UITableViewCell {
     @IBOutlet var coinName: UILabel!
     
     func setupCell(with info: CoinInfo) {
-        let image = UIImage(data: CryptoImage.getData(for: info.id))
-        coinImage.image = image
+        coinImage.imageFromCrypto(info.name)
         coinSymbol.text = info.symbol
         coinName.text = info.name
     }

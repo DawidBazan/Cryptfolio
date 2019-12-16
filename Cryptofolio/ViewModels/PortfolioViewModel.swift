@@ -28,7 +28,7 @@ class PortfolioViewModel {
         }.then { _ in
             self.cryptoFetcher.fetchCrypto()
         }.done { crypto in
-            self.crypto = crypto.info
+            self.crypto = crypto
             self.getMyCrypto()
         }.catch { error in
             print("\(error)")

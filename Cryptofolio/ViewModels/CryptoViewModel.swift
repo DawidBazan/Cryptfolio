@@ -28,7 +28,7 @@ class CryptoViewModel {
         }.then { _ in
             self.cryptoFetcher.fetchCrypto()
         }.done { crypto in
-            self.crypto = crypto.info
+            self.crypto = crypto
             self.updatedCrypto?()
         }.catch { error in
             print("\(error)")
