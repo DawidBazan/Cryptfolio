@@ -21,7 +21,7 @@ class PortfolioCell: UITableViewCell {
         nameLbl.text = info.name
         fullPriceLbl.text = UnitFormatter.currency(from: info.price)
         coinValueLbl.text = getCoinValue(info)
-        coinAmountLbl.text = "\(info.amount)\(info.symbol)"
+        coinAmountLbl.text = "\(info.amount)\(info.symbol.uppercased())"
     }
     
     func getCoinValue(_ coin: CoinInfo) -> String {

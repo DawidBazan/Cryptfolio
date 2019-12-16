@@ -144,8 +144,13 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
                 textField.keyboardType = .decimalPad
             })
             alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { _ in
-//                self.list[indexPath.row] = alert.textFields!.first!.text!
-                self.tableView.reloadRows(at: [indexPath], with: .fade)
+                guard let text = alert.textFields?.first?.text else { return }
+                if !text.isEmpty {
+                    guard let newAmount = Double(text) else { return }
+                    self.viewModel.editCoin(amount: newAmount, at: indexPath.row)
+                    self.setupLabels()
+                    self.tableView.reloadRows(at: [indexPath], with: .fade)
+                }
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alert, animated: true)
@@ -158,11 +163,6 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
             self.setupLabels()
             self.tableView.endUpdates()
         })
-
         return [deleteAction, editAction]
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    }
 }
