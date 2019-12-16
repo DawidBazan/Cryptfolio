@@ -12,18 +12,18 @@ class HistoryCell: UITableViewCell {
 
     @IBOutlet var cryptoImage: UIImageView!
     @IBOutlet var nameLbl: UILabel!
-    @IBOutlet var fullNameLbl: UILabel!
     @IBOutlet var amountLbl: UILabel!
     @IBOutlet var priceLbl: UILabel!
+    @IBOutlet var buyDateLbl: UILabel!
     @IBOutlet var changeLbl: UILabel!
     @IBOutlet var changeView: UIView!
     
     func setupCell(with coin: CoinInfo, change: Double) {
         cryptoImage.imageFromCrypto(coin.name)
         nameLbl.text = coin.symbol.uppercased()
-        fullNameLbl.text = coin.name
         amountLbl.text = "\(coin.amount)"
         priceLbl.text = UnitFormatter.currency(from: coin.buyPrice)
+        buyDateLbl.text = UnitFormatter.date(from: coin.buyDate)
         setChangeLbl(with: change)
     }
     

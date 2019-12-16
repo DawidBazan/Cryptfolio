@@ -165,4 +165,10 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
         })
         return [deleteAction, editAction]
     }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y > 10 && cardView.nextState == .expanded {
+            cardView.expandCard()
+        }
+    }
 }

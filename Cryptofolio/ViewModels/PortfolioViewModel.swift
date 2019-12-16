@@ -43,8 +43,10 @@ class PortfolioViewModel {
                 var myCoin = coin
                 let amount = cryptoData[index].amount
                 let buyPrice = cryptoData[index].buyPrice
+                let buyDate = cryptoData[index].date
                 myCoin.amount = amount
                 myCoin.buyPrice = buyPrice
+                myCoin.buyDate = buyDate
                 myCrypto.append(myCoin)
             }
             updatedCrypto?()

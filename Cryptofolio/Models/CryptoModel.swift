@@ -20,6 +20,7 @@ struct CoinInfo: Codable {
 //    let totalSupply: Int
     var amount: Double = 0
     var buyPrice: Double = 0
+    var buyDate: Date?
 
     enum CodingKeys: String, CodingKey {
         case id, symbol, name
