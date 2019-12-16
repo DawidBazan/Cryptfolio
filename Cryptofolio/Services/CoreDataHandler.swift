@@ -32,6 +32,20 @@ enum CoreDataHandler {
         }
     }
     
+    private static func deleteAllCryptoData() {
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<MyCrypto>(entityName: "MyCrypto")
+        do {
+            let counter = try context.count(for: request)
+            if counter == 1 {
+                let myCrypto = try context.fetch(request)
+                context.delete(myCrypto[0])
+            }
+        } catch {
+            print("delete failed")
+        }
+    }
+    
     static func fetchMyCoins() -> [MyCoin] {
         guard let myCrypto = fetchMyCryptoData() else { return [] }
         let myCoins = myCrypto.myCoins?.allObjects as! [MyCoin]
@@ -39,8 +53,9 @@ enum CoreDataHandler {
     }
     
     static func addCoin(_ coin: CoinInfo, amount: Double) {
+        let context = appDelegate.persistentContainer.viewContext
         if let myCrypto = fetchMyCryptoData() {
-            let myCoin = MyCoin()
+            let myCoin = MyCoin(context: context)
             myCoin.date = Date()
             myCoin.name = coin.name
             myCoin.symbol = coin.symbol
@@ -54,6 +69,7 @@ enum CoreDataHandler {
     }
     
     static func addTotal(_ value: Double) {
+        guard value > 0 else { return }
         let context = appDelegate.persistentContainer.viewContext
         if let myCrypto = fetchMyCryptoData() {
             if TotalValueIsValid(value, in: myCrypto) {
@@ -81,7 +97,11 @@ enum CoreDataHandler {
         guard let myCrypto = fetchMyCryptoData() else { return }
         let myCoins = myCrypto.myCoins?.allObjects as! [MyCoin]
         if let selectedCoin = myCoins.first(where: {$0.symbol == coin.symbol}) {
-            myCrypto.removeFromMyCoins(selectedCoin)
+            if myCoins.count == 1 {
+                deleteAllCryptoData()
+            } else {
+                myCrypto.removeFromMyCoins(selectedCoin)
+            }
             appDelegate.saveContext()
         }
     }
