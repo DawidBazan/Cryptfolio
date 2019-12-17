@@ -13,18 +13,18 @@ class CardView: UIView {
     @IBOutlet var handleArea: UIView!
     @IBOutlet var dragBar: UIView!
     
-    var visualEffectView: UIVisualEffectView!
-    let cardHeight: CGFloat = 650
-    var parentFrame: CGRect = CGRect()
+    private var visualEffectView: UIVisualEffectView!
+    private let cardHeight: CGFloat = 650
+    private var parentFrame: CGRect = CGRect()
        
-    var cardVisible = false
-    var nextState: CardState {
-        return cardVisible ? .collapsed : .expanded
+    var cardExpanded = false
+    private var nextState: CardState {
+        return cardExpanded ? .collapsed : .expanded
     }
-    var runningAnimations: [UIViewPropertyAnimator] = []
-    var animationProgressWhenInterrupted: CGFloat = 0
+    private var runningAnimations: [UIViewPropertyAnimator] = []
+    private var animationProgressWhenInterrupted: CGFloat = 0
        
-    enum CardState {
+    private enum CardState {
         case expanded
         case collapsed
     }
@@ -69,7 +69,7 @@ class CardView: UIView {
         case .changed:
             let translation = recognizer.translation(in: self.handleArea)
             var fractionComplete = translation.y / cardHeight
-            fractionComplete = cardVisible ? fractionComplete : -fractionComplete
+            fractionComplete = cardExpanded ? fractionComplete : -fractionComplete
             updateInteractiveTransition(fractionCompleted: fractionComplete)
         case .ended:
             continueInteractiveTransition()
@@ -82,7 +82,11 @@ class CardView: UIView {
         let shadowLayer = CAShapeLayer()
         shadowLayer.path = UIBezierPath(roundedRect: view.frame, cornerRadius: 12).cgPath
         shadowLayer.fillColor = handleArea.backgroundColor?.cgColor
-        shadowLayer.shadowColor = UIColor.darkGray.cgColor
+        if #available(iOS 13.0, *) {
+            shadowLayer.shadowColor = UIColor.label.cgColor
+        } else {
+            shadowLayer.shadowColor = UIColor.darkGray.cgColor
+        }
         shadowLayer.shadowPath = shadowLayer.path
         shadowLayer.shadowOffset = CGSize(width: 0, height: -5)
         shadowLayer.shadowOpacity = 0.1
@@ -110,7 +114,7 @@ class CardView: UIView {
                 }
             }
             frameAnimator.addCompletion { _ in
-                self.cardVisible = !self.cardVisible
+                self.cardExpanded = !self.cardExpanded
                 self.runningAnimations.removeAll()
             }
             frameAnimator.startAnimation()
@@ -134,7 +138,7 @@ class CardView: UIView {
         }
     }
     
-    func continueInteractiveTransition() {
+    private func continueInteractiveTransition() {
         for animator in runningAnimations {
             animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
         }

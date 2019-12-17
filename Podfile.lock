@@ -19,7 +19,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.8.2)
-  - Charts
+  - Charts (~> 3.3.0)
   - PromiseKit (~> 6.10.0)
   - SwiftLint (~> 0.33.0)
   - Swinject (~> 2.6.2)
@@ -42,6 +42,6 @@ SPEC CHECKSUMS:
   Swinject: cf7458774b1b00323080a9c67e47a1ee7f9d2af1
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
 
-PODFILE CHECKSUM: 852523975d06029c104eba410578ee7ec0968c2d
+PODFILE CHECKSUM: 65db1c96acbc9329f6818856ac187656934f7140
 
 COCOAPODS: 1.7.3

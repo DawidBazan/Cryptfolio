@@ -14,7 +14,7 @@ class ChartView: LineChartView {
     
     func setupChart(with totals: [Double]) {
         self.setViewPortOffsets(left: 0, top: 20, right: 0, bottom: 0)
-        self.backgroundColor = .white
+        self.backgroundColor = .clear
         self.gridBackgroundColor = .lightGray
         
         self.dragEnabled = false
@@ -53,7 +53,10 @@ class ChartView: LineChartView {
         set1.drawHorizontalHighlightIndicatorEnabled = false
         
         let gray = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
-        let gradientColors = [gray.cgColor, UIColor.white.cgColor] as CFArray // Colors of the gradient
+        var gradientColors = [gray.cgColor, UIColor.white.cgColor] as CFArray
+        if #available(iOS 13.0, *) {
+            gradientColors = [UIColor.systemGray5.cgColor, UIColor.systemBackground.cgColor] as CFArray // Colors of the gradient
+        }
         let colorLocations: [CGFloat] = [1.0, 0.0] // Positioning of the gradient
         let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations)
         set1.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0)

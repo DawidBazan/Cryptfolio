@@ -31,15 +31,19 @@ extension SwinjectStoryboard {
 
     // MARK: ViewModels
     class func registerViewModels() {
+        
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if !launchedBefore {
+            defaultContainer.register(IntroViewModel.self) { r in
+                let viewModel = IntroViewModel(reachability: r.resolve(ReachabilityChecker.self)!,
+                                               cryptoFetcher: r.resolve(CryptoFetcher.self)!)
+                return viewModel
+            }
+        }
+        
         defaultContainer.register(PortfolioViewModel.self) { r in
             let viewModel = PortfolioViewModel(reachability: r.resolve(ReachabilityChecker.self)!,
                                                cryptoFetcher: r.resolve(CryptoFetcher.self)!)
-            return viewModel
-        }
-        
-        defaultContainer.register(CryptoViewModel.self) { r in
-            let viewModel = CryptoViewModel(reachability: r.resolve(ReachabilityChecker.self)!,
-                                                    cryptoFetcher: r.resolve(CryptoFetcher.self)!)
             return viewModel
         }
     }
@@ -47,13 +51,16 @@ extension SwinjectStoryboard {
     // MARK: Storyboards
     class func registerStoryboards() {
         Container.loggingFunction = nil
+        
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if !launchedBefore {
+            defaultContainer.storyboardInitCompleted(IntroVC.self) { resolver, controller in
+                controller.viewModel = resolver.resolve(IntroViewModel.self)
+            }
+        }
 
         defaultContainer.storyboardInitCompleted(PortfolioVC.self) { resolver, controller in
             controller.viewModel = resolver.resolve(PortfolioViewModel.self)
-        }
-        
-        defaultContainer.storyboardInitCompleted(CryptoListVC.self) { resolver, controller in
-            controller.viewModel = resolver.resolve(CryptoViewModel.self)
         }
     }
 }
