@@ -12,7 +12,7 @@ class CryptoListVC: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    var viewModel: CryptoViewModel!
+    var viewModel: CryptoListViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +21,6 @@ class CryptoListVC: UIViewController {
     
     func viewSetup() {
         createSearchBar()
-        viewModel.updatedCrypto = {
-            self.tableView.reloadData()
-        }
-        viewModel.fetchCrypto()
     }
     
     func createSearchBar() {
@@ -79,7 +75,6 @@ extension CryptoListVC: UISearchBarDelegate, UISearchResultsUpdating {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
         searchBar.text = nil
         searchBar.showsCancelButton = false
         searchBar.endEditing(true)

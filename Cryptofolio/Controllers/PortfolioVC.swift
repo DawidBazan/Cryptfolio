@@ -29,6 +29,7 @@ class PortfolioVC: UIViewController {
         viewModel.setupChart(in: chartView)
         cardView.setupCard(in: self)
         viewModel.updatedCrypto = { [weak self] in
+            self?.injectCryptoListViewModel()
             self?.setupLabels()
             self?.tableView.reloadData()
         }
@@ -92,17 +93,18 @@ class PortfolioVC: UIViewController {
             }
         }
     }
+    
+    func injectCryptoListViewModel() {
+        let navController = self.tabBarController?.viewControllers![1] as! UINavigationController
+        let vc = navController.topViewController as! CryptoListVC
+        vc.viewModel = viewModel.createCryptoListViewModel()
+    }
 }
 
 extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
-//            addButtonToHeader(headerView)
             customHeaderView(for: headerView)
         }
     }
@@ -167,7 +169,7 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView.contentOffset.y > 10 && cardView.nextState == .expanded {
+        if scrollView.contentOffset.y > 10 && cardView.cardExpanded == false {
             cardView.expandCard()
         }
     }

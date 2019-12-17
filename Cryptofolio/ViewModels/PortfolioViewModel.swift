@@ -116,6 +116,11 @@ class PortfolioViewModel {
         }
     }
     
+    func createCryptoListViewModel() -> CryptoListViewModel {
+        let viewModel = CryptoListViewModel(crypto: crypto)
+        return viewModel
+    }
+    
     func createAddCoinVM() -> AddCoinViewModel {
         var availableCrypto: [CoinInfo] = [] //only coins that are not in myCrypto
         crypto.forEach { (coin) in
