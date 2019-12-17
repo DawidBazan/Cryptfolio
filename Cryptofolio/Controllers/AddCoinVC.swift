@@ -83,9 +83,7 @@ class AddCoinVC: UIViewController {
             self?.performSegue(withIdentifier: "coinSelection", sender: self)
         }))
 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak self] _ in
-            print("User click Dismiss button")
-        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         self.present(alert, animated: true, completion: nil)
     }

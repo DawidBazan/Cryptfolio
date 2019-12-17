@@ -11,6 +11,7 @@ import UIKit
 class IntroVC: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var doneBtn: UIButton!
     
     var viewModel: IntroViewModel!
     
@@ -59,6 +60,7 @@ extension IntroVC: UITableViewDelegate, UITableViewDataSource {
                 self.viewModel.addCoinAmount(amount, at: indexPath.row)
                 self.tableView.reloadRows(at: [indexPath], with: .automatic)
                 self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                self.doneBtn.isEnabled = true
             }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

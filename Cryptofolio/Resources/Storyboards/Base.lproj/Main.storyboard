@@ -51,7 +51,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="142.66666666666666" height="73"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibd-Ze-xKJ">
-                                                <rect key="frame" x="54.333333333333329" y="0.0" width="34" height="50"/>
+                                                <rect key="frame" x="58.666666666666671" y="0.0" width="25" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="XBA-oh-fLS"/>
                                                 </constraints>
@@ -74,7 +74,7 @@
                                         <rect key="frame" x="172.66666666666663" y="0.0" width="142.33333333333337" height="73"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDG-Xu-wkQ">
-                                                <rect key="frame" x="54.000000000000028" y="0.0" width="34" height="50"/>
+                                                <rect key="frame" x="58.666666666666657" y="0.0" width="25" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="EbP-SD-Xrd"/>
                                                 </constraints>
@@ -479,9 +479,11 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2F0-3O-7dn">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2F0-3O-7dn">
                                 <rect key="frame" x="318" y="44" width="37" height="30"/>
-                                <state key="normal" title="Done"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="donePressed:" destination="BaE-jn-WSw" eventType="touchUpInside" id="2NZ-f8-0g8"/>
                                 </connections>
@@ -494,6 +496,7 @@
                             <constraint firstItem="BgA-aE-8iy" firstAttribute="bottom" secondItem="rFQ-mY-qHZ" secondAttribute="bottom" id="8un-hs-PHa"/>
                             <constraint firstItem="BgA-aE-8iy" firstAttribute="trailing" secondItem="0mE-Yt-0U7" secondAttribute="trailing" constant="20" id="9o5-kd-hhN"/>
                             <constraint firstItem="rFQ-mY-qHZ" firstAttribute="leading" secondItem="BgA-aE-8iy" secondAttribute="leading" id="azh-ac-Pmf"/>
+                            <constraint firstItem="2F0-3O-7dn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BgA-aE-8iy" secondAttribute="leading" constant="10" id="b78-Gh-ieT"/>
                             <constraint firstItem="0mE-Yt-0U7" firstAttribute="leading" secondItem="BgA-aE-8iy" secondAttribute="leading" constant="20" id="dyh-c4-a7J"/>
                             <constraint firstItem="0mE-Yt-0U7" firstAttribute="top" secondItem="BgA-aE-8iy" secondAttribute="top" constant="40" id="gKc-jc-SK9"/>
                             <constraint firstItem="BgA-aE-8iy" firstAttribute="trailing" secondItem="2F0-3O-7dn" secondAttribute="trailing" constant="20" id="hya-em-327"/>
@@ -503,6 +506,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fuI-1o-C2J"/>
                     <connections>
+                        <outlet property="doneBtn" destination="2F0-3O-7dn" id="9Gm-e1-8HX"/>
                         <outlet property="tableView" destination="rFQ-mY-qHZ" id="FW8-Vw-fX7"/>
                         <segue destination="t25-zN-43o" kind="show" identifier="main" id="lUQ-fo-erK"/>
                     </connections>
@@ -515,11 +519,12 @@
         <scene sceneID="NX9-H0-lCi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Ik-wb-R7y" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Portfolio" image="person.circle" catalog="system" selectedImage="person.circle.fill" id="wxj-Kc-3kN"/>
+                    <tabBarItem key="tabBarItem" title="Portfolio" image="person" selectedImage="personFill" id="wxj-Kc-3kN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="e3N-Q8-QAa">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                         <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -556,7 +561,7 @@
         <scene sceneID="5Vj-2L-rXD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zrw-8e-utn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Crypto" image="coloncurrencysign.circle" catalog="system" selectedImage="coloncurrencysign.circle.fill" id="4WH-g7-QXr"/>
+                    <tabBarItem key="tabBarItem" title="Crypto" image="crypto" selectedImage="cryptoFill" id="4WH-g7-QXr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vNY-XM-Btm">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -728,7 +733,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwF-fa-dd2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3716" y="-105.66502463054188"/>
+            <point key="canvasLocation" x="3713" y="-140"/>
         </scene>
         <!--AddCoin-->
         <scene sceneID="I7B-mG-qx9">
@@ -736,7 +741,7 @@
                 <viewControllerPlaceholder storyboardName="AddCoin" id="0C8-Cn-EuI" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A9V-9n-8gT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2542" y="382"/>
+            <point key="canvasLocation" x="3478" y="306"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8xh-CE-n2U">
@@ -757,12 +762,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="34" height="34"/>
-        <image name="coloncurrencysign.circle" catalog="system" width="64" height="60"/>
-        <image name="coloncurrencysign.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="add" width="25" height="25"/>
+        <image name="crypto" width="25" height="25"/>
+        <image name="cryptoFill" width="25" height="25"/>
         <image name="exchange" width="34" height="34"/>
-        <image name="history" width="34" height="34"/>
-        <image name="person.circle" catalog="system" width="64" height="60"/>
-        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="history" width="25" height="25"/>
+        <image name="person" width="25" height="25"/>
+        <image name="personFill" width="25" height="25"/>
     </resources>
 </document>
