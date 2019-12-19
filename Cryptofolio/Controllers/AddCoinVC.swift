@@ -69,6 +69,7 @@ class AddCoinVC: UIViewController {
     func showActionSheet() {
         guard viewModel.getCountForActionSheet() > 0 else { return }
         let alert = UIAlertController(title: "", message: "Choose cryptocurrency:", preferredStyle: .actionSheet)
+        alert.view.tintColor = .orange
 
         let indexCount = viewModel.getCountForActionSheet() - 1
         for index in 0...indexCount {

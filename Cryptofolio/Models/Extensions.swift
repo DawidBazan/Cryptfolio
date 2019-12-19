@@ -10,7 +10,35 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    public func imageFromCrypto(_ name: String) {
+    func imageFromCrypto(_ name: String) {
         self.image = UIImage(named: name)
+    }
+}
+
+extension UIViewController {
+    func presentAlert(for error: Error) {
+        var title = ""
+        var message = ""
+        switch error {
+        case CryptoError.decodeFailed:
+            title = "Decode Failed"
+            message = "Please try again later"
+        case CryptoError.requestFailed:
+            title = "Data request failed"
+            message = "Please try again later"
+        case CryptoError.unreachable:
+            title = "Network is unreachable"
+            message = "Please make sure your phone is connected to the interent"
+        default:
+            break
+        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
+            if let url = NSURL(string: UIApplication.openSettingsURLString) as URL? {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }

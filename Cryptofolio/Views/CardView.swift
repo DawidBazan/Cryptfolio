@@ -14,7 +14,7 @@ class CardView: UIView {
     @IBOutlet var dragBar: UIView!
     
     private var visualEffectView: UIVisualEffectView!
-    private let cardHeight: CGFloat = 650
+    private let cardHeight: CGFloat = 700
     private var parentFrame: CGRect = CGRect()
        
     var cardExpanded = false
@@ -79,14 +79,11 @@ class CardView: UIView {
     }
     
     private func addShadow(to view: UIView) {
+        if self.traitCollection.userInterfaceStyle == .dark { return }
         let shadowLayer = CAShapeLayer()
         shadowLayer.path = UIBezierPath(roundedRect: view.frame, cornerRadius: 12).cgPath
         shadowLayer.fillColor = handleArea.backgroundColor?.cgColor
-        if #available(iOS 13.0, *) {
-            shadowLayer.shadowColor = UIColor.label.cgColor
-        } else {
-            shadowLayer.shadowColor = UIColor.darkGray.cgColor
-        }
+        shadowLayer.shadowColor = UIColor.darkGray.cgColor
         shadowLayer.shadowPath = shadowLayer.path
         shadowLayer.shadowOffset = CGSize(width: 0, height: -5)
         shadowLayer.shadowOpacity = 0.1
@@ -108,9 +105,9 @@ class CardView: UIView {
             let frameAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 1) {
                 switch state {
                 case .expanded:
-                    self.frame.origin.y = 75
+                    self.frame.origin.y = 80
                 case .collapsed:
-                    self.frame.origin.y = self.parentFrame.height - self.cardHeight / 1.5
+                    self.frame.origin.y = self.parentFrame.height - self.cardHeight / 1.62
                 }
             }
             frameAnimator.addCompletion { _ in

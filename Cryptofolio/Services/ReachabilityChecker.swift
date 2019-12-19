@@ -24,4 +24,15 @@ struct ReachabilityChecker {
             }
         }
     }
+    
+    func updateWhenReachable(completion: @escaping (Bool) -> Void) {
+        reachability.reachabilityObserver { result in
+            switch result {
+            case let .success(isReachable):
+                completion(isReachable)
+            case let .failure(error):
+                print("\(error)")
+            }
+        }
+    }
 }

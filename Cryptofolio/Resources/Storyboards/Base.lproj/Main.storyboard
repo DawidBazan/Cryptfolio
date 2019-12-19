@@ -50,8 +50,8 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PYO-dE-D0h">
                                         <rect key="frame" x="0.0" y="0.0" width="142.66666666666666" height="73"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibd-Ze-xKJ">
-                                                <rect key="frame" x="58.666666666666671" y="0.0" width="25" height="50"/>
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibd-Ze-xKJ">
+                                                <rect key="frame" x="54.333333333333329" y="0.0" width="34" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="XBA-oh-fLS"/>
                                                 </constraints>
@@ -65,7 +65,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add crypto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvV-4E-B3s">
                                                 <rect key="frame" x="34.000000000000007" y="55" width="74.666666666666686" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -74,7 +74,7 @@
                                         <rect key="frame" x="172.66666666666663" y="0.0" width="142.33333333333337" height="73"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDG-Xu-wkQ">
-                                                <rect key="frame" x="58.666666666666657" y="0.0" width="25" height="50"/>
+                                                <rect key="frame" x="54.000000000000028" y="0.0" width="34" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="EbP-SD-Xrd"/>
                                                 </constraints>
@@ -119,7 +119,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ziU-vC-yoa" customClass="CardView" customModule="Cryptofolio" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="382" width="375" height="650"/>
+                                <rect key="frame" x="0.0" y="382" width="375" height="700"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NwN-NU-mHn">
                                         <rect key="frame" x="0.0" y="10" width="375" height="45"/>
@@ -133,7 +133,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="ob4-A8-MIp" firstAttribute="top" secondItem="NwN-NU-mHn" secondAttribute="top" constant="20" id="03x-US-2R8"/>
                                             <constraint firstItem="ob4-A8-MIp" firstAttribute="centerX" secondItem="NwN-NU-mHn" secondAttribute="centerX" id="Cfa-X1-7Sk"/>
@@ -141,8 +141,8 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S9r-CF-co5">
-                                        <rect key="frame" x="0.0" y="45" width="375" height="605"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <rect key="frame" x="0.0" y="55" width="375" height="645"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" id="Bdp-ar-ruK" customClass="PortfolioCell" customModule="Cryptofolio" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="80"/>
@@ -207,6 +207,7 @@
                                                         <constraint firstItem="Rns-Uk-Wa8" firstAttribute="top" secondItem="npi-IK-aTX" secondAttribute="topMargin" id="rZO-dM-Fxt"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <outlet property="coinAmountLbl" destination="g78-99-hiU" id="4c3-jF-qTM"/>
                                                     <outlet property="coinValueLbl" destination="zmZ-et-LtR" id="Mju-wn-45r"/>
@@ -225,8 +226,8 @@
                                 <constraints>
                                     <constraint firstItem="NwN-NU-mHn" firstAttribute="left" secondItem="ziU-vC-yoa" secondAttribute="left" id="Hfd-AW-6Bz"/>
                                     <constraint firstItem="S9r-CF-co5" firstAttribute="leading" secondItem="ziU-vC-yoa" secondAttribute="leading" id="IPQ-Xe-5dv"/>
-                                    <constraint firstAttribute="height" constant="650" id="NzG-Qu-zM9"/>
-                                    <constraint firstItem="S9r-CF-co5" firstAttribute="top" secondItem="NwN-NU-mHn" secondAttribute="bottom" constant="-10" id="aes-Ml-ZsS"/>
+                                    <constraint firstAttribute="height" constant="700" id="NzG-Qu-zM9"/>
+                                    <constraint firstItem="S9r-CF-co5" firstAttribute="top" secondItem="NwN-NU-mHn" secondAttribute="bottom" id="aes-Ml-ZsS"/>
                                     <constraint firstAttribute="trailing" secondItem="NwN-NU-mHn" secondAttribute="trailing" id="p3y-40-0Dr"/>
                                     <constraint firstAttribute="bottom" secondItem="S9r-CF-co5" secondAttribute="bottom" id="uSV-BQ-mXR"/>
                                     <constraint firstItem="NwN-NU-mHn" firstAttribute="top" secondItem="ziU-vC-yoa" secondAttribute="top" constant="10" id="yEJ-TE-DAh"/>
@@ -242,7 +243,7 @@
                         <constraints>
                             <constraint firstItem="MDd-hq-JBI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AF8-2y-tcf"/>
                             <constraint firstItem="ziU-vC-yoa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Euu-Ra-Esg"/>
-                            <constraint firstAttribute="bottom" secondItem="ziU-vC-yoa" secondAttribute="bottom" constant="-220" id="JYE-MZ-Vmy"/>
+                            <constraint firstAttribute="bottom" secondItem="ziU-vC-yoa" secondAttribute="bottom" constant="-270" id="JYE-MZ-Vmy"/>
                             <constraint firstItem="T9I-Tj-GNW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="L4g-Lf-B9j"/>
                             <constraint firstItem="di2-is-Q1V" firstAttribute="top" secondItem="MDd-hq-JBI" secondAttribute="bottom" constant="-20" id="LKp-eS-RvL"/>
                             <constraint firstItem="di2-is-Q1V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TI4-8W-Ktj"/>
@@ -257,6 +258,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Cryptofolio" id="Zob-IZ-mbA"/>
                     <connections>
+                        <outlet property="addBtn" destination="Ibd-Ze-xKJ" id="l8E-LU-o8Y"/>
+                        <outlet property="addLbl" destination="tvV-4E-B3s" id="psJ-7f-uWO"/>
                         <outlet property="cardView" destination="ziU-vC-yoa" id="ofi-Ua-PEu"/>
                         <outlet property="chartView" destination="di2-is-Q1V" id="Ry5-Lp-ZBJ"/>
                         <outlet property="historyBtn" destination="hDG-Xu-wkQ" id="wd6-AO-r2p"/>
@@ -762,11 +765,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="25" height="25"/>
+        <image name="add" width="34" height="34"/>
         <image name="crypto" width="25" height="25"/>
         <image name="cryptoFill" width="25" height="25"/>
         <image name="exchange" width="34" height="34"/>
-        <image name="history" width="25" height="25"/>
+        <image name="history" width="34" height="34"/>
         <image name="person" width="25" height="25"/>
         <image name="personFill" width="25" height="25"/>
     </resources>

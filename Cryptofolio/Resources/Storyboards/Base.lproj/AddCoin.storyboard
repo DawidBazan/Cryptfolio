@@ -115,8 +115,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szC-yB-w7a">
-                                <rect key="frame" x="361" y="64" width="33" height="34"/>
+                                <rect key="frame" x="344" y="64" width="50" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="0Kp-eB-YWR"/>
+                                    <constraint firstAttribute="width" constant="50" id="1hf-Jx-J4k"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="10"/>
                                 <state key="normal" title="Add">
                                     <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -128,18 +133,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrJ-Hv-X0r">
-                                <rect key="frame" x="20" y="71" width="14" height="15"/>
+                                <rect key="frame" x="20" y="71" width="50" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="14" id="MXR-5i-FWz"/>
-                                    <constraint firstAttribute="height" constant="15" id="NHh-hy-CS5"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Fzd-xX-oIR"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="asK-4v-PYL"/>
                                 </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="35" maxY="15"/>
                                 <state key="normal" image="close"/>
                                 <connections>
                                     <action selector="closePressed:" destination="4h9-ed-Ck4" eventType="touchUpInside" id="vkm-Z4-0Kb"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JHx-ze-bst">
-                                <rect key="frame" x="20" y="126" width="374" height="128"/>
+                                <rect key="frame" x="20" y="141" width="374" height="128"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TAC-hJ-dbK">
                                         <rect key="frame" x="0.0" y="0.0" width="106" height="128"/>
@@ -176,6 +182,7 @@
                                     </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0fN-ht-wGj">
                                         <rect key="frame" x="106" y="43" width="268" height="42"/>
+                                        <color key="tintColor" red="0.84906703230000002" green="0.42066806550000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                     </textField>

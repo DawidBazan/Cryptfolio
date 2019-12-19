@@ -15,6 +15,8 @@ class PortfolioVC: UIViewController {
     @IBOutlet var totalChangeLbl: UILabel!
     @IBOutlet var chartView: ChartView!
     @IBOutlet var cardView: CardView!
+    @IBOutlet var addBtn: UIButton!
+    @IBOutlet var addLbl: UILabel!
     @IBOutlet var historyBtn: UIButton!
     @IBOutlet var historyLbl: UILabel!
     
@@ -28,7 +30,11 @@ class PortfolioVC: UIViewController {
     func setupView() {
         viewModel.setupChart(in: chartView)
         cardView.setupCard(in: self)
-        viewModel.updatedCrypto = { [weak self] in
+        viewModel.updatedCrypto = { [weak self] error in
+            guard error == nil else {
+                self?.presentAlert(for: error!)
+                return
+            }
             self?.injectCryptoListViewModel()
             self?.setupLabels()
             self?.tableView.reloadData()
@@ -36,6 +42,7 @@ class PortfolioVC: UIViewController {
     }
     
     func setupLabels() {
+        enableAdd()
         enableHistory()
         totalValueLbl.text = viewModel.getTotalValue()
         let totalChange = viewModel.getTotalChange()
@@ -46,6 +53,15 @@ class PortfolioVC: UIViewController {
             totalChangeLbl.textColor = #colorLiteral(red: 0.2078431373, green: 0.8745098039, blue: 0.4352941176, alpha: 1)
             totalChangeLbl.text = "+\(totalChange)"
         }
+    }
+    
+    func enableAdd() {
+        if #available(iOS 13.0, *) {
+            addLbl.textColor = .label
+        } else {
+            addLbl.textColor = .black
+        }
+        addBtn.isEnabled = true
     }
     
     func enableHistory() {
@@ -111,8 +127,8 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
     
     func customHeaderView(for headerView: UITableViewHeaderFooterView) {
         if #available(iOS 13.0, *) {
-            headerView.contentView.backgroundColor = .systemBackground
-            headerView.backgroundView?.backgroundColor = .systemBackground
+            headerView.contentView.backgroundColor = .secondarySystemGroupedBackground
+            headerView.backgroundView?.backgroundColor = .secondarySystemGroupedBackground
             headerView.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
             headerView.textLabel?.textColor = .label
         } else {

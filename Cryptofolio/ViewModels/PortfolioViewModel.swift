@@ -14,7 +14,7 @@ class PortfolioViewModel {
     private let cryptoFetcher: CryptoFetcher
     private var crypto: [CoinInfo] = []
     private var myCrypto: [CoinInfo] = []
-    var updatedCrypto: (() -> Void)?
+    var updatedCrypto: ((Error?) -> Void)?
     
     init(reachability: ReachabilityChecker, cryptoFetcher: CryptoFetcher) {
         self.reachability = reachability
@@ -31,7 +31,21 @@ class PortfolioViewModel {
             self.crypto = crypto
             self.getMyCrypto()
         }.catch { error in
-            print("\(error)")
+            self.updatedCrypto?(error)
+            self.observeReachability(when: error)
+        }
+    }
+    
+    private func observeReachability(when error: Error) {
+        switch error {
+        case CryptoError.unreachable:
+            reachability.updateWhenReachable { isReachable in
+                if isReachable {
+                    self.fetchCrypto()
+                }
+            }
+        default:
+            break
         }
     }
     
@@ -49,7 +63,7 @@ class PortfolioViewModel {
                 myCoin.buyDate = buyDate
                 myCrypto.append(myCoin)
             }
-            updatedCrypto?()
+            updatedCrypto?(nil)
         }
     }
     

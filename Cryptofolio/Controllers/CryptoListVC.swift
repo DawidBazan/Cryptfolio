@@ -12,7 +12,7 @@ class CryptoListVC: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    var viewModel: CryptoListViewModel!
+    var viewModel: CryptoListViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,9 @@ class CryptoListVC: UIViewController {
 }
 
 extension CryptoListVC: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let viewModel = viewModel else { return 0 }
         if viewModel.isCryptoFiltered() {
             return viewModel.getFilteredRowCount()
         } else {
@@ -46,6 +48,8 @@ extension CryptoListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CryptoCell
+        
+        guard let viewModel = viewModel else { return cell }
         if viewModel.isCryptoFiltered() {
             let filteredCoin = viewModel.getFilteredCoin(at: indexPath.row)
             cell.setupCell(with: filteredCoin)
@@ -61,7 +65,7 @@ extension CryptoListVC: UISearchBarDelegate, UISearchResultsUpdating {
     
     func filterContentForSearchText(_ searchText: String) {
         if searchText.count != 0 {
-            viewModel.filterCrypto(with: searchText)
+            viewModel?.filterCrypto(with: searchText)
             tableView.reloadData()
         }
     }
@@ -79,7 +83,7 @@ extension CryptoListVC: UISearchBarDelegate, UISearchResultsUpdating {
         searchBar.showsCancelButton = false
         searchBar.endEditing(true)
         
-        viewModel.clearFilteredCrypto()
+        viewModel?.clearFilteredCrypto()
         tableView.reloadData()
     }
 }
