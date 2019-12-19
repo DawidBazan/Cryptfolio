@@ -9,16 +9,15 @@
 import UIKit
 
 class IntroCell: UITableViewCell {
+	@IBOutlet var cryptoImage: UIImageView!
+	@IBOutlet var nameLbl: UILabel!
+	@IBOutlet var amountLbl: UILabel!
 
-    @IBOutlet var cryptoImage: UIImageView!
-    @IBOutlet var nameLbl: UILabel!
-    @IBOutlet var amountLbl: UILabel!
-    
-    func setupCell(with coin: CoinInfo) {
-        cryptoImage.imageFromCrypto(coin.name)
-        nameLbl.text = coin.name
-        if coin.amount > 0 {
-            amountLbl.text = "\(coin.amount)"
-        }
-    }
+	func setupCell(with coin: CoinInfo) {
+		cryptoImage.imageFromCrypto(coin.name)
+		nameLbl.text = coin.name
+		if coin.amount > 0 {
+			amountLbl.text = "\(coin.amount)"
+		}
+	}
 }

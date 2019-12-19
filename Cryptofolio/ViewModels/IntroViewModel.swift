@@ -10,46 +10,46 @@ import Foundation
 import PromiseKit
 
 class IntroViewModel {
-    private let reachability: ReachabilityChecker
-    private let cryptoFetcher: CryptoFetcher
-    private var crypto: [CoinInfo] = []
-    var updatedCrypto: (() -> Void)?
-    
-    init(reachability: ReachabilityChecker, cryptoFetcher: CryptoFetcher) {
-        self.reachability = reachability
-        self.cryptoFetcher = cryptoFetcher
-        self.fetchCrypto()
-    }
-    
-    private func fetchCrypto() {
-        firstly {
-            self.reachability.checkReachability()
-        }.then { _ in
-            self.cryptoFetcher.fetchCrypto()
-        }.done { crypto in
-            self.crypto = crypto
-            self.updatedCrypto?()
-        }.catch { error in
-            print("\(error)")
-        }
-    }
-    
-    func getRowCount() -> Int {
-        return crypto.count
-    }
-    
-    func getCoin(at index: Int) -> CoinInfo {
-        return crypto[index]
-    }
-    
-    func addCoinAmount(_ amount: Double, at index: Int) {
-        crypto[index].amount = amount
-    }
-    
-    func addSelectedCoins(from indexes: [Int]) {
-        indexes.forEach { index in
-            let coin = crypto[index]
-            CoreDataHandler.addCoin(coin, amount: coin.amount)
-        }
-    }
+	private let reachability: ReachabilityChecker
+	private let cryptoFetcher: CryptoFetcher
+	private var crypto: [CoinInfo] = []
+	var updatedCrypto: (() -> Void)?
+
+	init(reachability: ReachabilityChecker, cryptoFetcher: CryptoFetcher) {
+		self.reachability = reachability
+		self.cryptoFetcher = cryptoFetcher
+		fetchCrypto()
+	}
+
+	private func fetchCrypto() {
+		firstly {
+			self.reachability.checkReachability()
+		}.then { _ in
+			self.cryptoFetcher.fetchCrypto()
+		}.done { crypto in
+			self.crypto = crypto
+			self.updatedCrypto?()
+		}.catch { error in
+			print("\(error)")
+		}
+	}
+
+	func getRowCount() -> Int {
+		return crypto.count
+	}
+
+	func getCoin(at index: Int) -> CoinInfo {
+		return crypto[index]
+	}
+
+	func addCoinAmount(_ amount: Double, at index: Int) {
+		crypto[index].amount = amount
+	}
+
+	func addSelectedCoins(from indexes: [Int]) {
+		indexes.forEach { index in
+			let coin = crypto[index]
+			CoreDataHandler.addCoin(coin, amount: coin.amount)
+		}
+	}
 }

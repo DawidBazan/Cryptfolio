@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4h9-ed-Ck4">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -12,22 +14,22 @@
             <objects>
                 <viewController id="Gde-T4-I8j" customClass="CoinSelectionVC" customModule="Cryptofolio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ctw-8b-pVs">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HIt-p5-cEU">
-                                <rect key="frame" x="0.0" y="64" width="375" height="660"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="744"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="3rc-iF-c0F" customClass="CoinSelectionCell" customModule="Cryptofolio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3rc-iF-c0F" id="JJO-1v-75M">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="aQu-vD-Tef">
-                                                    <rect key="frame" x="15" y="11" width="97.666666666666671" height="58"/>
+                                                    <rect key="frame" x="20" y="11" width="97.5" height="58"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kUe-8P-tI5">
                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="58"/>
@@ -36,16 +38,16 @@
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cmT-Jg-dI6">
-                                                            <rect key="frame" x="54" y="0.0" width="43.666666666666657" height="58"/>
+                                                            <rect key="frame" x="54" y="0.0" width="43.5" height="58"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARz-gl-00D">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="43.666666666666664" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="43.5" height="25"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhm-Eu-Sgt">
-                                                                    <rect key="frame" x="0.0" y="33" width="43.666666666666664" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="33" width="43.5" height="25"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -74,7 +76,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttd-AU-cuc">
-                                <rect key="frame" x="304" y="15" width="56" height="34"/>
+                                <rect key="frame" x="343" y="15" width="56" height="34"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
@@ -85,6 +87,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="ttd-AU-cuc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fj5-OE-Cva" secondAttribute="leading" constant="10" id="HWN-lE-N6z"/>
                             <constraint firstItem="HIt-p5-cEU" firstAttribute="top" secondItem="ttd-AU-cuc" secondAttribute="bottom" constant="15" id="JAp-eh-LNZ"/>
                             <constraint firstItem="HIt-p5-cEU" firstAttribute="leading" secondItem="Fj5-OE-Cva" secondAttribute="leading" id="OGt-e7-8Kb"/>
                             <constraint firstItem="Fj5-OE-Cva" firstAttribute="trailing" secondItem="HIt-p5-cEU" secondAttribute="trailing" id="Oqz-cE-aRu"/>
@@ -108,14 +111,19 @@
             <objects>
                 <viewController id="4h9-ed-Ck4" customClass="AddCoinVC" customModule="Cryptofolio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3EC-YA-hNQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szC-yB-w7a">
-                                <rect key="frame" x="322" y="20" width="33" height="34"/>
+                                <rect key="frame" x="344" y="64" width="50" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="0Kp-eB-YWR"/>
+                                    <constraint firstAttribute="width" constant="50" id="1hf-Jx-J4k"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="10"/>
                                 <state key="normal" title="Add">
-                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <state key="disabled">
                                     <color key="titleColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -125,42 +133,43 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrJ-Hv-X0r">
-                                <rect key="frame" x="20" y="27" width="14" height="15"/>
+                                <rect key="frame" x="20" y="71" width="50" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="14" id="MXR-5i-FWz"/>
-                                    <constraint firstAttribute="height" constant="15" id="NHh-hy-CS5"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Fzd-xX-oIR"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="asK-4v-PYL"/>
                                 </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="35" maxY="15"/>
                                 <state key="normal" image="close"/>
                                 <connections>
                                     <action selector="closePressed:" destination="4h9-ed-Ck4" eventType="touchUpInside" id="vkm-Z4-0Kb"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JHx-ze-bst">
-                                <rect key="frame" x="20" y="82" width="335" height="64"/>
+                                <rect key="frame" x="20" y="141" width="374" height="128"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TAC-hJ-dbK">
-                                        <rect key="frame" x="0.0" y="0.0" width="106" height="64"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="128"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="mYx-ZF-mLY">
-                                                <rect key="frame" x="0.0" y="0.0" width="30" height="64"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mYx-ZF-mLY">
+                                                <rect key="frame" x="0.0" y="0.0" width="30" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="q0c-oK-RyO"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rO-6K-vzx">
-                                                <rect key="frame" x="35" y="0.0" width="56" height="64"/>
+                                                <rect key="frame" x="35" y="0.0" width="56" height="128"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efj-w6-4uY">
-                                                <rect key="frame" x="96" y="0.0" width="10" height="64"/>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efj-w6-4uY">
+                                                <rect key="frame" x="96" y="0.0" width="10" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="10" id="8Po-y8-hb7"/>
                                                 </constraints>
                                                 <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="28"/>
-                                                <state key="normal" image="arrowtriangle.down" catalog="system"/>
+                                                <state key="normal" image="arrowDown"/>
                                                 <connections>
                                                     <action selector="coinSelectionPressed:" destination="4h9-ed-Ck4" eventType="touchUpInside" id="dO0-oa-JaI"/>
                                                 </connections>
@@ -172,7 +181,8 @@
                                         </connections>
                                     </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0fN-ht-wGj">
-                                        <rect key="frame" x="106" y="11" width="229" height="42"/>
+                                        <rect key="frame" x="106" y="43" width="268" height="42"/>
+                                        <color key="tintColor" red="0.84906703230000002" green="0.42066806550000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                     </textField>
@@ -181,6 +191,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="szC-yB-w7a" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XrJ-Hv-X0r" secondAttribute="trailing" constant="10" id="CCc-oM-rqv"/>
                             <constraint firstItem="7fP-Tc-w6w" firstAttribute="trailing" secondItem="szC-yB-w7a" secondAttribute="trailing" constant="20" id="L5j-xF-xBE"/>
                             <constraint firstItem="JHx-ze-bst" firstAttribute="top" secondItem="XrJ-Hv-X0r" secondAttribute="bottom" constant="40" id="UE8-LJ-lKp"/>
                             <constraint firstItem="7fP-Tc-w6w" firstAttribute="trailing" secondItem="JHx-ze-bst" secondAttribute="trailing" constant="20" id="VbW-xz-elt"/>
@@ -211,8 +222,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1" width="64" height="64"/>
-        <image name="arrowtriangle.down" catalog="system" width="64" height="62"/>
-        <image name="close" width="32" height="32"/>
+        <image name="arrowDown" width="26" height="25"/>
+        <image name="close" width="25" height="25"/>
     </resources>
 </document>

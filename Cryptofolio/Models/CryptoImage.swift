@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 enum CryptoImage {
-    static func getData(for id: Int) -> Data {
-        let data = UIImage(named: "\(id)")?.pngData() ?? Data()
-        return data
-    }
+	static func getData(for id: Int) -> Data {
+		let data = UIImage(named: "\(id)")?.pngData() ?? Data()
+		return data
+	}
 }

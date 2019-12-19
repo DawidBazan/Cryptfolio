@@ -9,7 +9,7 @@
 import Foundation
 
 enum CryptoError: Error {
-    case unreachable
-    case requestFailed
-    case decodeFailed
+	case unreachable
+	case requestFailed
+	case decodeFailed
 }
