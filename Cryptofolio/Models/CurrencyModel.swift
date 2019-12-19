@@ -9,9 +9,9 @@
 import Foundation
 
 enum FiatCurrency {
-    case gbp
-    case usd
-    case pln
-    case czk
-    case euro
+	case gbp
+	case usd
+	case pln
+	case czk
+	case euro
 }
