@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="MyCoin" representedClassName="MyCoin" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="buyPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="symbol" attributeType="String"/>
+        <relationship name="myCrypto" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MyCrypto" inverseName="myCoins" inverseEntity="MyCrypto"/>
+    </entity>
+    <entity name="MyCrypto" representedClassName="MyCrypto" syncable="YES" codeGenerationType="class">
+        <relationship name="myCoins" toMany="YES" deletionRule="Nullify" destinationEntity="MyCoin" inverseName="myCrypto" inverseEntity="MyCoin"/>
+        <relationship name="myTotals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MyTotal" inverseName="myCrypto" inverseEntity="MyTotal"/>
+    </entity>
+    <entity name="MyTotal" representedClassName="MyTotal" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="value" attributeType="Double" usesScalarValueType="YES"/>
+        <relationship name="myCrypto" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MyCrypto" inverseName="myTotals" inverseEntity="MyCrypto"/>
+    </entity>
+    <elements>
+        <element name="MyCoin" positionX="190.2578125" positionY="-62.48046875" width="128" height="133"/>
+        <element name="MyCrypto" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="MyTotal" positionX="63" positionY="-9" width="128" height="88"/>
+    </elements>
 </model>
