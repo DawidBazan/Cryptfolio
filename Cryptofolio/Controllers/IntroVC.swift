@@ -49,7 +49,7 @@ extension IntroVC: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let alert = UIAlertController(title: "", message: "Enter coin amount", preferredStyle: .alert)
 		alert.addTextField(configurationHandler: { textField in
-			textField.placeholder = "amount eg. 100"
+			textField.placeholder = "amount eg. 10BTC"
 			textField.keyboardType = .decimalPad
 		})
 		alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
