@@ -271,11 +271,60 @@
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES"/>
                         </segue>
                         <segue destination="6Bh-ZJ-0mB" kind="show" identifier="history" id="ug0-Gf-elk"/>
+                        <segue destination="euQ-fz-ING" kind="show" identifier="info" id="Iqa-Ae-wdX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2925.5999999999999" y="91.625615763546804"/>
+        </scene>
+        <!--Coin InfoVC-->
+        <scene sceneID="CBN-7g-WxF">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Scz-SR-mOO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="euQ-fz-ING" customClass="CoinInfoVC" customModule="Cryptofolio" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DZn-ap-8Vf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cOS-X1-py1">
+                                <rect key="frame" x="0.0" y="296" width="375" height="433"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="9Bz-Ha-DzY">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Bz-Ha-DzY" id="3rx-aK-n8j">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJh-Nk-9zw">
+                                <rect key="frame" x="0.0" y="88" width="375" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="bBc-ij-qai"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="uFq-GC-4MM" firstAttribute="trailing" secondItem="uJh-Nk-9zw" secondAttribute="trailing" id="7go-Zj-dgt"/>
+                            <constraint firstItem="cOS-X1-py1" firstAttribute="leading" secondItem="uFq-GC-4MM" secondAttribute="leading" id="Bc8-RZ-qxd"/>
+                            <constraint firstItem="cOS-X1-py1" firstAttribute="top" secondItem="uJh-Nk-9zw" secondAttribute="bottom" constant="8" symbolic="YES" id="kGS-gs-Acm"/>
+                            <constraint firstItem="uFq-GC-4MM" firstAttribute="trailing" secondItem="cOS-X1-py1" secondAttribute="trailing" id="mUA-y3-0oS"/>
+                            <constraint firstItem="uJh-Nk-9zw" firstAttribute="leading" secondItem="uFq-GC-4MM" secondAttribute="leading" id="npP-yf-f3O"/>
+                            <constraint firstItem="uJh-Nk-9zw" firstAttribute="top" secondItem="uFq-GC-4MM" secondAttribute="top" id="oSC-qC-CF7"/>
+                            <constraint firstItem="uFq-GC-4MM" firstAttribute="bottom" secondItem="cOS-X1-py1" secondAttribute="bottom" id="zkX-yn-okW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uFq-GC-4MM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9kN-RM-sU6"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="3852" y="91.625615763546804"/>
         </scene>
         <!--Market-->
         <scene sceneID="pEc-qG-KoX">
@@ -736,7 +785,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwF-fa-dd2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3713" y="-140"/>
+            <point key="canvasLocation" x="3377" y="-613"/>
         </scene>
         <!--AddCoin-->
         <scene sceneID="I7B-mG-qx9">
@@ -744,7 +793,7 @@
                 <viewControllerPlaceholder storyboardName="AddCoin" id="0C8-Cn-EuI" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A9V-9n-8gT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3478" y="306"/>
+            <point key="canvasLocation" x="2720" y="-613"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8xh-CE-n2U">

@@ -14,6 +14,7 @@
 		9807381A238F024A00C54B3F /* CoinSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98073819238F024A00C54B3F /* CoinSelectionCell.swift */; };
 		98098C9523A5378C001B29B9 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98098C9423A5378C001B29B9 /* ChartView.swift */; };
 		981233AD23A7C2C8001F0136 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981233AC23A7C2C8001F0136 /* Extensions.swift */; };
+		981F389F23AF7323005D30BE /* CoinInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F389E23AF7323005D30BE /* CoinInfoVC.swift */; };
 		982C5F79238C3BF600D6BE37 /* CryptoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982C5F78238C3BF600D6BE37 /* CryptoImage.swift */; };
 		9837994B23A2514000D41F98 /* AddCoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9837994A23A2514000D41F98 /* AddCoinViewModel.swift */; };
 		9837994D23A258E900D41F98 /* CoinSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9837994C23A258E900D41F98 /* CoinSelectionViewModel.swift */; };
@@ -81,6 +82,7 @@
 		98073819238F024A00C54B3F /* CoinSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSelectionCell.swift; sourceTree = "<group>"; };
 		98098C9423A5378C001B29B9 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		981233AC23A7C2C8001F0136 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		981F389E23AF7323005D30BE /* CoinInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinInfoVC.swift; sourceTree = "<group>"; };
 		982C5F78238C3BF600D6BE37 /* CryptoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoImage.swift; sourceTree = "<group>"; };
 		9837994A23A2514000D41F98 /* AddCoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinViewModel.swift; sourceTree = "<group>"; };
 		9837994C23A258E900D41F98 /* CoinSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSelectionViewModel.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			children = (
 				98BA3C4E23A8D5100031050D /* IntroVC.swift */,
 				9848802723871820007B694E /* PortfolioVC.swift */,
+				981F389E23AF7323005D30BE /* CoinInfoVC.swift */,
 				98BE917D2397DE31004EB22C /* AddCoinVC.swift */,
 				98073817238F013400C54B3F /* CoinSelectionVC.swift */,
 				98BE917B2397D882004EB22C /* CryptoListVC.swift */,
@@ -588,6 +591,7 @@
 				98882CC62388611100033BEE /* SwinjectStoryboard.swift in Sources */,
 				98BE917C2397D882004EB22C /* CryptoListVC.swift in Sources */,
 				98073818238F013400C54B3F /* CoinSelectionVC.swift in Sources */,
+				981F389F23AF7323005D30BE /* CoinInfoVC.swift in Sources */,
 				984880602387D6E0007B694E /* CurrencyModel.swift in Sources */,
 				98C7062A238E6FBF005521CA /* CoreDataHandler.swift in Sources */,
 				9807381A238F024A00C54B3F /* CoinSelectionCell.swift in Sources */,
@@ -791,7 +795,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bazan.Cryptofolio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -812,7 +816,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bazan.Cryptofolio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
