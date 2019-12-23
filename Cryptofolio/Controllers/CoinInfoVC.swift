@@ -9,20 +9,24 @@
 import UIKit
 
 class CoinInfoVC: UIViewController {
+    @IBOutlet var chartView: ChartView!
+    
+    var viewModel: CoinInfoViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        chartView.setupChart(with: viewModel.getPriceChanges())
     }
 }
 
 extension CoinInfoVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CoinInfoCell
+        return cell
     }
 }

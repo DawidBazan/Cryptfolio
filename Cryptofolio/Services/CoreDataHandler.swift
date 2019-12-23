@@ -51,7 +51,7 @@ enum CoreDataHandler {
 		return myCoins
 	}
 
-	static func addCoin(_ coin: CoinInfo, amount: Double) {
+	static func addCoin(_ coin: Cryptocurrency, amount: Double) {
 		let context = appDelegate.persistentContainer.viewContext
 		if let myCrypto = fetchMyCryptoData() {
 			let myCoin = MyCoin(context: context)
@@ -92,7 +92,7 @@ enum CoreDataHandler {
 		return totalValues
 	}
 
-	static func editCoin(amount: Double, _ coin: CoinInfo) {
+	static func editCoin(amount: Double, _ coin: Cryptocurrency) {
 		guard let myCrypto = fetchMyCryptoData() else { return }
 		let myCoins = myCrypto.myCoins?.allObjects as! [MyCoin]
 		if let selectedCoin = myCoins.first(where: { $0.symbol == coin.symbol }) {
@@ -101,7 +101,7 @@ enum CoreDataHandler {
 		appDelegate.saveContext()
 	}
 
-	static func removeCoin(_ coin: CoinInfo) {
+	static func removeCoin(_ coin: Cryptocurrency) {
 		guard let myCrypto = fetchMyCryptoData() else { return }
 		let myCoins = myCrypto.myCoins?.allObjects as! [MyCoin]
 		if let selectedCoin = myCoins.first(where: { $0.symbol == coin.symbol }) {

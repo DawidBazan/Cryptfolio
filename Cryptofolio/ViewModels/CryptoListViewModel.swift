@@ -10,10 +10,10 @@ import Foundation
 import PromiseKit
 
 class CryptoListViewModel {
-	private var crypto: [CoinInfo] = []
-	private var filteredCrypto: [CoinInfo] = []
+	private var crypto: [Cryptocurrency] = []
+	private var filteredCrypto: [Cryptocurrency] = []
 
-	init(crypto: [CoinInfo]) {
+	init(crypto: [Cryptocurrency]) {
 		self.crypto = crypto
 	}
 
@@ -25,11 +25,11 @@ class CryptoListViewModel {
 		return filteredCrypto.count
 	}
 
-	func getCoin(at index: Int) -> CoinInfo {
+	func getCoin(at index: Int) -> Cryptocurrency {
 		return crypto[index]
 	}
 
-	func getFilteredCoin(at index: Int) -> CoinInfo {
+	func getFilteredCoin(at index: Int) -> Cryptocurrency {
 		return filteredCrypto[index]
 	}
 

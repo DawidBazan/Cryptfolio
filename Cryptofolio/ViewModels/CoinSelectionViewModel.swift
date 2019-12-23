@@ -9,10 +9,10 @@
 import Foundation
 
 class CoinSelectionViewModel {
-	private let crypto: [CoinInfo]
-	var updateSelection: ((CoinInfo) -> Void)?
+	private let crypto: [Cryptocurrency]
+	var updateSelection: ((Cryptocurrency) -> Void)?
 
-	init(crypto: [CoinInfo]) {
+	init(crypto: [Cryptocurrency]) {
 		self.crypto = crypto
 	}
 
@@ -20,11 +20,11 @@ class CoinSelectionViewModel {
 		return crypto.count
 	}
 
-	func getCoin(at index: Int) -> CoinInfo {
+	func getCoin(at index: Int) -> Cryptocurrency {
 		return crypto[index]
 	}
 
-	func updateSelectedCoin(_ coin: CoinInfo) {
+	func updateSelectedCoin(_ coin: Cryptocurrency) {
 		updateSelection?(coin)
 	}
 }

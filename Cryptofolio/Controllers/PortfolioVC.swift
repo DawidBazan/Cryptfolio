@@ -92,19 +92,27 @@ class PortfolioVC: UIViewController {
 	@IBAction func detailsPressed(_ sender: Any) {}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "addCoin" {
-			if let viewController = segue.destination as? AddCoinVC {
-				viewController.viewModel = viewModel.createAddCoinVM()
-				viewController.coinAdded = { [weak self] in
-					self?.viewModel.getMyCrypto()
-				}
-			}
-		}
-		if segue.identifier == "history" {
-			if let viewController = segue.destination as? HistoryVC {
-				viewController.viewModel = viewModel.createHistoryVM()
-			}
-		}
+        
+        switch segue.identifier {
+        case "addCoin":
+            if let viewController = segue.destination as? AddCoinVC {
+                viewController.viewModel = viewModel.createAddCoinVM()
+                viewController.coinAdded = { [weak self] in
+                    self?.viewModel.getMyCrypto()
+                }
+            }
+        case "history":
+            if let viewController = segue.destination as? HistoryVC {
+                viewController.viewModel = viewModel.createHistoryVM()
+            }
+        case "info":
+            if let viewController = segue.destination as? CoinInfoVC {
+                guard let index = tableView.indexPathForSelectedRow?.row else { return }
+                viewController.viewModel = viewModel.createCoinInfoViewModel(for: index)
+            }
+        default:
+            break
+        }
 	}
 
 	func injectCryptoListViewModel() {
@@ -179,6 +187,10 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
 		})
 		return [deleteAction, editAction]
 	}
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "info", sender: self)
+    }
 
 	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		if scrollView.contentOffset.y > 10, cardView.cardExpanded == false {

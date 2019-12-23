@@ -17,6 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LWH-SN-8zK" userLabel="Lower Background">
+                                <rect key="frame" x="0.0" y="429.66666666666674" width="375" height="382.33333333333326"/>
+                                <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="di2-is-Q1V" customClass="ChartView" customModule="Cryptofolio" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="216.66666666666663" width="375" height="157.33333333333337"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -247,12 +251,16 @@
                             <constraint firstItem="T9I-Tj-GNW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="L4g-Lf-B9j"/>
                             <constraint firstItem="di2-is-Q1V" firstAttribute="top" secondItem="MDd-hq-JBI" secondAttribute="bottom" constant="-20" id="LKp-eS-RvL"/>
                             <constraint firstItem="di2-is-Q1V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TI4-8W-Ktj"/>
+                            <constraint firstItem="LWH-SN-8zK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YY0-dG-CH2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ziU-vC-yoa" secondAttribute="trailing" id="cR7-Mv-EGr"/>
                             <constraint firstItem="MDd-hq-JBI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="fuj-9u-Q5E"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="T9I-Tj-GNW" secondAttribute="trailing" constant="30" id="gcz-Lg-Ck9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="di2-is-Q1V" secondAttribute="trailing" id="l2z-RH-KpC"/>
+                            <constraint firstAttribute="bottom" secondItem="LWH-SN-8zK" secondAttribute="bottom" id="m3N-wK-4of"/>
                             <constraint firstItem="ziU-vC-yoa" firstAttribute="top" secondItem="di2-is-Q1V" secondAttribute="bottom" constant="8" symbolic="YES" id="qi4-7k-gZm"/>
                             <constraint firstItem="T9I-Tj-GNW" firstAttribute="top" secondItem="MDd-hq-JBI" secondAttribute="bottom" constant="70" id="saF-Gv-OcQ"/>
+                            <constraint firstItem="LWH-SN-8zK" firstAttribute="top" secondItem="T9I-Tj-GNW" secondAttribute="bottom" constant="50" id="w6q-Wj-tJI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LWH-SN-8zK" secondAttribute="trailing" id="xfG-W5-pr7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -281,7 +289,6 @@
         <!--Coin InfoVC-->
         <scene sceneID="CBN-7g-WxF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Scz-SR-mOO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="euQ-fz-ING" customClass="CoinInfoVC" customModule="Cryptofolio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DZn-ap-8Vf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -291,17 +298,33 @@
                                 <rect key="frame" x="0.0" y="296" width="375" height="433"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="9Bz-Ha-DzY">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="9Bz-Ha-DzY" customClass="CoinInfoCell" customModule="Cryptofolio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Bz-Ha-DzY" id="3rx-aK-n8j">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEg-iO-K94">
+                                                    <rect key="frame" x="15" y="30" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="infoLbl" destination="wEg-iO-K94" id="ThI-nc-Xx1"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="euQ-fz-ING" id="cSb-yd-a5q"/>
+                                    <outlet property="delegate" destination="euQ-fz-ING" id="G9O-54-Ws2"/>
+                                </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJh-Nk-9zw">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJh-Nk-9zw" customClass="ChartView" customModule="Cryptofolio" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="375" height="200"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -322,7 +345,11 @@
                         <viewLayoutGuide key="safeArea" id="uFq-GC-4MM"/>
                     </view>
                     <navigationItem key="navigationItem" id="9kN-RM-sU6"/>
+                    <connections>
+                        <outlet property="chartView" destination="uJh-Nk-9zw" id="Kif-kD-o0G"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Scz-SR-mOO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3852" y="91.625615763546804"/>
         </scene>

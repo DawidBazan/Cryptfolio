@@ -56,7 +56,7 @@ class ChartView: LineChartView {
 		if #available(iOS 13.0, *) {
 			gradientColors = [UIColor.systemGray5.cgColor, UIColor.systemBackground.cgColor] as CFArray // Colors of the gradient
 		}
-		let colorLocations: [CGFloat] = [1.0, 0.0] // Positioning of the gradient
+		let colorLocations: [CGFloat] = [0.7, 0.0] // Positioning of the gradient
 		let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations)
 		set1.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0)
 		set1.fillAlpha = 1

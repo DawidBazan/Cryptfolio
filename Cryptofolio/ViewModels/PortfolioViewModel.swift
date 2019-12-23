@@ -12,8 +12,8 @@ import PromiseKit
 class PortfolioViewModel {
 	private let reachability: ReachabilityChecker
 	private let cryptoFetcher: CryptoFetcher
-	private var crypto: [CoinInfo] = []
-	private var myCrypto: [CoinInfo] = []
+	private var crypto: [Cryptocurrency] = []
+	private var myCrypto: [Cryptocurrency] = []
 	var updatedCrypto: ((Error?) -> Void)?
 
 	init(reachability: ReachabilityChecker, cryptoFetcher: CryptoFetcher) {
@@ -63,15 +63,15 @@ class PortfolioViewModel {
 				myCoin.buyDate = buyDate
 				myCrypto.append(myCoin)
 			}
-			updatedCrypto?(nil)
 		}
+        updatedCrypto?(nil)
 	}
 
 	func getRowCount() -> Int {
 		return myCrypto.count
 	}
 
-	func getCoin(at index: Int) -> CoinInfo {
+	func getCoin(at index: Int) -> Cryptocurrency {
 		return myCrypto[index]
 	}
 
@@ -114,7 +114,7 @@ class PortfolioViewModel {
 		return "\(formattedChange) (\(formattedPrecentage))"
 	}
 
-	func getCoinValue(_ coin: CoinInfo) -> Double {
+	func getCoinValue(_ coin: Cryptocurrency) -> Double {
 		let amount = coin.amount
 		let price = coin.price
 		let value = amount * price
@@ -129,6 +129,11 @@ class PortfolioViewModel {
 			view.setupChart(with: [])
 		}
 	}
+    
+    func createCoinInfoViewModel(for index: Int) -> CoinInfoViewModel {
+        let viewModel = CoinInfoViewModel(coin: crypto[index])
+        return viewModel
+    }
 
 	func createCryptoListViewModel() -> CryptoListViewModel {
 		let viewModel = CryptoListViewModel(crypto: crypto)
@@ -136,7 +141,7 @@ class PortfolioViewModel {
 	}
 
 	func createAddCoinVM() -> AddCoinViewModel {
-		var availableCrypto: [CoinInfo] = [] // only coins that are not in myCrypto
+		var availableCrypto: [Cryptocurrency] = [] // only coins that are not in myCrypto
 		crypto.forEach { coin in
 			if !myCrypto.contains(where: { $0.id == coin.id }) {
 				availableCrypto.append(coin)

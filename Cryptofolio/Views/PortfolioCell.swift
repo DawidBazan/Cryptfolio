@@ -15,7 +15,7 @@ class PortfolioCell: UITableViewCell {
 	@IBOutlet var coinAmountLbl: UILabel!
 	@IBOutlet var coinValueLbl: UILabel!
 
-	func setupCell(with info: CoinInfo) {
+	func setupCell(with info: Cryptocurrency) {
 		cryptoImage.imageFromCrypto(info.name)
 		nameLbl.text = info.name
 		fullPriceLbl.text = UnitFormatter.currency(from: info.price)
@@ -23,7 +23,7 @@ class PortfolioCell: UITableViewCell {
 		coinAmountLbl.text = "\(info.amount)\(info.symbol.uppercased())"
 	}
 
-	func getCoinValue(_ coin: CoinInfo) -> String {
+	func getCoinValue(_ coin: Cryptocurrency) -> String {
 		let amount = coin.amount
 		let price = coin.price
 		let value = amount * price

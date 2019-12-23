@@ -9,11 +9,11 @@
 import Foundation
 
 class AddCoinViewModel {
-	private let crypto: [CoinInfo]
-	private var selectedCoin: CoinInfo?
+	private let crypto: [Cryptocurrency]
+	private var selectedCoin: Cryptocurrency?
 	var updatedSelection: (() -> Void)?
 
-	init(crypto: [CoinInfo]) {
+	init(crypto: [Cryptocurrency]) {
 		self.crypto = crypto
 		selectedCoin = crypto.first
 	}
@@ -35,15 +35,15 @@ class AddCoinViewModel {
 		CoreDataHandler.addCoin(selectedCoin, amount: amount)
 	}
 
-	func getCoin(at index: Int) -> CoinInfo {
+	func getCoin(at index: Int) -> Cryptocurrency {
 		return crypto[index]
 	}
 
-	func getSelectedCoin() -> CoinInfo? {
+	func getSelectedCoin() -> Cryptocurrency? {
 		return selectedCoin
 	}
 
-	func setSelectedCoin(to coin: CoinInfo?) {
+	func setSelectedCoin(to coin: Cryptocurrency?) {
 		selectedCoin = coin
 	}
 
