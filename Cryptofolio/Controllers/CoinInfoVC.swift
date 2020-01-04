@@ -14,7 +14,7 @@ class CoinInfoVC: UIViewController {
     @IBOutlet var deleteBtn: CustomButton!
     
     var viewModel: CoinInfoViewModel!
-    var coinChange: (() -> Void)?
+    var coinChanged: ((CoinChange) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,8 @@ class CoinInfoVC: UIViewController {
             guard let text = alert.textFields?.first?.text else { return }
             if !text.isEmpty {
                 guard let newAmount = Double(text) else { return }
-                self.viewModel.editCoin(amount: newAmount)
-                self.coinChange?()
+                let coinChanges = CoinChange(amount: newAmount)
+                self.coinChanged?(coinChanges)
             }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -43,8 +43,8 @@ class CoinInfoVC: UIViewController {
     @IBAction func deletePressed(_ sender: Any) {
         let alert = UIAlertController(title: "", message: "Delete coin from portfolio?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { _ in
-            self.viewModel.deleteCoin()
-            self.coinChange?()
+            let coinChanges = CoinChange(delete: true)
+            self.coinChanged?(coinChanges)
             self.navigationController?.popViewController(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

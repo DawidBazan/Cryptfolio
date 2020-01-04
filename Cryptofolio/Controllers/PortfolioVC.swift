@@ -107,10 +107,19 @@ class PortfolioVC: UIViewController {
             }
         case "info":
             if let viewController = segue.destination as? CoinInfoVC {
-                guard let index = tableView.indexPathForSelectedRow?.row else { return }
-                viewController.viewModel = viewModel.createCoinInfoViewModel(for: index)
-                viewController.coinChange = { [weak self] in
-                    
+                guard let index = tableView.indexPathForSelectedRow else { return }
+                viewController.viewModel = viewModel.createCoinInfoViewModel(for: index.row)
+                viewController.coinChanged = { [weak self] change in
+                    switch change {
+                    case _ where change.amount != nil:
+                        self?.changeAmount(change.amount!, at: index)
+                    case _ where change.delete == true:
+                        self?.deleteCoinRow(at: index)
+                    case _ where change.add == true:
+                        break
+                    default:
+                        return
+                    }
                 }
             }
         default:
@@ -172,9 +181,7 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
 				guard let text = alert.textFields?.first?.text else { return }
 				if !text.isEmpty {
 					guard let newAmount = Double(text) else { return }
-					self.viewModel.editCoin(amount: newAmount, at: indexPath.row)
-					self.setupLabels()
-					self.tableView.reloadRows(at: [indexPath], with: .fade)
+                    self.changeAmount(newAmount, at: indexPath)
 				}
 			}))
 			alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -182,14 +189,24 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
 		})
 
 		let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: { _, indexPath in
-			self.tableView.beginUpdates()
-			self.tableView.deleteRows(at: [indexPath], with: .automatic)
-			self.viewModel.removeCoin(at: indexPath.row)
-			self.setupLabels()
-			self.tableView.endUpdates()
+            self.deleteCoinRow(at: indexPath)
 		})
 		return [deleteAction, editAction]
 	}
+    
+    func changeAmount(_ amount: Double, at index: IndexPath) {
+        self.viewModel.editCoin(amount: amount, at: index.row)
+        self.setupLabels()
+        self.tableView.reloadRows(at: [index], with: .fade)
+    }
+    
+    func deleteCoinRow(at index: IndexPath) {
+        self.tableView.beginUpdates()
+        self.tableView.deleteRows(at: [index], with: .automatic)
+        self.viewModel.removeCoin(at: index.row)
+        self.setupLabels()
+        self.tableView.endUpdates()
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "info", sender: self)

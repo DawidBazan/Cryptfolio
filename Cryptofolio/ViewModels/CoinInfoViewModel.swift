@@ -46,10 +46,6 @@ class CoinInfoViewModel {
         return coinInfo[index]
     }
     
-    func editCoin(amount: Double) {
-        CoreDataHandler.editCoin(amount: amount, coin)
-    }
-    
     func deleteCoin() {
         CoreDataHandler.removeCoin(coin)
     }

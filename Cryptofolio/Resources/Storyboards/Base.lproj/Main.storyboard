@@ -370,9 +370,6 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                         <state key="normal" title="Delete"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isRed" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="deletePressed:" destination="euQ-fz-ING" eventType="touchUpInside" id="agy-DE-tLI"/>
                                         </connections>
