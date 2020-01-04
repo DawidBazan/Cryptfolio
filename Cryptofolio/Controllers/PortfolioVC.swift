@@ -109,6 +109,9 @@ class PortfolioVC: UIViewController {
             if let viewController = segue.destination as? CoinInfoVC {
                 guard let index = tableView.indexPathForSelectedRow?.row else { return }
                 viewController.viewModel = viewModel.createCoinInfoViewModel(for: index)
+                viewController.coinChange = { [weak self] in
+                    
+                }
             }
         default:
             break
