@@ -55,7 +55,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="142.66666666666666" height="73"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibd-Ze-xKJ">
-                                                <rect key="frame" x="37.333333333333329" y="0.0" width="68" height="50"/>
+                                                <rect key="frame" x="54.333333333333329" y="0.0" width="34" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="XBA-oh-fLS"/>
                                                 </constraints>
@@ -78,7 +78,7 @@
                                         <rect key="frame" x="172.66666666666663" y="0.0" width="142.33333333333337" height="73"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDG-Xu-wkQ">
-                                                <rect key="frame" x="37" y="0.0" width="68" height="50"/>
+                                                <rect key="frame" x="54.000000000000028" y="0.0" width="34" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="EbP-SD-Xrd"/>
                                                 </constraints>
@@ -376,6 +376,23 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Mln-zO-Zxe">
+                                <rect key="frame" x="20.000000000000007" y="108" width="99.666666666666686" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buN-pZ-TWX">
+                                        <rect key="frame" x="0.0" y="0.0" width="58" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4c-Mp-ngk">
+                                        <rect key="frame" x="63" y="9.3333333333333286" width="36.666666666666657" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -383,6 +400,8 @@
                             <constraint firstItem="SgY-nK-Mz4" firstAttribute="top" secondItem="uJh-Nk-9zw" secondAttribute="bottom" constant="8" symbolic="YES" id="99c-dM-7dB"/>
                             <constraint firstItem="SgY-nK-Mz4" firstAttribute="leading" secondItem="uFq-GC-4MM" secondAttribute="leading" constant="20" id="B1S-aC-jlS"/>
                             <constraint firstItem="cOS-X1-py1" firstAttribute="leading" secondItem="uFq-GC-4MM" secondAttribute="leading" id="Bc8-RZ-qxd"/>
+                            <constraint firstItem="Mln-zO-Zxe" firstAttribute="leading" secondItem="uFq-GC-4MM" secondAttribute="leading" constant="20" id="K4J-g9-lkb"/>
+                            <constraint firstItem="Mln-zO-Zxe" firstAttribute="top" secondItem="uFq-GC-4MM" secondAttribute="top" constant="20" id="a3J-Sw-chI"/>
                             <constraint firstItem="uFq-GC-4MM" firstAttribute="trailing" secondItem="SgY-nK-Mz4" secondAttribute="trailing" constant="20" id="i1I-jx-pFS"/>
                             <constraint firstItem="uFq-GC-4MM" firstAttribute="trailing" secondItem="cOS-X1-py1" secondAttribute="trailing" id="mUA-y3-0oS"/>
                             <constraint firstItem="cOS-X1-py1" firstAttribute="top" secondItem="SgY-nK-Mz4" secondAttribute="bottom" constant="8" symbolic="YES" id="nnx-3u-Ijq"/>
@@ -397,11 +416,13 @@
                         <outlet property="actionBtn" destination="g6E-QS-7RE" id="GpJ-ti-qFk"/>
                         <outlet property="chartView" destination="uJh-Nk-9zw" id="Kif-kD-o0G"/>
                         <outlet property="deleteBtn" destination="fbj-o6-gV7" id="uuj-pL-Ygs"/>
+                        <outlet property="priceChangeLbl" destination="o4c-Mp-ngk" id="Cvs-DH-do9"/>
+                        <outlet property="priceLbl" destination="buN-pZ-TWX" id="fGJ-1N-UqA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Scz-SR-mOO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3809" y="389"/>
+            <point key="canvasLocation" x="2926" y="836"/>
         </scene>
         <!--Market-->
         <scene sceneID="pEc-qG-KoX">
@@ -654,7 +675,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="e3N-Q8-QAa">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -696,6 +717,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vNY-XM-Btm">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -863,7 +885,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwF-fa-dd2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3377" y="-613"/>
+            <point key="canvasLocation" x="3834" y="92"/>
         </scene>
         <!--AddCoin-->
         <scene sceneID="I7B-mG-qx9">
@@ -871,7 +893,7 @@
                 <viewControllerPlaceholder storyboardName="AddCoin" id="0C8-Cn-EuI" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A9V-9n-8gT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2720" y="-613"/>
+            <point key="canvasLocation" x="3477" y="-325"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8xh-CE-n2U">
@@ -901,6 +923,6 @@
         <image name="personFill" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="V0q-Jp-tSK"/>
+        <segue reference="Iqa-Ae-wdX"/>
     </inferredMetricsTieBreakers>
 </document>

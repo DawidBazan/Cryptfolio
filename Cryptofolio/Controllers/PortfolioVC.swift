@@ -89,7 +89,7 @@ class PortfolioVC: UIViewController {
 		performSegue(withIdentifier: "history", sender: self)
 	}
 
-	@IBAction func detailsPressed(_ sender: Any) {}
+	@IBAction func detailsPressed(_ sender: Any) {} //currently unused and hidden
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
