@@ -9,9 +9,9 @@
 import Foundation
 
 class HistoryViewModel {
-	var myCoins: [CoinInfo]
+	var myCoins: [Cryptocurrency]
 
-	init(crypto: [CoinInfo]) {
+	init(crypto: [Cryptocurrency]) {
 		myCoins = crypto
 	}
 
@@ -19,11 +19,11 @@ class HistoryViewModel {
 		return myCoins.count
 	}
 
-	func getCoin(at index: Int) -> CoinInfo {
+	func getCoin(at index: Int) -> Cryptocurrency {
 		return myCoins[index]
 	}
 
-	func getPriceChange(for coin: CoinInfo) -> Double {
+	func getPriceChange(for coin: Cryptocurrency) -> Double {
 		let buyPrice = coin.buyPrice
 		let currentPrice = coin.price
 		let change = (currentPrice - buyPrice) / buyPrice

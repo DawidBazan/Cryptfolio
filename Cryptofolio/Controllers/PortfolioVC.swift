@@ -27,14 +27,14 @@ class PortfolioVC: UIViewController {
 	}
 
 	func setupView() {
-		viewModel.setupChart(in: chartView)
 		cardView.setupCard(in: self)
 		viewModel.updatedCrypto = { [weak self] error in
 			guard error == nil else {
-				self?.presentAlert(for: error!)
+				self?.presentErrorAlert(for: error!)
 				return
 			}
 			self?.injectCryptoListViewModel()
+            self?.viewModel.setupChart(in: self!.chartView)
 			self?.setupLabels()
 			self?.tableView.reloadData()
 		}
@@ -92,24 +92,42 @@ class PortfolioVC: UIViewController {
 	@IBAction func detailsPressed(_ sender: Any) {}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "addCoin" {
-			if let viewController = segue.destination as? AddCoinVC {
-				viewController.viewModel = viewModel.createAddCoinVM()
-				viewController.coinAdded = { [weak self] in
-					self?.viewModel.getMyCrypto()
-				}
-			}
-		}
-		if segue.identifier == "history" {
-			if let viewController = segue.destination as? HistoryVC {
-				viewController.viewModel = viewModel.createHistoryVM()
-			}
-		}
+        switch segue.identifier {
+        case "addCoin":
+            if let viewController = segue.destination as? AddCoinVC {
+                viewController.viewModel = viewModel.createAddCoinVM()
+                viewController.coinAdded = { [weak self] in
+                    self?.viewModel.getMyCrypto()
+                }
+            }
+        case "history":
+            if let viewController = segue.destination as? HistoryVC {
+                viewController.viewModel = viewModel.createHistoryVM()
+            }
+        case "info":
+            if let viewController = segue.destination as? CoinInfoVC {
+                guard let index = tableView.indexPathForSelectedRow else { return }
+                viewController.viewModel = viewModel.createCoinInfoViewModel(for: index.row)
+                viewController.coinChanged = { [weak self] change in
+                    switch change {
+                    case _ where change.amount != nil:
+                        self?.changeAmount(change.amount!, at: index)
+                    case _ where change.delete == true:
+                        self?.deleteCoinRow(at: index)
+                        self?.injectCryptoListViewModel() //inject due to crypto array change
+                    default:
+                        return
+                    }
+                }
+            }
+        default:
+            break
+        }
 	}
 
 	func injectCryptoListViewModel() {
 		let navController = tabBarController?.viewControllers![1] as! UINavigationController
-		let vc = navController.topViewController as! CryptoListVC
+        guard let vc = navController.topViewController as? CryptoListVC else { return }
 		vc.viewModel = viewModel.createCryptoListViewModel()
 	}
 }
@@ -159,26 +177,39 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
 			})
 			alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { _ in
 				guard let text = alert.textFields?.first?.text else { return }
-				if !text.isEmpty {
-					guard let newAmount = Double(text) else { return }
-					self.viewModel.editCoin(amount: newAmount, at: indexPath.row)
-					self.setupLabels()
-					self.tableView.reloadRows(at: [indexPath], with: .fade)
-				}
+                guard let newAmount = Double(text) else { return }
+                if newAmount > 0 {
+                    self.changeAmount(newAmount, at: indexPath)
+                }
 			}))
 			alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 			self.present(alert, animated: true)
 		})
 
 		let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: { _, indexPath in
-			self.tableView.beginUpdates()
-			self.tableView.deleteRows(at: [indexPath], with: .automatic)
-			self.viewModel.removeCoin(at: indexPath.row)
-			self.setupLabels()
-			self.tableView.endUpdates()
+            self.deleteCoinRow(at: indexPath)
+            self.injectCryptoListViewModel() //inject due to crypto array change
 		})
 		return [deleteAction, editAction]
 	}
+    
+    func changeAmount(_ amount: Double, at index: IndexPath) {
+        self.viewModel.editCoin(amount: amount, at: index.row)
+        self.setupLabels()
+        self.tableView.reloadRows(at: [index], with: .fade)
+    }
+    
+    func deleteCoinRow(at index: IndexPath) {
+        self.tableView.beginUpdates()
+        self.tableView.deleteRows(at: [index], with: .automatic)
+        self.viewModel.removeCoin(at: index.row)
+        self.setupLabels()
+        self.tableView.endUpdates()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "info", sender: self)
+    }
 
 	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		if scrollView.contentOffset.y > 10, cardView.cardExpanded == false {

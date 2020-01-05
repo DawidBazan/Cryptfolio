@@ -25,7 +25,8 @@ enum CryptoRouter: URLRequestConvertible {
 			case .get:
 				return ["vs_currency": "usd",
 				        "order": "market_cap_desc",
-				        "ids": Constants.coinIds]
+				        "ids": Constants.coinIds,
+                        "sparkline": "true"]
 			}
 		}()
 

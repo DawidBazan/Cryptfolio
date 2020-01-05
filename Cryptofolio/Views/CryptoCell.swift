@@ -15,7 +15,7 @@ class CryptoCell: UITableViewCell {
 	@IBOutlet var valueChangeView: UIView!
 	@IBOutlet var valueChangeLbl: UILabel!
 
-	func setupCell(with info: CoinInfo) {
+	func setupCell(with info: Cryptocurrency) {
 		cryptoImage.imageFromCrypto(info.name)
 		nameLbl.text = info.symbol.uppercased()
 		fullPriceLbl.text = UnitFormatter.currency(from: info.price) // change to 2 decimal places

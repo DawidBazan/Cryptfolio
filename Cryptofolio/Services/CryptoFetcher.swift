@@ -12,7 +12,7 @@ import PromiseKit
 struct CryptoFetcher {
 	let network: NetworkService
 
-	func fetchCrypto() -> Promise<[CoinInfo]> {
+	func fetchCrypto() -> Promise<[Cryptocurrency]> {
 		return Promise { seal in
 			network.requestCrypto { result in
 				switch result {
@@ -29,11 +29,14 @@ struct CryptoFetcher {
 		}
 	}
 
-	private func decodeData(_ data: Data) -> [CoinInfo]? {
+	private func decodeData(_ data: Data) -> [Cryptocurrency]? {
 		do {
-			let decodedCrypto = try JSONDecoder().decode([CoinInfo].self, from: data)
+			let decodedCrypto = try JSONDecoder().decode([Cryptocurrency].self, from: data)
 			return decodedCrypto
 		} catch {
+            if let JSONString = String(data: data, encoding: String.Encoding.utf8) {
+               print(JSONString)
+            }
 			print("\(CryptoError.decodeFailed): \(error)")
 			return []
 		}
