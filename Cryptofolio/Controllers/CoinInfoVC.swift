@@ -12,14 +12,34 @@ class CoinInfoVC: UIViewController {
     @IBOutlet var chartView: ChartView!
     @IBOutlet var actionBtn: CustomButton!
     @IBOutlet var deleteBtn: CustomButton!
+    @IBOutlet var priceLbl: UILabel!
+    @IBOutlet var priceChangeLbl: UILabel!
     
     var viewModel: CoinInfoViewModel!
     var coinChanged: ((CoinChange) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        chartView.setupChart(with: viewModel.getPriceChanges(), showLines: true)
+        setupView()
+    }
+    
+    func setupView() {
+        chartView.setupChart(with: viewModel.getPriceHistory(), showLines: true)
+        addChartTapRecognizer()
+        setPriceLabels()
         setupButtons()
+    }
+    
+    func setPriceLabels() {
+        priceLbl.text = viewModel.getCoinPrice()
+        let priceChange = viewModel.getCoinPriceChange()
+        if priceChange.first == "-" {
+            priceChangeLbl.textColor = #colorLiteral(red: 0.9019744992, green: 0.3294329345, blue: 0.368601799, alpha: 1)
+            priceChangeLbl.text = priceChange
+        } else {
+            priceChangeLbl.textColor = #colorLiteral(red: 0.2078431373, green: 0.8745098039, blue: 0.4352941176, alpha: 1)
+            priceChangeLbl.text = "+\(priceChange)"
+        }
     }
     
     func setupButtons() {
@@ -29,6 +49,30 @@ class CoinInfoVC: UIViewController {
         } else {
             actionBtn.setTitle("Add", for: .normal)
             deleteBtn.isHidden = true
+        }
+    }
+    
+    func addChartTapRecognizer() {
+        let tapRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(chartTapped))
+        tapRecognizer.minimumPressDuration = 0.0
+        chartView.addGestureRecognizer(tapRecognizer)
+    }
+
+    @objc func chartTapped(_ sender: UITapGestureRecognizer) {
+        if sender.state == .began || sender.state == .changed {
+            // show
+            let position = sender.location(in: chartView)
+            let highlight = chartView.getHighlightByTouchPoint(position)
+            let entry = chartView.getEntryByTouchPoint(point: position)
+            chartView.highlightValue(highlight)
+            guard let index = entry?.x else { return }
+            priceLbl.text = viewModel.getPriceForIndex(Int(index))
+            priceChangeLbl.isHidden = true
+        } else {
+            // hide
+            chartView.highlightValue(nil)
+            priceLbl.text = viewModel.getCoinPrice()
+            priceChangeLbl.isHidden = false
         }
     }
     

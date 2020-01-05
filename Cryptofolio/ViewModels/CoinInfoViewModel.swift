@@ -31,9 +31,14 @@ class CoinInfoViewModel {
         coinInfo = [coinRank, currentPrice, marketCap, volume, circulatingSupply, changePercentage]
     }
     
-    
-    func getPriceChanges() -> [Double] {
+    func getPriceHistory() -> [Double] {
         return coin.sparklineIn7D.price
+    }
+    
+    func getPriceForIndex(_ index: Int) -> String {
+        let price = coin.sparklineIn7D.price[index]
+        let formattedPrice = UnitFormatter.currency(from: price)
+        return formattedPrice
     }
     
     func getRowCount() -> Int {
@@ -46,6 +51,14 @@ class CoinInfoViewModel {
     
     func getCoinInfo(at index: Int) -> String {
         return coinInfo[index]
+    }
+    
+    func getCoinPrice() -> String {
+        return UnitFormatter.currency(from: coin.price)
+    }
+    
+    func getCoinPriceChange() -> String {
+        return UnitFormatter.percentage(from: coin.priceChangePercentage24H)
     }
     
     func isCoinInPortfolio() -> Bool {

@@ -20,10 +20,6 @@ class ChartView: LineChartView {
         areLinesVisible(showLines)
         
 		let yAxis = leftAxis
-//		yAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 12)!
-//		yAxis.setLabelCount(6, force: false)
-//		yAxis.labelTextColor = .gray
-//		yAxis.labelPosition = .insideChart
 		yAxis.gridLineDashLengths = [2, 8]
 
 		if totals.isEmpty { return }
@@ -32,6 +28,7 @@ class ChartView: LineChartView {
     
     private func areLinesVisible(_ state: Bool) {
         setScaleEnabled(true)
+        doubleTapToZoomEnabled = false
         pinchZoomEnabled = false
         legend.enabled = false
         xAxis.enabled = false
