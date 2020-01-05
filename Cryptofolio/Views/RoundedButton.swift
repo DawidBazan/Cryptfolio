@@ -7,12 +7,9 @@
 //
 
 import Foundation
-
-import Foundation
 import UIKit
 
-@IBDesignable class CustomButton: UIButton
-{
+@IBDesignable class CustomButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         updateCornerRadius()
