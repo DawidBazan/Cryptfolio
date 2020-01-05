@@ -12,14 +12,18 @@ import PromiseKit
 class PortfolioViewModel {
 	private let reachability: ReachabilityChecker
 	private let cryptoFetcher: CryptoFetcher
-	private var crypto: [CoinInfo] = []
-	private var myCrypto: [CoinInfo] = []
+	private var crypto: [Cryptocurrency] = []
+	private var myCrypto: [Cryptocurrency] = []
 	var updatedCrypto: ((Error?) -> Void)?
 
 	init(reachability: ReachabilityChecker, cryptoFetcher: CryptoFetcher) {
 		self.reachability = reachability
 		self.cryptoFetcher = cryptoFetcher
 		fetchCrypto()
+        NotificationCenter.default.addObserver(self, //used to update data when new coin is added from cryptoList
+                                               selector: #selector(newCoinAdded),
+                                               name: Notification.Name("NewCoinAdded"),
+                                               object: nil)
 	}
 
 	private func fetchCrypto() {
@@ -48,6 +52,10 @@ class PortfolioViewModel {
 			break
 		}
 	}
+    
+    @objc private func newCoinAdded() {
+        getMyCrypto()
+    }
 
 	func getMyCrypto() {
 		let cryptoData = CoreDataHandler.fetchMyCoins()
@@ -63,15 +71,15 @@ class PortfolioViewModel {
 				myCoin.buyDate = buyDate
 				myCrypto.append(myCoin)
 			}
-			updatedCrypto?(nil)
 		}
+        updatedCrypto?(nil)
 	}
 
 	func getRowCount() -> Int {
 		return myCrypto.count
 	}
 
-	func getCoin(at index: Int) -> CoinInfo {
+	func getCoin(at index: Int) -> Cryptocurrency {
 		return myCrypto[index]
 	}
 
@@ -87,9 +95,23 @@ class PortfolioViewModel {
 
 	func getTotalValue() -> String {
 		let total = getCurrentTotal()
-		CoreDataHandler.addTotal(total)
 		return UnitFormatter.currency(from: total)
 	}
+    
+    func getTotalChange() -> String {
+        let myTotals = get7dTotals()
+        guard let oldTotal = myTotals.first else {
+            let formattedChange = UnitFormatter.currency(from: 0)
+            let formattedPrecentage = UnitFormatter.percentage(from: 0)
+            return "\(formattedChange) (\(formattedPrecentage))"
+        }
+        let newTotal = getCurrentTotal()
+        let change = newTotal - oldTotal
+        let percentage = (change / oldTotal) * 100
+        let formattedChange = UnitFormatter.currency(from: change)
+        let formattedPrecentage = UnitFormatter.percentage(from: percentage)
+        return "\(formattedChange) (\(formattedPrecentage))"
+    }
 
 	private func getCurrentTotal() -> Double {
 		var total = 0.0
@@ -98,23 +120,27 @@ class PortfolioViewModel {
 		}
 		return total
 	}
+    
+    private func get7dTotals() -> [Double] {
+        var coinsTotals: [Double] = []
+        
+        for (index, coin) in myCrypto.enumerated() {
+            if index > 0 {
+                for (index, total) in coin.sparklineIn7D.price.enumerated() {
+                    let totalAmount = total * coin.amount
+                    if coinsTotals.count > index {
+                        coinsTotals[index] = coinsTotals[index] + totalAmount
+                    }
+                }
+            } else {
+                let totalAmounts = coin.sparklineIn7D.price.map({$0 * coin.amount})
+                coinsTotals = totalAmounts
+            }
+        }
+        return coinsTotals
+    }
 
-	func getTotalChange() -> String {
-		let myTotals = CoreDataHandler.fetchTotals()
-		guard let oldTotal = myTotals.first else {
-			let formattedChange = UnitFormatter.currency(from: 0)
-			let formattedPrecentage = UnitFormatter.percentage(from: 0)
-			return "\(formattedChange) (\(formattedPrecentage))"
-		}
-		let newTotal = getCurrentTotal()
-		let change = newTotal - oldTotal
-		let percentage = (change / oldTotal) * 100
-		let formattedChange = UnitFormatter.currency(from: change)
-		let formattedPrecentage = UnitFormatter.percentage(from: percentage)
-		return "\(formattedChange) (\(formattedPrecentage))"
-	}
-
-	func getCoinValue(_ coin: CoinInfo) -> Double {
+	func getCoinValue(_ coin: Cryptocurrency) -> Double {
 		let amount = coin.amount
 		let price = coin.price
 		let value = amount * price
@@ -122,21 +148,32 @@ class PortfolioViewModel {
 	}
 
 	func setupChart(in view: ChartView) {
-		let myTotals = CoreDataHandler.fetchTotals()
-		if myTotals.count > 9 {
+		let myTotals = get7dTotals()
+        if !myTotals.isEmpty {
 			view.setupChart(with: myTotals)
 		} else {
 			view.setupChart(with: [])
 		}
 	}
+    
+    func createCoinInfoViewModel(for index: Int) -> CoinInfoViewModel {
+        let viewModel = CoinInfoViewModel(coin: myCrypto[index], isInPortfolio: true)
+        return viewModel
+    }
 
 	func createCryptoListViewModel() -> CryptoListViewModel {
-		let viewModel = CryptoListViewModel(crypto: crypto)
+        var availableCrypto: [Cryptocurrency] = [] // only coins that are not in myCrypto
+        crypto.forEach { coin in
+            if !myCrypto.contains(where: {$0.id == coin.id}) {
+                availableCrypto.append(coin)
+            }
+        }
+		let viewModel = CryptoListViewModel(crypto: availableCrypto)
 		return viewModel
 	}
 
 	func createAddCoinVM() -> AddCoinViewModel {
-		var availableCrypto: [CoinInfo] = [] // only coins that are not in myCrypto
+		var availableCrypto: [Cryptocurrency] = [] // only coins that are not in myCrypto
 		crypto.forEach { coin in
 			if !myCrypto.contains(where: { $0.id == coin.id }) {
 				availableCrypto.append(coin)

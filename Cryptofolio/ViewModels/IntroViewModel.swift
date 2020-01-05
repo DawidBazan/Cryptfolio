@@ -12,7 +12,7 @@ import PromiseKit
 class IntroViewModel {
 	private let reachability: ReachabilityChecker
 	private let cryptoFetcher: CryptoFetcher
-	private var crypto: [CoinInfo] = []
+	private var crypto: [Cryptocurrency] = []
 	var updatedCrypto: (() -> Void)?
 
 	init(reachability: ReachabilityChecker, cryptoFetcher: CryptoFetcher) {
@@ -38,7 +38,7 @@ class IntroViewModel {
 		return crypto.count
 	}
 
-	func getCoin(at index: Int) -> CoinInfo {
+	func getCoin(at index: Int) -> Cryptocurrency {
 		return crypto[index]
 	}
 

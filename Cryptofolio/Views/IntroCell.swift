@@ -13,11 +13,13 @@ class IntroCell: UITableViewCell {
 	@IBOutlet var nameLbl: UILabel!
 	@IBOutlet var amountLbl: UILabel!
 
-	func setupCell(with coin: CoinInfo) {
+	func setupCell(with coin: Cryptocurrency) {
 		cryptoImage.imageFromCrypto(coin.name)
 		nameLbl.text = coin.name
 		if coin.amount > 0 {
 			amountLbl.text = "\(coin.amount)"
-		}
+        } else {
+            amountLbl.text = ""
+        }
 	}
 }

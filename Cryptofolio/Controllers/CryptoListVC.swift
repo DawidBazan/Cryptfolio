@@ -9,9 +9,15 @@
 import UIKit
 
 class CryptoListVC: UIViewController {
-	@IBOutlet var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
 
-	var viewModel: CryptoListViewModel?
+    var viewModel: CryptoListViewModel? {
+        didSet {
+            if tableView != nil {
+                tableView.reloadData()
+            }
+        }
+    }
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -32,6 +38,30 @@ class CryptoListVC: UIViewController {
 		navigationItem.hidesSearchBarWhenScrolling = false
 		definesPresentationContext = true
 	}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "marketInfo":
+            if let viewController = segue.destination as? CoinInfoVC {
+                guard let index = tableView.indexPathForSelectedRow else { return }
+                viewController.viewModel = viewModel?.createCoinInfoViewModel(for: index.row)
+                viewController.coinChanged = { [weak self] change in
+                    switch change {
+                    case _ where change.add == true:
+                        guard let amount = change.amount else { return }
+                        self?.tableView.beginUpdates()
+                        self?.tableView.deleteRows(at: [index], with: .automatic)
+                        self?.viewModel?.addCoin(from: index.row, amount: amount)
+                        self?.tableView.endUpdates()
+                    default:
+                        break
+                    }
+                }
+            }
+        default:
+            break
+        }
+    }
 }
 
 extension CryptoListVC: UITableViewDelegate, UITableViewDataSource {
@@ -57,6 +87,10 @@ extension CryptoListVC: UITableViewDelegate, UITableViewDataSource {
 		}
 		return cell
 	}
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "marketInfo", sender: self)
+    }
 }
 
 extension CryptoListVC: UISearchBarDelegate, UISearchResultsUpdating {

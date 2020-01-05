@@ -16,7 +16,7 @@ extension UIImageView {
 }
 
 extension UIViewController {
-	func presentAlert(for error: Error) {
+	func presentErrorAlert(for error: Error) {
 		var title = ""
 		var message = ""
 		switch error {

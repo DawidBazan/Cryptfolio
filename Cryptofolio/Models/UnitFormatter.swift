@@ -17,6 +17,14 @@ enum UnitFormatter {
 		let finalValue = formatter.string(from: value as NSNumber)!
 		return finalValue
 	}
+    
+    static func number(from value: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        let finalValue = formatter.string(from: value as NSNumber)!
+        return finalValue
+    }
 
 	static func currency(from value: Double) -> String {
 		let formatter = NumberFormatter()

@@ -17,7 +17,7 @@ class HistoryCell: UITableViewCell {
 	@IBOutlet var changeLbl: UILabel!
 	@IBOutlet var changeView: UIView!
 
-	func setupCell(with coin: CoinInfo, change: Double) {
+	func setupCell(with coin: Cryptocurrency, change: Double) {
 		cryptoImage.imageFromCrypto(coin.name)
 		nameLbl.text = coin.symbol.uppercased()
 		amountLbl.text = "\(coin.amount)"
