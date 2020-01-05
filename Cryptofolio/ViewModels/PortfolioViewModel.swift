@@ -87,9 +87,23 @@ class PortfolioViewModel {
 
 	func getTotalValue() -> String {
 		let total = getCurrentTotal()
-		CoreDataHandler.addTotal(total)
 		return UnitFormatter.currency(from: total)
 	}
+    
+    func getTotalChange() -> String {
+        let myTotals = get7dTotals()
+        guard let oldTotal = myTotals.first else {
+            let formattedChange = UnitFormatter.currency(from: 0)
+            let formattedPrecentage = UnitFormatter.percentage(from: 0)
+            return "\(formattedChange) (\(formattedPrecentage))"
+        }
+        let newTotal = getCurrentTotal()
+        let change = newTotal - oldTotal
+        let percentage = (change / oldTotal) * 100
+        let formattedChange = UnitFormatter.currency(from: change)
+        let formattedPrecentage = UnitFormatter.percentage(from: percentage)
+        return "\(formattedChange) (\(formattedPrecentage))"
+    }
 
 	private func getCurrentTotal() -> Double {
 		var total = 0.0
@@ -98,21 +112,25 @@ class PortfolioViewModel {
 		}
 		return total
 	}
-
-	func getTotalChange() -> String {
-		let myTotals = CoreDataHandler.fetchTotals()
-		guard let oldTotal = myTotals.first else {
-			let formattedChange = UnitFormatter.currency(from: 0)
-			let formattedPrecentage = UnitFormatter.percentage(from: 0)
-			return "\(formattedChange) (\(formattedPrecentage))"
-		}
-		let newTotal = getCurrentTotal()
-		let change = newTotal - oldTotal
-		let percentage = (change / oldTotal) * 100
-		let formattedChange = UnitFormatter.currency(from: change)
-		let formattedPrecentage = UnitFormatter.percentage(from: percentage)
-		return "\(formattedChange) (\(formattedPrecentage))"
-	}
+    
+    private func get7dTotals() -> [Double] {
+        var coinsTotals: [Double] = []
+        
+        for (index, coin) in myCrypto.enumerated() {
+            if index > 0 {
+                for (index, total) in coin.sparklineIn7D.price.enumerated() {
+                    let totalAmount = total * coin.amount
+                    if coinsTotals.count > index {
+                        coinsTotals[index] = coinsTotals[index] + totalAmount
+                    }
+                }
+            } else {
+                let totalAmounts = coin.sparklineIn7D.price.map({$0 * coin.amount})
+                coinsTotals = totalAmounts
+            }
+        }
+        return coinsTotals
+    }
 
 	func getCoinValue(_ coin: Cryptocurrency) -> Double {
 		let amount = coin.amount
@@ -122,8 +140,8 @@ class PortfolioViewModel {
 	}
 
 	func setupChart(in view: ChartView) {
-		let myTotals = CoreDataHandler.fetchTotals()
-		if myTotals.count > 9 {
+		let myTotals = get7dTotals()
+        if !myTotals.isEmpty {
 			view.setupChart(with: myTotals)
 		} else {
 			view.setupChart(with: [])

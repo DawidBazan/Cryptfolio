@@ -27,14 +27,14 @@ class PortfolioVC: UIViewController {
 	}
 
 	func setupView() {
-		viewModel.setupChart(in: chartView)
 		cardView.setupCard(in: self)
 		viewModel.updatedCrypto = { [weak self] error in
 			guard error == nil else {
-				self?.presentAlert(for: error!)
+				self?.presentErrorAlert(for: error!)
 				return
 			}
 			self?.injectCryptoListViewModel()
+            self?.viewModel.setupChart(in: self!.chartView)
 			self?.setupLabels()
 			self?.tableView.reloadData()
 		}
@@ -179,10 +179,10 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
 			})
 			alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { _ in
 				guard let text = alert.textFields?.first?.text else { return }
-				if !text.isEmpty {
-					guard let newAmount = Double(text) else { return }
+                guard let newAmount = Double(text) else { return }
+                if newAmount > 0 {
                     self.changeAmount(newAmount, at: indexPath)
-				}
+                }
 			}))
 			alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 			self.present(alert, animated: true)

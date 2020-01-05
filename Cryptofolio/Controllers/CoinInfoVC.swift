@@ -30,10 +30,10 @@ class CoinInfoVC: UIViewController {
         })
         alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { _ in
             guard let text = alert.textFields?.first?.text else { return }
-            if !text.isEmpty {
-                guard let newAmount = Double(text) else { return }
-                let coinChanges = CoinChange(amount: newAmount)
-                self.coinChanged?(coinChanges)
+            guard let newAmount = Double(text) else { return }
+            if newAmount > 0 {
+                let changedAmount = self.viewModel.changeCoinAmount(newAmount)
+                self.coinChanged?(changedAmount)
             }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -43,8 +43,8 @@ class CoinInfoVC: UIViewController {
     @IBAction func deletePressed(_ sender: Any) {
         let alert = UIAlertController(title: "", message: "Delete coin from portfolio?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { _ in
-            let coinChanges = CoinChange(delete: true)
-            self.coinChanged?(coinChanges)
+            let deleteCoin = self.viewModel.deleteCoin()
+            self.coinChanged?(deleteCoin)
             self.navigationController?.popViewController(animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
