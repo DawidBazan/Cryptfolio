@@ -11,11 +11,13 @@ import Foundation
 class CoinInfoViewModel {
     
     private let coin: Cryptocurrency
+    private var isInPortfolio: Bool
     private var coinInfo: [String] = []
     private var coinTitles = ["Rank:", "Price:", "Market Cap:", "Volume:", "Circulating Supply:", "24H Change:"]
     
-    init(coin: Cryptocurrency) {
+    init(coin: Cryptocurrency, isInPortfolio: Bool = false) {
         self.coin = coin
+        self.isInPortfolio = isInPortfolio
         retrieveCoinInfo()
     }
     
@@ -44,6 +46,14 @@ class CoinInfoViewModel {
     
     func getCoinInfo(at index: Int) -> String {
         return coinInfo[index]
+    }
+    
+    func isCoinInPortfolio() -> Bool {
+        return isInPortfolio
+    }
+    
+    func addCoin(with amount: Double) -> CoinChange {
+        return CoinChange(amount: amount, add: true)
     }
     
     func changeCoinAmount(_ amount: Double) -> CoinChange {

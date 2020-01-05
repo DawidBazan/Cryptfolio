@@ -92,7 +92,6 @@ class PortfolioVC: UIViewController {
 	@IBAction func detailsPressed(_ sender: Any) {}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         switch segue.identifier {
         case "addCoin":
             if let viewController = segue.destination as? AddCoinVC {
@@ -115,8 +114,7 @@ class PortfolioVC: UIViewController {
                         self?.changeAmount(change.amount!, at: index)
                     case _ where change.delete == true:
                         self?.deleteCoinRow(at: index)
-                    case _ where change.add == true:
-                        break
+                        self?.injectCryptoListViewModel() //inject due to crypto array change
                     default:
                         return
                     }
@@ -129,7 +127,7 @@ class PortfolioVC: UIViewController {
 
 	func injectCryptoListViewModel() {
 		let navController = tabBarController?.viewControllers![1] as! UINavigationController
-		let vc = navController.topViewController as! CryptoListVC
+        guard let vc = navController.topViewController as? CryptoListVC else { return }
 		vc.viewModel = viewModel.createCryptoListViewModel()
 	}
 }
@@ -190,6 +188,7 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
 
 		let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: { _, indexPath in
             self.deleteCoinRow(at: indexPath)
+            self.injectCryptoListViewModel() //inject due to crypto array change
 		})
 		return [deleteAction, editAction]
 	}

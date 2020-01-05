@@ -23,10 +23,14 @@ import UIKit
         layer.borderWidth = 0.8
         
         self.setTitleColor(.white, for: .normal)
-        if self.title(for: .normal) == "Delete" {
+        
+        switch self.title(for: .normal) {
+        case "Add":
+            layer.borderColor = #colorLiteral(red: 0.2078431373, green: 0.8745098039, blue: 0.4352941176, alpha: 1).cgColor
+        case "Delete":
             layer.borderColor = #colorLiteral(red: 0.9019744992, green: 0.3294329345, blue: 0.368601799, alpha: 1).cgColor
             self.backgroundColor = #colorLiteral(red: 0.9019744992, green: 0.3294329345, blue: 0.368601799, alpha: 1)
-        } else {
+        default:
             layer.borderColor = UIColor.white.cgColor
         }
     }

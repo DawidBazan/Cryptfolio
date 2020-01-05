@@ -20,6 +20,10 @@ class PortfolioViewModel {
 		self.reachability = reachability
 		self.cryptoFetcher = cryptoFetcher
 		fetchCrypto()
+        NotificationCenter.default.addObserver(self, //used to update data when new coin is added from cryptoList
+                                               selector: #selector(newCoinAdded),
+                                               name: Notification.Name("NewCoinAdded"),
+                                               object: nil)
 	}
 
 	private func fetchCrypto() {
@@ -48,6 +52,10 @@ class PortfolioViewModel {
 			break
 		}
 	}
+    
+    @objc private func newCoinAdded() {
+        getMyCrypto()
+    }
 
 	func getMyCrypto() {
 		let cryptoData = CoreDataHandler.fetchMyCoins()
@@ -149,12 +157,18 @@ class PortfolioViewModel {
 	}
     
     func createCoinInfoViewModel(for index: Int) -> CoinInfoViewModel {
-        let viewModel = CoinInfoViewModel(coin: crypto[index])
+        let viewModel = CoinInfoViewModel(coin: myCrypto[index], isInPortfolio: true)
         return viewModel
     }
 
 	func createCryptoListViewModel() -> CryptoListViewModel {
-		let viewModel = CryptoListViewModel(crypto: crypto)
+        var availableCrypto: [Cryptocurrency] = [] // only coins that are not in myCrypto
+        crypto.forEach { coin in
+            if !myCrypto.contains(where: {$0.id == coin.id}) {
+                availableCrypto.append(coin)
+            }
+        }
+		let viewModel = CryptoListViewModel(crypto: availableCrypto)
 		return viewModel
 	}
 

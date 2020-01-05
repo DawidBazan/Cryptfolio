@@ -49,4 +49,15 @@ class CryptoListViewModel {
 			return true
 		}
 	}
+    
+    func addCoin(from index: Int, amount: Double) {
+        CoreDataHandler.addCoin(crypto[index], amount: amount)
+        crypto.remove(at: index)
+        NotificationCenter.default.post(name: Notification.Name("NewCoinAdded"), object: nil)
+    }
+    
+    func createCoinInfoViewModel(for index: Int) -> CoinInfoViewModel {
+        let viewModel = CoinInfoViewModel(coin: crypto[index])
+        return viewModel
+    }
 }

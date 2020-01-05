@@ -55,7 +55,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="142.66666666666666" height="73"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibd-Ze-xKJ">
-                                                <rect key="frame" x="54.333333333333329" y="0.0" width="34" height="50"/>
+                                                <rect key="frame" x="37.333333333333329" y="0.0" width="68" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="XBA-oh-fLS"/>
                                                 </constraints>
@@ -78,7 +78,7 @@
                                         <rect key="frame" x="172.66666666666663" y="0.0" width="142.33333333333337" height="73"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDG-Xu-wkQ">
-                                                <rect key="frame" x="54.000000000000028" y="0.0" width="34" height="50"/>
+                                                <rect key="frame" x="37" y="0.0" width="68" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="EbP-SD-Xrd"/>
                                                 </constraints>
@@ -401,7 +401,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Scz-SR-mOO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3852" y="91.625615763546804"/>
+            <point key="canvasLocation" x="3809" y="389"/>
         </scene>
         <!--Market-->
         <scene sceneID="pEc-qG-KoX">
@@ -505,6 +505,7 @@
                     <navigationItem key="navigationItem" title="Market" id="Etx-uT-nIN"/>
                     <connections>
                         <outlet property="tableView" destination="X4C-Xa-JBF" id="G2s-sq-4oN"/>
+                        <segue destination="euQ-fz-ING" kind="show" identifier="marketInfo" id="V0q-Jp-tSK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Kb-R4-U28" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -899,4 +900,7 @@
         <image name="person" width="25" height="25"/>
         <image name="personFill" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="V0q-Jp-tSK"/>
+    </inferredMetricsTieBreakers>
 </document>
