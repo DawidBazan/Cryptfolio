@@ -22,6 +22,8 @@ class CoinSelectionVC: UIViewController {
 	}
 }
 
+// MARK: - TableView Delegates
+
 extension CoinSelectionVC: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return viewModel.getRowCount()
@@ -35,6 +37,7 @@ extension CoinSelectionVC: UITableViewDelegate, UITableViewDataSource {
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		Constant.hapticFeedback(style: .light)
 		let coin = viewModel.getCoin(at: indexPath.row)
 		viewModel.updateSelectedCoin(coin)
 		dismiss(animated: true, completion: nil)

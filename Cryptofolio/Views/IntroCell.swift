@@ -18,8 +18,8 @@ class IntroCell: UITableViewCell {
 		nameLbl.text = coin.name
 		if coin.amount > 0 {
 			amountLbl.text = "\(coin.amount)"
-        } else {
-            amountLbl.text = ""
-        }
+		} else {
+			amountLbl.text = ""
+		}
 	}
 }

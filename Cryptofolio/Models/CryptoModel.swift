@@ -17,7 +17,7 @@ struct Cryptocurrency: Codable {
 	let marketCap, marketCapRank, totalVolume: Int
 	let high24H, low24H, priceChange24H, priceChangePercentage24H: Double
 	let circulatingSupply: Double
-    let sparklineIn7D: SparklineIn7D
+	let sparklineIn7D: SparklineIn7D
 	//    let totalSupply: Int
 	var amount: Double = 0
 	var buyPrice: Double = 0
@@ -35,13 +35,13 @@ struct Cryptocurrency: Codable {
 		case priceChange24H = "price_change_24h"
 		case priceChangePercentage24H = "price_change_percentage_24h"
 		case circulatingSupply = "circulating_supply"
-        case sparklineIn7D = "sparkline_in_7d"
+		case sparklineIn7D = "sparkline_in_7d"
 		//        case totalSupply = "total_supply"
 	}
 }
 
 struct SparklineIn7D: Codable {
-    let price: [Double]
+	let price: [Double]
 }
 
 // MARK: - Encode/decode helpers

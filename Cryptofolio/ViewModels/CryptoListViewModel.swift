@@ -17,6 +17,23 @@ class CryptoListViewModel {
 		self.crypto = crypto
 	}
 
+	func filterCrypto(with searchText: String) {
+		let filtered = crypto.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+		filteredCrypto = filtered
+	}
+
+	func clearFilteredCrypto() {
+		filteredCrypto.removeAll()
+	}
+
+	func addCoin(from index: Int, amount: Double) {
+		CoreDataHandler.addCoin(crypto[index], amount: amount)
+		crypto.remove(at: index)
+		NotificationCenter.default.post(name: Notification.Name("NewCoinAdded"), object: nil)
+	}
+
+	// MARK: - Get functions
+
 	func getRowCount() -> Int {
 		return crypto.count
 	}
@@ -33,15 +50,6 @@ class CryptoListViewModel {
 		return filteredCrypto[index]
 	}
 
-	func filterCrypto(with searchText: String) {
-		let filtered = crypto.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-		filteredCrypto = filtered
-	}
-
-	func clearFilteredCrypto() {
-		filteredCrypto.removeAll()
-	}
-
 	func isCryptoFiltered() -> Bool {
 		if filteredCrypto.isEmpty {
 			return false
@@ -49,15 +57,11 @@ class CryptoListViewModel {
 			return true
 		}
 	}
-    
-    func addCoin(from index: Int, amount: Double) {
-        CoreDataHandler.addCoin(crypto[index], amount: amount)
-        crypto.remove(at: index)
-        NotificationCenter.default.post(name: Notification.Name("NewCoinAdded"), object: nil)
-    }
-    
-    func createCoinInfoViewModel(for index: Int) -> CoinInfoViewModel {
-        let viewModel = CoinInfoViewModel(coin: crypto[index])
-        return viewModel
-    }
+
+	// MARK: - ViewModel create function
+
+	func createCoinInfoViewModel(for index: Int) -> CoinInfoViewModel {
+		let viewModel = CoinInfoViewModel(coin: crypto[index])
+		return viewModel
+	}
 }

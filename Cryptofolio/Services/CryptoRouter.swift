@@ -25,12 +25,12 @@ enum CryptoRouter: URLRequestConvertible {
 			case .get:
 				return ["vs_currency": "usd",
 				        "order": "market_cap_desc",
-				        "ids": Constants.coinIds,
-                        "sparkline": "true"]
+				        "ids": Constant.coinIds,
+				        "sparkline": "true"]
 			}
 		}()
 
-		let url = Constants.url
+		let url = Constant.url
 		var urlRequest = URLRequest(url: url)
 		urlRequest.httpMethod = method.rawValue
 
