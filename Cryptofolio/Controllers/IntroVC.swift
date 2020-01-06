@@ -30,9 +30,12 @@ class IntroVC: UIViewController {
 		guard let selectedIndexes = tableView.indexPathsForSelectedRows else { return }
 		let selectedRows = selectedIndexes.map { $0.row }
 		viewModel.addSelectedCoins(from: selectedRows)
+		Constant.hapticFeedback(style: .heavy)
 		performSegue(withIdentifier: "main", sender: self)
 	}
 }
+
+// MARK: - TableView Delegates
 
 extension IntroVC: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,22 +50,12 @@ extension IntroVC: UITableViewDelegate, UITableViewDataSource {
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let alert = UIAlertController(title: "", message: "Enter coin amount", preferredStyle: .alert)
-		alert.addTextField(configurationHandler: { textField in
-			textField.placeholder = "amount eg. 10BTC"
-			textField.keyboardType = .decimalPad
-		})
-		alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
-			guard let text = alert.textFields?.first?.text else { return }
-			if !text.isEmpty {
-				guard let amount = Double(text) else { return }
-				self.viewModel.addCoinAmount(amount, at: indexPath.row)
-				self.tableView.reloadRows(at: [indexPath], with: .automatic)
-				self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-				self.doneBtn.isEnabled = true
-			}
-		}))
-		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-		present(alert, animated: true)
+		Constant.hapticFeedback(style: .light)
+		presentAddAlert { [weak self] amount in
+			self?.viewModel.addCoinAmount(amount, at: indexPath.row)
+			self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+			self?.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+			self?.doneBtn.isEnabled = true
+		}
 	}
 }

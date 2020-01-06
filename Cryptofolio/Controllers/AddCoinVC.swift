@@ -38,12 +38,14 @@ class AddCoinVC: UIViewController {
 	}
 
 	@IBAction func coinSelectionPressed(_ sender: Any) {
+		Constant.hapticFeedback(style: .medium)
 		showActionSheet()
 	}
 
 	@IBAction func addPressed(_ sender: Any) {
 		guard let amount = amountField.text else { return }
 		viewModel.addSelectedCoin(amount: Double(amount)!)
+		Constant.hapticFeedback(style: .medium)
 		coinAdded?()
 		dismiss(animated: true, completion: nil)
 	}

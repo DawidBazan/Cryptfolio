@@ -9,7 +9,7 @@
 import Foundation
 
 struct CoinChange {
-    var amount: Double?
-    var add: Bool = false
-    var delete: Bool = false
+	var amount: Double?
+	var add: Bool = false
+	var delete: Bool = false
 }
