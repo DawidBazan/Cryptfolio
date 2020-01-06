@@ -34,14 +34,6 @@ class IntroViewModel {
 		}
 	}
 
-	func getRowCount() -> Int {
-		return crypto.count
-	}
-
-	func getCoin(at index: Int) -> Cryptocurrency {
-		return crypto[index]
-	}
-
 	func addCoinAmount(_ amount: Double, at index: Int) {
 		crypto[index].amount = amount
 	}
@@ -51,5 +43,15 @@ class IntroViewModel {
 			let coin = crypto[index]
 			CoreDataHandler.addCoin(coin, amount: coin.amount)
 		}
+	}
+
+	// MARK: - Get functions
+
+	func getRowCount() -> Int {
+		return crypto.count
+	}
+
+	func getCoin(at index: Int) -> Cryptocurrency {
+		return crypto[index]
 	}
 }

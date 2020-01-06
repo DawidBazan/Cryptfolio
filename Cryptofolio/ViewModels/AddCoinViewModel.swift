@@ -18,6 +18,17 @@ class AddCoinViewModel {
 		selectedCoin = crypto.first
 	}
 
+	func setSelectedCoin(to coin: Cryptocurrency?) {
+		selectedCoin = coin
+	}
+
+	func addSelectedCoin(amount: Double) {
+		guard let selectedCoin = selectedCoin else { return }
+		CoreDataHandler.addCoin(selectedCoin, amount: amount)
+	}
+
+	// MARK: - Get functions
+
 	func getRowCount() -> Int {
 		return crypto.count
 	}
@@ -30,11 +41,6 @@ class AddCoinViewModel {
 		}
 	}
 
-	func addSelectedCoin(amount: Double) {
-		guard let selectedCoin = selectedCoin else { return }
-		CoreDataHandler.addCoin(selectedCoin, amount: amount)
-	}
-
 	func getCoin(at index: Int) -> Cryptocurrency {
 		return crypto[index]
 	}
@@ -43,9 +49,7 @@ class AddCoinViewModel {
 		return selectedCoin
 	}
 
-	func setSelectedCoin(to coin: Cryptocurrency?) {
-		selectedCoin = coin
-	}
+	// MARK: - ViewModel create function
 
 	func createCoinSelectionVM() -> CoinSelectionViewModel {
 		let viewModel = CoinSelectionViewModel(crypto: crypto)

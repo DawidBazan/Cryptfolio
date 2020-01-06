@@ -16,6 +16,8 @@ class HistoryVC: UIViewController {
 	}
 }
 
+// MARK: - TableView Delegates
+
 extension HistoryVC: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return viewModel.getRowCount()

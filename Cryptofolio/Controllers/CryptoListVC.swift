@@ -9,19 +9,25 @@
 import UIKit
 
 class CryptoListVC: UIViewController {
-    @IBOutlet var tableView: UITableView!
+	@IBOutlet var tableView: UITableView!
 
-    var viewModel: CryptoListViewModel? {
-        didSet {
-            if tableView != nil {
-                tableView.reloadData()
-            }
-        }
-    }
+	var viewModel: CryptoListViewModel? {
+		didSet {
+			if tableView != nil {
+				tableView.reloadData()
+			}
+		}
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		viewSetup()
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
+			tableView.deselectRow(at: selectionIndexPath, animated: animated)
+		}
 	}
 
 	func viewSetup() {
@@ -38,31 +44,33 @@ class CryptoListVC: UIViewController {
 		navigationItem.hidesSearchBarWhenScrolling = false
 		definesPresentationContext = true
 	}
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "marketInfo":
-            if let viewController = segue.destination as? CoinInfoVC {
-                guard let index = tableView.indexPathForSelectedRow else { return }
-                viewController.viewModel = viewModel?.createCoinInfoViewModel(for: index.row)
-                viewController.coinChanged = { [weak self] change in
-                    switch change {
-                    case _ where change.add == true:
-                        guard let amount = change.amount else { return }
-                        self?.tableView.beginUpdates()
-                        self?.tableView.deleteRows(at: [index], with: .automatic)
-                        self?.viewModel?.addCoin(from: index.row, amount: amount)
-                        self?.tableView.endUpdates()
-                    default:
-                        break
-                    }
-                }
-            }
-        default:
-            break
-        }
-    }
+
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		switch segue.identifier {
+		case "marketInfo":
+			if let viewController = segue.destination as? CoinInfoVC {
+				guard let index = tableView.indexPathForSelectedRow else { return }
+				viewController.viewModel = viewModel?.createCoinInfoViewModel(for: index.row)
+				viewController.coinChanged = { [weak self] change in
+					switch change {
+					case _ where change.add == true:
+						guard let amount = change.amount else { return }
+						self?.tableView.beginUpdates()
+						self?.tableView.deleteRows(at: [index], with: .automatic)
+						self?.viewModel?.addCoin(from: index.row, amount: amount)
+						self?.tableView.endUpdates()
+					default:
+						break
+					}
+				}
+			}
+		default:
+			break
+		}
+	}
 }
+
+// MARK: - TableView Delegates
 
 extension CryptoListVC: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,11 +95,14 @@ extension CryptoListVC: UITableViewDelegate, UITableViewDataSource {
 		}
 		return cell
 	}
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "marketInfo", sender: self)
-    }
+
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		Constant.hapticFeedback(style: .light)
+		performSegue(withIdentifier: "marketInfo", sender: self)
+	}
 }
+
+// MARK: - SearchBar Delegates
 
 extension CryptoListVC: UISearchBarDelegate, UISearchResultsUpdating {
 	func filterContentForSearchText(_ searchText: String) {

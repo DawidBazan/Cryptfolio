@@ -9,12 +9,11 @@
 import UIKit
 
 class CoinInfoCell: UITableViewCell {
-    
-    @IBOutlet var titleLbl: UILabel!
-    @IBOutlet var infoLbl: UILabel!
-    
-    func setupCell(with value: String, for title: String) {
-        titleLbl.text = title
-        infoLbl.text = value
-    }
+	@IBOutlet var titleLbl: UILabel!
+	@IBOutlet var infoLbl: UILabel!
+
+	func setupCell(with value: String, for title: String) {
+		titleLbl.text = title
+		infoLbl.text = value
+	}
 }

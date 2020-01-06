@@ -34,9 +34,9 @@ struct CryptoFetcher {
 			let decodedCrypto = try JSONDecoder().decode([Cryptocurrency].self, from: data)
 			return decodedCrypto
 		} catch {
-            if let JSONString = String(data: data, encoding: String.Encoding.utf8) {
-               print(JSONString)
-            }
+			if let JSONString = String(data: data, encoding: String.Encoding.utf8) {
+				print(JSONString)
+			}
 			print("\(CryptoError.decodeFailed): \(error)")
 			return []
 		}

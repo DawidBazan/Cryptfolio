@@ -26,6 +26,12 @@ class PortfolioVC: UIViewController {
 		setupView()
 	}
 
+	override func viewWillAppear(_ animated: Bool) {
+		if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
+			tableView.deselectRow(at: selectionIndexPath, animated: animated)
+		}
+	}
+
 	func setupView() {
 		cardView.setupCard(in: self)
 		viewModel.updatedCrypto = { [weak self] error in
@@ -33,8 +39,8 @@ class PortfolioVC: UIViewController {
 				self?.presentErrorAlert(for: error!)
 				return
 			}
-			self?.injectCryptoListViewModel()
-            self?.viewModel.setupChart(in: self!.chartView)
+			self?.injectCryptoListViewModel() // inject due to crypto array change after update
+			self?.viewModel.setupChart(in: self!.chartView)
 			self?.setupLabels()
 			self?.tableView.reloadData()
 		}
@@ -46,15 +52,15 @@ class PortfolioVC: UIViewController {
 		totalValueLbl.text = viewModel.getTotalValue()
 		let totalChange = viewModel.getTotalChange()
 		if totalChange.first == "-" {
-			totalChangeLbl.textColor = #colorLiteral(red: 0.9019744992, green: 0.3294329345, blue: 0.368601799, alpha: 1)
+			totalChangeLbl.textColor = Constant.Colors.primaryRed
 			totalChangeLbl.text = totalChange
 		} else {
-			totalChangeLbl.textColor = #colorLiteral(red: 0.2078431373, green: 0.8745098039, blue: 0.4352941176, alpha: 1)
+			totalChangeLbl.textColor = Constant.Colors.primaryGreen
 			totalChangeLbl.text = "+\(totalChange)"
 		}
 	}
 
-	func enableAdd() {
+	func enableAdd() { // enabled if there is no error with retrieving crypto
 		if #available(iOS 13.0, *) {
 			addLbl.textColor = .label
 		} else {
@@ -82,55 +88,45 @@ class PortfolioVC: UIViewController {
 	}
 
 	@IBAction func addPressed(_ sender: Any) {
+		Constant.hapticFeedback(style: .medium)
 		performSegue(withIdentifier: "addCoin", sender: self)
 	}
 
 	@IBAction func historyPressed(_ sender: Any) {
+		Constant.hapticFeedback(style: .medium)
 		performSegue(withIdentifier: "history", sender: self)
 	}
 
-	@IBAction func detailsPressed(_ sender: Any) {} //currently unused and hidden
+	@IBAction func detailsPressed(_ sender: Any) {} // currently unused and hidden
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "addCoin":
-            if let viewController = segue.destination as? AddCoinVC {
-                viewController.viewModel = viewModel.createAddCoinVM()
-                viewController.coinAdded = { [weak self] in
-                    self?.viewModel.getMyCrypto()
-                }
-            }
-        case "history":
-            if let viewController = segue.destination as? HistoryVC {
-                viewController.viewModel = viewModel.createHistoryVM()
-            }
-        case "info":
-            if let viewController = segue.destination as? CoinInfoVC {
-                guard let index = tableView.indexPathForSelectedRow else { return }
-                viewController.viewModel = viewModel.createCoinInfoViewModel(for: index.row)
-                viewController.coinChanged = { [weak self] change in
-                    switch change {
-                    case _ where change.amount != nil:
-                        self?.changeAmount(change.amount!, at: index)
-                    case _ where change.delete == true:
-                        self?.deleteCoinRow(at: index)
-                        self?.injectCryptoListViewModel() //inject due to crypto array change
-                    default:
-                        return
-                    }
-                }
-            }
-        default:
-            break
-        }
+		switch segue.identifier {
+		case "addCoin":
+			if let viewController = segue.destination as? AddCoinVC {
+				viewModel.segueToAddCoinVC(viewController)
+			}
+		case "history":
+			if let viewController = segue.destination as? HistoryVC {
+				viewModel.segueToHistoryVC(viewController)
+			}
+		case "info":
+			if let viewController = segue.destination as? CoinInfoVC {
+				guard let index = tableView.indexPathForSelectedRow else { return }
+				viewModel.segueToCoinInfoVC(viewController, coinIndex: index.row)
+			}
+		default:
+			break
+		}
 	}
 
 	func injectCryptoListViewModel() {
 		let navController = tabBarController?.viewControllers![1] as! UINavigationController
-        guard let vc = navController.topViewController as? CryptoListVC else { return }
+		guard let vc = navController.topViewController as? CryptoListVC else { return }
 		vc.viewModel = viewModel.createCryptoListViewModel()
 	}
 }
+
+// MARK: - TableView Delegates
 
 extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -170,50 +166,42 @@ extension PortfolioVC: UITableViewDelegate, UITableViewDataSource {
 
 	func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 		let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: { _, indexPath in
-			let alert = UIAlertController(title: "", message: "Edit coin amount", preferredStyle: .alert)
-			alert.addTextField(configurationHandler: { textField in
-				textField.placeholder = "New amount"
-				textField.keyboardType = .decimalPad
-			})
-			alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { _ in
-				guard let text = alert.textFields?.first?.text else { return }
-                guard let newAmount = Double(text) else { return }
-                if newAmount > 0 {
-                    self.changeAmount(newAmount, at: indexPath)
-                }
-			}))
-			alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-			self.present(alert, animated: true)
+			self.presentEditAlert { newAmount in
+				self.changeAmount(newAmount, at: indexPath)
+			}
 		})
 
 		let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: { _, indexPath in
-            self.deleteCoinRow(at: indexPath)
-            self.injectCryptoListViewModel() //inject due to crypto array change
+			self.presentDeleteAlert { [weak self] in
+				self?.deleteCoinRow(at: indexPath)
+				self?.injectCryptoListViewModel() // inject due to crypto array change
+			}
 		})
 		return [deleteAction, editAction]
 	}
-    
-    func changeAmount(_ amount: Double, at index: IndexPath) {
-        self.viewModel.editCoin(amount: amount, at: index.row)
-        self.setupLabels()
-        self.tableView.reloadRows(at: [index], with: .fade)
-    }
-    
-    func deleteCoinRow(at index: IndexPath) {
-        self.tableView.beginUpdates()
-        self.tableView.deleteRows(at: [index], with: .automatic)
-        self.viewModel.removeCoin(at: index.row)
-        self.setupLabels()
-        self.tableView.endUpdates()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "info", sender: self)
-    }
+
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		Constant.hapticFeedback(style: .light)
+		performSegue(withIdentifier: "info", sender: self)
+	}
 
 	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		if scrollView.contentOffset.y > 10, cardView.cardExpanded == false {
 			cardView.expandCard()
 		}
+	}
+
+	func changeAmount(_ amount: Double, at index: IndexPath) {
+		viewModel.editCoin(amount: amount, at: index.row)
+		setupLabels()
+		tableView.reloadRows(at: [index], with: .fade)
+	}
+
+	func deleteCoinRow(at index: IndexPath) {
+		tableView.beginUpdates()
+		tableView.deleteRows(at: [index], with: .automatic)
+		viewModel.removeCoin(at: index.row)
+		setupLabels()
+		tableView.endUpdates()
 	}
 }

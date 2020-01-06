@@ -39,6 +39,56 @@ extension UIViewController {
 			}
 		}))
 		alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+		alert.view.tintColor = Constant.Colors.orange
 		present(alert, animated: true, completion: nil)
+	}
+
+	func presentAddAlert(_ added: @escaping (Double) -> Void) {
+		let alert = UIAlertController(title: "", message: "Enter coin amount", preferredStyle: .alert)
+		alert.addTextField(configurationHandler: { textField in
+			textField.placeholder = "amount eg. 10BTC"
+			textField.keyboardType = .decimalPad
+		})
+		alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { _ in
+			guard let text = alert.textFields?.first?.text else { return }
+			guard let amount = Double(text) else { return }
+			if amount > 0 {
+				Constant.hapticFeedback(style: .medium)
+				added(amount)
+			}
+		}))
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		alert.view.tintColor = Constant.Colors.orange
+		present(alert, animated: true)
+	}
+
+	func presentEditAlert(_ edited: @escaping (Double) -> Void) {
+		let alert = UIAlertController(title: "", message: "Edit coin amount", preferredStyle: .alert)
+		alert.addTextField(configurationHandler: { textField in
+			textField.placeholder = "New amount eg. 10BTC"
+			textField.keyboardType = .decimalPad
+		})
+		alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { _ in
+			guard let text = alert.textFields?.first?.text else { return }
+			guard let newAmount = Double(text) else { return }
+			if newAmount > 0 {
+				Constant.hapticFeedback(style: .medium)
+				edited(newAmount)
+			}
+		}))
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		alert.view.tintColor = Constant.Colors.orange
+		present(alert, animated: true)
+	}
+
+	func presentDeleteAlert(_ deleted: @escaping () -> Void) {
+		let alert = UIAlertController(title: "", message: "Delete coin from portfolio?", preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { _ in
+			Constant.hapticFeedback(style: .medium)
+			deleted()
+		}))
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		alert.view.tintColor = Constant.Colors.orange
+		present(alert, animated: true)
 	}
 }
