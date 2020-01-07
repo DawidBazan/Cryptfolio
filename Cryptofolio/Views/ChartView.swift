@@ -35,6 +35,15 @@ class ChartView: LineChartView {
 		rightAxis.enabled = false
 		dragEnabled = state
 		leftAxis.enabled = state
+        if state == true {
+            chartDescription?.font = .systemFont(ofSize: 10)
+            if #available(iOS 13.0, *) {
+                chartDescription?.textColor = .label
+            } else {
+                chartDescription?.textColor = .black
+            }
+            chartDescription?.text = "7d Chart (USD)"
+        }
 	}
 
 	func gradientColor() -> CGGradient {
