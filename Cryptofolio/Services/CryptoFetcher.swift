@@ -12,9 +12,9 @@ import PromiseKit
 struct CryptoFetcher {
 	let network: NetworkService
 
-	func fetchCrypto() -> Promise<[Cryptocurrency]> {
+    func fetchCrypto(in currency: FiatCurrency) -> Promise<[Cryptocurrency]> {
 		return Promise { seal in
-			network.requestCrypto { result in
+            network.requestCrypto(in: currency) { result in
 				switch result {
 				case let .success(data):
 					if let crypto = self.decodeData(data) {

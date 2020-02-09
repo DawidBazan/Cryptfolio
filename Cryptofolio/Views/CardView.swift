@@ -82,7 +82,7 @@ class CardView: UIView {
 		if traitCollection.userInterfaceStyle == .dark { return }
 		let shadowLayer = CAShapeLayer()
 		shadowLayer.path = UIBezierPath(roundedRect: view.frame, cornerRadius: 12).cgPath
-		shadowLayer.fillColor = handleArea.backgroundColor?.cgColor
+		shadowLayer.fillColor = view.backgroundColor?.cgColor
 		shadowLayer.shadowColor = UIColor.darkGray.cgColor
 		shadowLayer.shadowPath = shadowLayer.path
 		shadowLayer.shadowOffset = CGSize(width: 0, height: -5)

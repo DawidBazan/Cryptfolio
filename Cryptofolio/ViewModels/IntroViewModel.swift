@@ -25,7 +25,7 @@ class IntroViewModel {
 		firstly {
 			self.reachability.checkReachability()
 		}.then { _ in
-			self.cryptoFetcher.fetchCrypto()
+            self.cryptoFetcher.fetchCrypto(in: .usd)
 		}.done { crypto in
 			self.crypto = crypto
 			self.updatedCrypto?()

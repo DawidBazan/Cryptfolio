@@ -264,12 +264,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Cryptofolio" id="Zob-IZ-mbA"/>
+                    <navigationItem key="navigationItem" title="Cryptofolio" id="Zob-IZ-mbA">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="138-aT-BV1">
+                            <connections>
+                                <action selector="currencyChangePressed:" destination="BYZ-38-t0r" id="VmK-UN-9Gk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addBtn" destination="Ibd-Ze-xKJ" id="l8E-LU-o8Y"/>
                         <outlet property="addLbl" destination="tvV-4E-B3s" id="psJ-7f-uWO"/>
                         <outlet property="cardView" destination="ziU-vC-yoa" id="ofi-Ua-PEu"/>
                         <outlet property="chartView" destination="di2-is-Q1V" id="Ry5-Lp-ZBJ"/>
+                        <outlet property="currencyBtn" destination="138-aT-BV1" id="ttt-kK-CI9"/>
                         <outlet property="historyBtn" destination="hDG-Xu-wkQ" id="wd6-AO-r2p"/>
                         <outlet property="historyLbl" destination="SbW-9u-iNc" id="e12-e1-suV"/>
                         <outlet property="tableView" destination="S9r-CF-co5" id="vF0-gZ-i0h"/>

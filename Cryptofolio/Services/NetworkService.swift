@@ -11,12 +11,12 @@ import Foundation
 
 protocol NetworkService {
 	typealias CryptoResult = (Swift.Result<Data, CryptoError>) -> Void
-	func requestCrypto(completion: @escaping CryptoResult)
+    func requestCrypto(in currency: FiatCurrency, completion: @escaping CryptoResult)
 }
 
 struct Network: NetworkService {
-	func requestCrypto(completion: @escaping Self.CryptoResult) {
-		Alamofire.request(CryptoRouter.get).validate().responseJSON { response in
+    func requestCrypto(in currency: FiatCurrency, completion: @escaping Self.CryptoResult) {
+        Alamofire.request(CryptoRouter.get(currency: currency)).validate().responseJSON { response in
 			switch response.result {
 			case .success:
 				guard let data = response.data else { return }
