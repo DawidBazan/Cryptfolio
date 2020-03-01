@@ -45,8 +45,8 @@ class CardView: UIView {
 		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleCardTap(recognzier:)))
 		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
 
-		handleArea.addGestureRecognizer(tapGestureRecognizer)
-		handleArea.addGestureRecognizer(panGestureRecognizer)
+		view.addGestureRecognizer(tapGestureRecognizer)
+		view.addGestureRecognizer(panGestureRecognizer)
 	}
 
 	func expandCard() {

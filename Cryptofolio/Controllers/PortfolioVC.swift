@@ -104,6 +104,7 @@ class PortfolioVC: UIViewController {
         default:
             break
         }
+        UserDefaults.standard.set(sender.title, forKey: "Currency")
     }
     
 	@IBAction func addPressed(_ sender: Any) {
