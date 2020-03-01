@@ -10,7 +10,7 @@ import Alamofire
 import Foundation
 
 enum CryptoRouter: URLRequestConvertible {
-	case get
+    case get(currency: FiatCurrency)
 
 	func asURLRequest() throws -> URLRequest {
 		var method: HTTPMethod {
@@ -22,8 +22,8 @@ enum CryptoRouter: URLRequestConvertible {
 
 		let params: ([String: Any]?) = {
 			switch self {
-			case .get:
-				return ["vs_currency": "usd",
+			case .get(let currency):
+                return ["vs_currency": currency,
 				        "order": "market_cap_desc",
 				        "ids": Constant.coinIds,
 				        "sparkline": "true"]

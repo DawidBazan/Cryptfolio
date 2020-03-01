@@ -8,10 +8,10 @@
 
 import Foundation
 
-enum FiatCurrency {
+enum FiatCurrency: String {
 	case gbp
 	case usd
-	case pln
-	case czk
-	case euro
+    case eur
+//	case pln
+//	case dkk
 }

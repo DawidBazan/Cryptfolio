@@ -45,8 +45,8 @@ class CardView: UIView {
 		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleCardTap(recognzier:)))
 		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleCardPan(recognizer:)))
 
-		handleArea.addGestureRecognizer(tapGestureRecognizer)
-		handleArea.addGestureRecognizer(panGestureRecognizer)
+		view.addGestureRecognizer(tapGestureRecognizer)
+		view.addGestureRecognizer(panGestureRecognizer)
 	}
 
 	func expandCard() {
@@ -82,7 +82,7 @@ class CardView: UIView {
 		if traitCollection.userInterfaceStyle == .dark { return }
 		let shadowLayer = CAShapeLayer()
 		shadowLayer.path = UIBezierPath(roundedRect: view.frame, cornerRadius: 12).cgPath
-		shadowLayer.fillColor = handleArea.backgroundColor?.cgColor
+		shadowLayer.fillColor = view.backgroundColor?.cgColor
 		shadowLayer.shadowColor = UIColor.darkGray.cgColor
 		shadowLayer.shadowPath = shadowLayer.path
 		shadowLayer.shadowOffset = CGSize(width: 0, height: -5)

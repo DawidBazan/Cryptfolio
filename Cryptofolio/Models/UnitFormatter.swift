@@ -26,11 +26,12 @@ enum UnitFormatter {
 		return finalValue
 	}
 
-	static func currency(from value: Double) -> String {
+    static func currency(from value: Double) -> String {
+        let userCurrency = UserDefaults.standard.string(forKey: "Currency") ?? ""
+        let currency = FiatCurrency(rawValue: userCurrency) ?? FiatCurrency.usd
 		let formatter = NumberFormatter()
 		formatter.numberStyle = .currency
-		let us = Locale(identifier: "en_US")
-		formatter.locale = us
+        formatter.currencyCode = currency.rawValue.capitalized
 		let finalValue = formatter.string(from: value as NSNumber)!
 		return finalValue
 	}

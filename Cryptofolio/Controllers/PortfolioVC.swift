@@ -10,6 +10,7 @@ import UIKit
 
 class PortfolioVC: UIViewController {
 	@IBOutlet var tableView: UITableView!
+    @IBOutlet var currencyBtn: UIBarButtonItem!
 	@IBOutlet var totalValueLbl: UILabel!
 	@IBOutlet var totalChangeLbl: UILabel!
 	@IBOutlet var chartView: ChartView!
@@ -18,7 +19,7 @@ class PortfolioVC: UIViewController {
 	@IBOutlet var addLbl: UILabel!
 	@IBOutlet var historyBtn: UIButton!
 	@IBOutlet var historyLbl: UILabel!
-
+    
 	var viewModel: PortfolioViewModel!
 
 	override func viewDidLoad() {
@@ -34,6 +35,8 @@ class PortfolioVC: UIViewController {
 
 	func setupView() {
 		cardView.setupCard(in: self)
+        currencyBtn.title = FiatCurrency.usd.rawValue
+        viewModel.fetchCrypto(in: .usd)
 		viewModel.updatedCrypto = { [weak self] error in
 			guard error == nil else {
 				self?.presentErrorAlert(for: error!)
@@ -86,7 +89,24 @@ class PortfolioVC: UIViewController {
 			historyBtn.isEnabled = false
 		}
 	}
-
+    
+    @IBAction func currencyChangePressed(_ sender: UIBarButtonItem) {
+        switch sender.title {
+        case FiatCurrency.usd.rawValue:
+            sender.title = FiatCurrency.eur.rawValue
+            viewModel.fetchCrypto(in: .eur)
+        case FiatCurrency.eur.rawValue:
+            sender.title = FiatCurrency.gbp.rawValue
+            viewModel.fetchCrypto(in: .gbp)
+        case FiatCurrency.gbp.rawValue:
+            sender.title = FiatCurrency.usd.rawValue
+            viewModel.fetchCrypto(in: .usd)
+        default:
+            break
+        }
+        UserDefaults.standard.set(sender.title, forKey: "Currency")
+    }
+    
 	@IBAction func addPressed(_ sender: Any) {
 		Constant.hapticFeedback(style: .medium)
 		performSegue(withIdentifier: "addCoin", sender: self)

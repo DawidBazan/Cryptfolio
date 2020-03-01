@@ -19,7 +19,6 @@ class PortfolioViewModel {
 	init(reachability: ReachabilityChecker, cryptoFetcher: CryptoFetcher) {
 		self.reachability = reachability
 		self.cryptoFetcher = cryptoFetcher
-		fetchCrypto()
 		NotificationCenter.default.addObserver(self, // used to update data when new coin is added from cryptoList
 		                                       selector: #selector(newCoinAdded),
 		                                       name: Notification.Name("NewCoinAdded"),
@@ -30,11 +29,11 @@ class PortfolioViewModel {
 		getMyCrypto()
 	}
 
-	private func fetchCrypto() {
+    func fetchCrypto(in currency: FiatCurrency) {
 		firstly {
 			self.reachability.checkReachability()
 		}.then { _ in
-			self.cryptoFetcher.fetchCrypto()
+            self.cryptoFetcher.fetchCrypto(in: currency)
 		}.done { crypto in
 			self.crypto = crypto
 			self.getMyCrypto()
@@ -49,7 +48,7 @@ class PortfolioViewModel {
 		case CryptoError.unreachable:
 			reachability.updateWhenReachable { isReachable in
 				if isReachable {
-					self.fetchCrypto()
+                    self.fetchCrypto(in: .usd)
 				}
 			}
 		default:
@@ -68,6 +67,7 @@ class PortfolioViewModel {
 
 	func getMyCrypto() {
 		let cryptoData = CoreDataHandler.fetchMyCoins()
+        myCrypto.removeAll()
 		crypto.forEach { coin in
 			guard let index = cryptoData.firstIndex(where: { $0.symbol == coin.symbol }) else { return }
 			if !myCrypto.contains(where: { $0.id == coin.id }) {
