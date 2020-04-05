@@ -9,25 +9,37 @@
 import UIKit
 
 class IntroVC: UIViewController {
-	@IBOutlet var tableView: UITableView!
-	@IBOutlet var doneBtn: UIButton!
-
 	var viewModel: IntroViewModel!
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		setupView()
-	}
+    let contentView = IntroView()
+    
+    override func loadView() {
+        view = contentView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+    }
 
 	func setupView() {
+        
+        // Static text
+        contentView.titleLabel.text = "Pick your coins"
+        contentView.descriptionLabel.text = "Select the coin that you would like to track."
+            
+        contentView.doneButton.addTarget(self, action: #selector(donePressed(_:)), for: .touchUpInside)
+        contentView.tableView.register(IntroCell.self, forCellReuseIdentifier: "cell")
+        contentView.tableView.delegate = self
+        contentView.tableView.dataSource = self
+        
 		viewModel.updatedCrypto = { [weak self] in
-			self?.tableView.reloadData()
-			self?.tableView.isEditing = true
+            self?.contentView.tableView.reloadData()
+			self?.contentView.tableView.isEditing = true
 		}
 	}
 
-	@IBAction func donePressed(_ sender: Any) {
-		guard let selectedIndexes = tableView.indexPathsForSelectedRows else { return }
+	@objc func donePressed(_ sender: Any) {
+        guard let selectedIndexes = contentView.tableView.indexPathsForSelectedRows else { return }
 		let selectedRows = selectedIndexes.map { $0.row }
 		viewModel.addSelectedCoins(from: selectedRows)
 		Constant.hapticFeedback(style: .heavy)
@@ -53,9 +65,9 @@ extension IntroVC: UITableViewDelegate, UITableViewDataSource {
 		Constant.hapticFeedback(style: .light)
 		presentAddAlert { [weak self] amount in
 			self?.viewModel.addCoinAmount(amount, at: indexPath.row)
-			self?.tableView.reloadRows(at: [indexPath], with: .automatic)
-			self?.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-			self?.doneBtn.isEnabled = true
+            self?.contentView.tableView.reloadRows(at: [indexPath], with: .automatic)
+            self?.contentView.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            self?.contentView.doneButton.isEnabled = true
 		}
 	}
 }
