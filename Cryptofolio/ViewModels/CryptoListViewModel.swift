@@ -42,12 +42,12 @@ class CryptoListViewModel {
 		return filteredCrypto.count
 	}
 
-	func getCoin(at index: Int) -> Cryptocurrency {
-		return crypto[index]
-	}
+	func getCoin(at index: Int) -> PresentableCrypto {
+        return crypto[index].asPresentable
+    }
 
-	func getFilteredCoin(at index: Int) -> Cryptocurrency {
-		return filteredCrypto[index]
+	func getFilteredCoin(at index: Int) -> PresentableCrypto {
+        return filteredCrypto[index].asPresentable
 	}
 
 	func isCryptoFiltered() -> Bool {

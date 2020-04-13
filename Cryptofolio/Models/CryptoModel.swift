@@ -11,7 +11,7 @@ import Foundation
 // MARK: - Crypto
 
 struct Cryptocurrency: Codable {
-	let id, symbol, name: String
+    let id, symbol, name: String
 	//    let imageURL: String
 	let price: Double
 	let marketCap, marketCapRank, totalVolume: Int

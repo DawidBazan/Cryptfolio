@@ -64,13 +64,9 @@ class IntroCell: UITableViewCell {
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
-    func setupCell(with coin: Cryptocurrency) {
-        cryptoImageView.imageFromCrypto(coin.name)
-        nameLabel.text = coin.name
-        if coin.amount > 0 {
-            amountLabel.text = "\(coin.amount)"
-        } else {
-            amountLabel.text = ""
-        }
+    func setupCell(with name: String, amount: String) {
+        cryptoImageView.image = UIImage(named: name)
+        nameLabel.text = name
+        amountLabel.text = amount
     }
 }

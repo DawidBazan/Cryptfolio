@@ -9,39 +9,56 @@
 import UIKit
 
 class CryptoCell: UITableViewCell {
-	@IBOutlet var cryptoImage: UIImageView!
-	@IBOutlet var nameLbl: UILabel!
-	@IBOutlet var fullPriceLbl: UILabel!
-	@IBOutlet var valueChangeView: UIView!
-	@IBOutlet var valueChangeLbl: UILabel!
-
-	func setupCell(with info: Cryptocurrency) {
-		cryptoImage.imageFromCrypto(info.name)
-		nameLbl.text = info.symbol.uppercased()
-		fullPriceLbl.text = UnitFormatter.currency(from: info.price) // change to 2 decimal places
-		setValueLbl(with: info.priceChangePercentage24H)
-	}
-
-	private func setValueLbl(with value: Double) {
-		valueChangeView.layer.cornerRadius = valueChangeView.frame.height / 2
-		let percentage = UnitFormatter.percentage(from: value)
-		if value > 0 {
-			valueChangeLbl.textColor = Constant.Colors.primaryGreen
-			if traitCollection.userInterfaceStyle == .dark {
-				valueChangeView.backgroundColor = Constant.Colors.darkGreen
-			} else {
-				valueChangeView.backgroundColor = Constant.Colors.lightGreen
-			}
-
-			valueChangeLbl.text = String("+\(percentage)")
-		} else {
-			valueChangeLbl.textColor = Constant.Colors.primaryRed
-			if traitCollection.userInterfaceStyle == .dark {
-				valueChangeView.backgroundColor = Constant.Colors.darkRed
-			} else {
-				valueChangeView.backgroundColor = Constant.Colors.lightRed
-			}
-			valueChangeLbl.text = percentage
-		}
-	}
+    
+    var cryptoImageView: UIImageView = {
+        let this = UIImageView()
+        return this
+    }()
+    var nameLebel: UILabel = {
+        let this = UILabel()
+        return this
+    }()
+    var fullPriceLebel: UILabel = {
+        let this = UILabel()
+        return this
+    }()
+    var priceChangeView: UIView = {
+        let this = UIView()
+        return this
+    }()
+    var priceChangeLebel: UILabel = {
+        let this = UILabel()
+        return this
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
+        setupLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        
+    }
+    
+    private func setupLayout() {
+        
+    }
+    
+    func setupCell(with name: String, symbol: String, price: String, didPriceDrop: Bool, priceChangePercentage: String) {
+        cryptoImageView.image = UIImage(named: name)
+        nameLebel.text = symbol
+        fullPriceLebel.text = price
+        let isDarkMode = traitCollection.userInterfaceStyle == .dark
+        if didPriceDrop {
+            priceChangeView.backgroundColor = isDarkMode ? Constant.Colors.darkRed: Constant.Colors.lightRed
+        } else {
+            priceChangeView.backgroundColor = isDarkMode ? Constant.Colors.darkGreen: Constant.Colors.lightGreen
+        }
+        priceChangeLebel.text = priceChangePercentage
+    }
 }

@@ -87,11 +87,19 @@ extension CryptoListVC: UITableViewDelegate, UITableViewDataSource {
 
 		guard let viewModel = viewModel else { return cell }
 		if viewModel.isCryptoFiltered() {
-			let filteredCoin = viewModel.getFilteredCoin(at: indexPath.row)
-			cell.setupCell(with: filteredCoin)
+            let filteredCoin = viewModel.getFilteredCoin(at: indexPath.row)
+            cell.setupCell(with: filteredCoin.name,
+                           symbol: filteredCoin.symbol,
+                           price: filteredCoin.unitPrice,
+                           didPriceDrop: filteredCoin.didPirceDrop,
+                           priceChangePercentage: filteredCoin.changePercentage)
 		} else {
-			let coin = viewModel.getCoin(at: indexPath.row)
-			cell.setupCell(with: coin)
+            let coin = viewModel.getCoin(at: indexPath.row)
+            cell.setupCell(with: coin.name,
+                           symbol: coin.symbol,
+                           price: coin.unitPrice,
+                           didPriceDrop: coin.didPirceDrop,
+                           priceChangePercentage: coin.changePercentage)
 		}
 		return cell
 	}

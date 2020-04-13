@@ -9,13 +9,13 @@
 import UIKit
 
 class CoinSelectionCell: UITableViewCell {
-	@IBOutlet var coinImage: UIImageView!
-	@IBOutlet var coinSymbol: UILabel!
-	@IBOutlet var coinName: UILabel!
+	@IBOutlet var coinImageView: UIImageView!
+	@IBOutlet var symbolLabel: UILabel!
+	@IBOutlet var nameLabel: UILabel!
 
-	func setupCell(with info: Cryptocurrency) {
-		coinImage.imageFromCrypto(info.name)
-		coinSymbol.text = info.symbol.uppercased()
-		coinName.text = info.name
+    func setupCell(with name: String, symbol: String) {
+		coinImageView.image = UIImage(named: name)
+		symbolLabel.text = symbol.uppercased()
+		nameLabel.text = name
 	}
 }

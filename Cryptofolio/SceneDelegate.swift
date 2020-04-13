@@ -15,14 +15,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		guard (scene as? UIWindowScene) != nil else { return }
 
-//		let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-//		if !launchedBefore {
+		let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+		if !launchedBefore {
 			let storyboard = UIStoryboard(name: "Main", bundle: nil)
 			let viewController = storyboard.instantiateViewController(withIdentifier: "IntroNav") as! UINavigationController
 			window?.rootViewController = viewController
 			window?.makeKeyAndVisible()
-//			UserDefaults.standard.set(true, forKey: "launchedBefore")
-//		}
+			UserDefaults.standard.set(true, forKey: "launchedBefore")
+		}
 	}
 
 	@available(iOS 13.0, *)

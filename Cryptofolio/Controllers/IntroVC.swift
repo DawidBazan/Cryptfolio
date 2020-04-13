@@ -56,8 +56,8 @@ extension IntroVC: UITableViewDelegate, UITableViewDataSource {
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! IntroCell
-		let coin = viewModel.getCoin(at: indexPath.row)
-		cell.setupCell(with: coin)
+        let coin = viewModel.getCoin(at: indexPath.row).asPresentable
+        cell.setupCell(with: coin.name, amount: coin.amount)
 		return cell
 	}
 

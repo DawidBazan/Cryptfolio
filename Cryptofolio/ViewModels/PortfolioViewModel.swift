@@ -19,11 +19,12 @@ class PortfolioViewModel {
 	init(reachability: ReachabilityChecker, cryptoFetcher: CryptoFetcher) {
 		self.reachability = reachability
 		self.cryptoFetcher = cryptoFetcher
-		NotificationCenter.default.addObserver(self, // used to update data when new coin is added from cryptoList
-		                                       selector: #selector(newCoinAdded),
-		                                       name: Notification.Name("NewCoinAdded"),
-		                                       object: nil)
-	}
+		NotificationCenter.default.addObserver(
+            self, // used to update data when new coin is added from cryptoList
+            selector: #selector(newCoinAdded),
+            name: Notification.Name("NewCoinAdded"),
+            object: nil)
+    }
 
 	@objc private func newCoinAdded() {
 		getMyCrypto()

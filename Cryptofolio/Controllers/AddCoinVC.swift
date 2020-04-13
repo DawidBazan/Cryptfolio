@@ -63,7 +63,7 @@ class AddCoinVC: UIViewController {
 
 	func updateCoin() {
 		guard let selectedCoin = viewModel.getSelectedCoin() else { return }
-		coinImageView.imageFromCrypto(selectedCoin.name)
+		coinImageView.image = UIImage(named: selectedCoin.name)
 		coinSymbolLbl.text = selectedCoin.symbol.uppercased()
 	}
 

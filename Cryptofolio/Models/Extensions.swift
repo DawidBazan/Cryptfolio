@@ -9,12 +9,6 @@
 import Foundation
 import UIKit
 
-extension UIImageView {
-	func imageFromCrypto(_ name: String) {
-		image = UIImage(named: name)
-	}
-}
-
 extension UIViewController {
 	func presentErrorAlert(for error: Error) {
 		var title = ""
